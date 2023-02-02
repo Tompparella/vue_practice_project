@@ -10,6 +10,7 @@ import "./assets/main.scss";
 const app = createApp(App);
 
 i18n(app);
+router(app);
 
 app.use(createPinia());
 app.use(router);

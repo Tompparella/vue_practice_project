@@ -1,5 +1,15 @@
 {
+  "appName": "AppName",
   "common": {
     "welcome": "Welcome!"
+  },
+  "authentication": {
+    "newAccount": "Create an account",
+    "email": "Enter your email",
+    "password": "Enter your password",
+    "passwordVerify": "Enter the password again",
+    "passwordRequirements": "Minimum of 8 characters, 1 capital letter, 1 special symbol, 1 number",
+    "register": "Register",
+    "login": "Login"
   }
 }

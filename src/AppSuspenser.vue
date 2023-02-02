@@ -15,7 +15,7 @@ export default {
     </template>
     <template #fallback>
       <div>
-        <h1>Tämmöstä tänään</h1>
+        <h1>Lattaillaan</h1>
       </div>
     </template>
   </Suspense>

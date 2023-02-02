@@ -1,7 +1,10 @@
 <script setup lang="ts">
-import { TestComponent } from "./components/test";
+import { AppFrame, AppHeader, Authentication } from './components';
 </script>
 
 <template>
-  <TestComponent />
+  <AppFrame>
+    <AppHeader />
+    <Authentication />
+  </AppFrame>
 </template>
