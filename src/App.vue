@@ -1,10 +1,12 @@
 <script setup lang="ts">
-import { AppFrame, AppHeader, Authentication } from './components';
+  import { AppFrame, AppHeader } from './components';
+  import {checkAuth} from './utils';
+  checkAuth();
 </script>
 
 <template>
   <AppFrame>
     <AppHeader />
-    <Authentication />
+    <router-view />
   </AppFrame>
 </template>
