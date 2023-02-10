@@ -1,1 +1,1 @@
-export {default as Registration} from './Registration.vue';
+export { default as Registration } from "./RegistrationView.vue";

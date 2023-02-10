@@ -1,3 +1,5 @@
+@import "../../style/constants.scss";
+
 .container {
     width: 100%;
     height: 80%;
@@ -9,6 +11,10 @@
 .authenticationLabel {
     margin: 0;
 }
+.label, .authenticationLabel {
+    color: $textColor;
+}
+
 .emailInput {
 }
 .passwordInput {
