@@ -1,7 +1,7 @@
 <script setup lang="ts">
-  import { AppFrame, AppHeader } from './components';
-  import {checkAuth} from './utils';
-  checkAuth();
+import { AppFrame, AppHeader } from "./components";
+import { checkAuth } from "./utils";
+checkAuth();
 </script>
 
 <template>
