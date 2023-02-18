@@ -2,15 +2,23 @@
 import { Registration } from "./register";
 import { Login } from "./login";
 import { Settings } from "./settings";
+import type { AuthenticationData } from "./types";
 import { ref, type Ref } from "vue";
 import { View } from ".";
 
-const currentContent: Ref<View> = ref(View.Login);
-const changeView = (view: View) => (currentContent.value = view);
+const options = {
+  Registration,
+  Login,
+  Settings,
+};
+const currentComponent: Ref = ref(options.Login);
+const authenticationData: Ref<AuthenticationData> = ref({
+  email: String,
+  password: String,
+  rePassword: String,
+});
 </script>
 
 <template>
-  <Registration v-if="currentContent == View.Register" />
-  <Settings v-else-if="currentContent == View.Settings" />
-  <Login @on-press="changeView" v-else-if="currentContent == View.Login" />
+  <component :is="currentComponent" :authenticationData="authenticationData" />
 </template>
