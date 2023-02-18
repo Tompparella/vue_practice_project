@@ -6,11 +6,15 @@ type Props = {
 defineProps<Props>();
 </script>
 <template>
-  <p>{{ label }}</p>
+  <h3 v-if="type === 'S'">{{ label }}</h3>
+  <h2 v-else-if="type === 'M'">{{ label }}</h2>
+  <h1 v-else>{{ label }}</h1>
 </template>
 <style scoped lang="scss">
 @import "../../style/constants.scss";
-p {
+h1,
+h2,
+h3 {
   color: $textColor;
 }
 </style>

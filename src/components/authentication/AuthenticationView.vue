@@ -3,15 +3,15 @@ import { Registration } from "./register";
 import { Login } from "./login";
 import { Settings } from "./settings";
 import type { AuthenticationData } from "./types";
-import { ref, type Ref } from "vue";
-import { View } from ".";
+import { ref, shallowRef, type Ref } from "vue";
 
 const options = {
-  Registration,
-  Login,
-  Settings,
+  registration: shallowRef(Registration),
+  login: shallowRef(Login),
+  settings: shallowRef(Settings),
 };
-const currentComponent: Ref = ref(options.Login);
+
+const currentComponent: Ref = ref(options.login);
 const authenticationData: Ref<AuthenticationData> = ref({
   email: String,
   password: String,

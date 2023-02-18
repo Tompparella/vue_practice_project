@@ -1,24 +1,38 @@
 <script setup lang="ts">
+import { Input, Label, Button } from "@/components/common";
+import { ref, type Ref } from "vue";
 import type { AuthenticationData } from "../types";
 type Props = {
   authenticationData: AuthenticationData;
 };
+type Emits = {
+  onLoginClick: (data: AuthenticationData) => void;
+  onRegisterClick: (data: AuthenticationData) => void;
+};
 defineProps<Props>();
-defineEmits(["onLoginClick", "onRegisterClick"]);
+defineEmits<Emits>();
+const email: Ref<string> = ref("");
+const password: Ref<string> = ref("");
 </script>
 
 <template>
   <view class="container">
-    <h1 class="authenticationLabel">{{ $t("authentication.login") }}</h1>
-    <h3 class="label">{{ $t("authentication.email") }}</h3>
+    <Label :type="'L'" :label="$t('authentication.login')" />
+    <Label :type="'M'" :label="$t('authentication.email')" />
+    <Input v-model="email" />
     <h3 class="label">{{ $t("authentication.password") }}</h3>
-    <input type="password" class="passwordInput" />
-    <button @click="$emit('onLoginClick')">
-      {{ $t("authentication.login") }}
-    </button>
-    <button @click="$emit('onRegisterClick')">
-      {{ $t("authentication.newAccount") }}
-    </button>
+    <Input v-model="password" :secret="true" />
+    <Button
+      :color="'blue'"
+      :label="$t('authentication.login')"
+      :bold="true"
+      @onPress="$emit('onLoginClick')"
+    />
+    <Button
+      :color="'green'"
+      :label="$t('authentication.newAccount')"
+      @onPress="$emit('onRegisterClick')"
+    />
   </view>
 </template>
 
