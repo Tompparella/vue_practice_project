@@ -1,4 +1,11 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import type { AuthenticationData } from "../types";
+type Props = {
+  authenticationData: AuthenticationData;
+};
+defineProps<Props>();
+defineEmits(["onLoginClick"]);
+</script>
 
 <template>
   <view class="container">
@@ -7,6 +14,9 @@
     <input class="emailInput" />
     <h3 class="label">{{ $t("authentication.password") }}</h3>
     <input type="password" class="passwordInput" />
+    <button @click="$emit('onLoginClick')">
+      {{ $t("authentication.login") }}
+    </button>
   </view>
 </template>
 

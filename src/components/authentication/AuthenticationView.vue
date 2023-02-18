@@ -1,18 +1,23 @@
 <script setup lang="ts">
 import { Registration } from "./register";
 import { Login } from "./login";
+import { Settings } from "./settings";
+import type { AuthenticationData } from "./types";
 import { ref, type Ref } from "vue";
 
-enum View {
-  Register = "register",
-  Login = "login",
-  Settings = "settings",
-}
-const currentContent: Ref<View> = ref(View.Login);
+const options = {
+  Registration,
+  Login,
+  Settings,
+};
+const currentComponent: Ref = ref(options.Login);
+const authenticationData: Ref<AuthenticationData> = ref({
+  email: String,
+  password: String,
+  rePassword: String,
+});
 </script>
 
 <template>
-  <Registration v-if="currentContent == View.Register" />
-  <Login v-else-if="currentContent == View.Settings" />
-  <Login v-else-if="currentContent == View.Login" />
+  <component :is="currentComponent" :authenticationData="authenticationData" />
 </template>
