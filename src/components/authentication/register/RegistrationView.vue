@@ -21,8 +21,12 @@ const register = () => {
     <input v-model="password" type="password" class="passwordInput" />
     <h3>{{ $t("authentication.passwordVerify") }}</h3>
     <input v-model="rePassword" type="password" class="passwordInput" />
-    <button class="authenticationButton" @click="register">Register</button>
-    <button class="authenticationButton" @click="register">Go to Login</button>
+    <button class="authenticationButton" @click="register">
+      {{ $t("authentication.register") }}
+    </button>
+    <button class="authenticationButton" @click="register">
+      {{ $t("authentication.goToLogin") }}
+    </button>
   </view>
 </template>
 

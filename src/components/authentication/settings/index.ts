@@ -1,1 +1,1 @@
-export { default as SettingsView } from "./SettingsView.vue";
+export { default as Settings } from "./SettingsView.vue";
