@@ -16,8 +16,11 @@ const { t } = useTranslation();
 const common = useCommonStore();
 
 onMounted(() => {
-  common.setHeaderSubLabel(t("authentication.login"));
-  common.setHeaderLabel(t("appName"));
+  // Bullshittery to make i18n initialize fully
+  setTimeout(() => {
+    common.setHeaderSubLabel(t("authentication.login"));
+    common.setHeaderLabel(t("appName"));
+  }, 100);
 });
 
 const currentComponent: Ref = shallowRef(options.login);

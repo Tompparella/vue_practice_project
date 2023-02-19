@@ -11,11 +11,12 @@
 .base-frame {
   display: flex;
   flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
   border-radius: 20px;
   background: $frameBackground;
   margin: auto;
   overflow: hidden;
-  padding: 0 2vw;
   border: 2px solid grey;
 }
 @media (max-width: $mobileWidth) {

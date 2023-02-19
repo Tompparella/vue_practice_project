@@ -38,9 +38,8 @@ button {
   width: 200px;
   min-height: 75px;
   padding: 13px;
-  margin-top: 20px;
   border-radius: 5px;
-  transition: 0.1s;
+  transition: 0.1s all;
   &:hover {
     background: $buttonOuterHover;
   }
@@ -78,13 +77,13 @@ button {
   color: transparent;
   line-height: 1;
   padding: 3px;
-  text-shadow: 0px 0px 2px $textColor, 0 0 rgb(0, 0, 0);
+  text-shadow: 2px 2px 3px $textShadowColor, 0 0 rgb(0, 0, 0);
 }
 .blue {
-  text-shadow: 0px 0px 1px $buttonBlue, 0 0 #000;
+  text-shadow: 2px 2px 3px $textShadowColor, 0 0 $buttonBlue;
 }
 .green {
-  text-shadow: 0px 0px 1px $buttonGreen, 0 0 rgb(0, 0, 0);
+  text-shadow: 2px 2px 3px $textShadowColor, 0 0 $buttonGreen;
 }
 .bold {
   font-size: xx-large;

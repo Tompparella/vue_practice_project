@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import { Input, Label, Button } from "@/components/common";
-import { ref, type Ref } from "vue";
+import { onMounted, ref, type Ref } from "vue";
+import { useDisplayStore } from "@/stores";
 import type { AuthenticationData } from "../types";
 type Emits = {
   (e: "onLoginClick", data: AuthenticationData): void;
   (e: "onRegisterClick", data: AuthenticationData): void;
 };
+const { setContent } = useDisplayStore();
 const emit = defineEmits<Emits>();
 const email: Ref<string> = ref("");
 const password: Ref<string> = ref("");
@@ -16,6 +18,7 @@ const handleLoginClick = () => {
   };
   emit("onLoginClick", data);
 };
+onMounted(() => setContent([{ text: "Testi" }, { text: "Testi2" }]));
 </script>
 
 <template>

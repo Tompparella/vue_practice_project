@@ -1,12 +1,14 @@
 <script setup lang="ts">
-import { AppFrame, AppHeader } from "./components";
+import { onMounted } from "vue";
+import { AppFrame, AppHeader, Display } from "./components";
 import { checkAuth } from "./utils";
-checkAuth();
+onMounted(() => checkAuth());
 </script>
 
 <template>
   <AppFrame>
     <AppHeader />
+    <Display />
     <router-view />
   </AppFrame>
 </template>

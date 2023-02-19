@@ -6,32 +6,39 @@ const common = useCommonStore();
 const { headerLabel, headerSubLabel } = storeToRefs(common);
 </script>
 <template>
-  <view>
-    <Label class="headerText" :label="headerLabel" type="L" />
-    <Label
-      v-if="!!headerSubLabel"
-      class="subHeader"
-      :label="headerSubLabel"
-      type="S"
-    />
-  </view>
+  <div>
+    <view>
+      <Label class="headerText" :label="headerLabel" type="L" />
+      <Label
+        v-if="!!headerSubLabel"
+        class="subHeader"
+        :label="headerSubLabel"
+        type="S"
+      />
+    </view>
+  </div>
 </template>
 
 <style scoped lang="scss">
-view {
-  border-radius: 5px;
-  margin: auto;
-  margin-top: 25px;
-  margin-bottom: 0;
+@import "../style/constants.scss";
+div {
   display: flex;
+  flex: 1;
+}
+view {
+  user-select: none;
+  border-radius: 5px;
+  display: flex;
+  margin: auto;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   min-width: 350px;
-  width: 25vw;
-  height: 100px;
+  width: 18vw;
+  min-height: 100px;
+  height: 8vh;
   background: white;
-  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.445);
+  box-shadow: 0px 2px 4px 0px $shadowColor;
 }
 .headerText {
   margin: auto;

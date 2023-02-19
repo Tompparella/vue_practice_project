@@ -15,10 +15,18 @@ defineProps<Props>();
 h1,
 h2,
 h3 {
-  color: $textColor;
-  font-size: xx-large;
-  font-weight: bold;
+  color: transparent;
   line-height: 1;
-  margin-bottom: 10px;
+  margin: 0;
+  text-shadow: 1px 1px 3px $textShadowColor, 0 0 $textColor;
+}
+h1 {
+  font-size: 60px;
+}
+h2 {
+  font-size: 44px;
+}
+h3 {
+  font-size: 32px;
 }
 </style>
