@@ -2,31 +2,33 @@
 import { Input, Label, Button } from "@/components/common";
 import { ref, type Ref } from "vue";
 import type { AuthenticationData } from "../types";
-type Props = {
-  authenticationData: AuthenticationData;
-};
 type Emits = {
-  onLoginClick: (data: AuthenticationData) => void;
-  onRegisterClick: (data: AuthenticationData) => void;
+  (e: "onLoginClick", data: AuthenticationData): void;
+  (e: "onRegisterClick", data: AuthenticationData): void;
 };
-defineProps<Props>();
-defineEmits<Emits>();
+const emit = defineEmits<Emits>();
 const email: Ref<string> = ref("");
 const password: Ref<string> = ref("");
+const handleLoginClick = () => {
+  const data: AuthenticationData = {
+    email: email.value,
+    password: password.value,
+  };
+  emit("onLoginClick", data);
+};
 </script>
 
 <template>
   <view class="container">
-    <Label :type="'L'" :label="$t('authentication.login')" />
     <Label :type="'M'" :label="$t('authentication.email')" />
     <Input v-model="email" />
-    <h3 class="label">{{ $t("authentication.password") }}</h3>
+    <Label :type="'M'" :label="$t('authentication.password')" />
     <Input v-model="password" :secret="true" />
     <Button
       :color="'blue'"
       :label="$t('authentication.login')"
       :bold="true"
-      @onPress="$emit('onLoginClick')"
+      @onPress="handleLoginClick"
     />
     <Button
       :color="'green'"

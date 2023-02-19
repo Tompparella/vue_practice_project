@@ -16,5 +16,9 @@ h1,
 h2,
 h3 {
   color: $textColor;
+  font-size: xx-large;
+  font-weight: bold;
+  line-height: 1;
+  margin-bottom: 10px;
 }
 </style>

@@ -50,6 +50,15 @@ button {
   &:hover h1 {
     color: $textHover;
   }
+  &:active {
+    background: $buttonHover;
+  }
+  &:active div {
+    background: $buttonOuterHover;
+  }
+  &:active h1 {
+    color: white;
+  }
 }
 .inner {
   display: flex;

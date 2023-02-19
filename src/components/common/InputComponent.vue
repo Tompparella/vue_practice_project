@@ -15,4 +15,15 @@ const handleChange = (event: Event) => {
     @input="handleChange"
   />
 </template>
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+input {
+  min-width: 350px;
+  width: 22vw;
+  height: 60px;
+  border-radius: 5px;
+  border: none;
+  box-shadow: 1px 2px 4px 1px rgba(0, 0, 0, 0.445) inset;
+  font-size: x-large;
+  text-align: center;
+}
+</style>

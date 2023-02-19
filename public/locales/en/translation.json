@@ -9,6 +9,8 @@
     "password": "Password",
     "passwordVerify": "Verify password",
     "passwordRequirements": "Make password minimum 8 letters long, contain at least 1 special character, 1 number, and 1 capital letter",
+    "passwordMatch": "Passwords don't match!",
+    "emailValidity": "Please give a valid email",
     "register": "Register",
     "login": "Login",
     "goToLogin": "Go to Login"
