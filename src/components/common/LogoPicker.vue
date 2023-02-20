@@ -11,8 +11,8 @@ type Emits = {
 };
 defineProps<Props>();
 const emit = defineEmits<Emits>();
-const onPress = () => (modalVisible.value = !modalVisible.value);
 const modalVisible = ref(false);
+const onPress = () => (modalVisible.value = !modalVisible.value);
 const handleOnPick = (data: GuildData | UniversityData) => {
   emit("onPick", data);
 };

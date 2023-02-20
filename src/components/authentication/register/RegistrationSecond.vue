@@ -1,13 +1,8 @@
 <script setup lang="ts">
 import { Button, Input, Label, LogoPicker } from "@/components/common";
-import { useDisplayStore } from "@/stores";
+import { useDisplayStore, useAccountStore } from "@/stores";
 import { onMounted, ref } from "vue";
-import type {
-  AuthenticationData,
-  GuildData,
-  UniversityData,
-  FlairData,
-} from "@/types";
+import type { GuildData, UniversityData, FlairData } from "@/types";
 import img_1 from "@/assets/images/logo_ebin.png";
 import img_2 from "@/assets/images/logo_test.png";
 import img_3 from "@/assets/images/logo_white.png";
@@ -26,19 +21,20 @@ const guildData: GuildData[] = [
 ];
 
 interface Emits {
-  (e: "onRegisterClick", data: FlairData | AuthenticationData): void;
+  (e: "onRegisterClick"): void;
   (e: "onBackClick"): void;
 }
 
 const emit = defineEmits<Emits>();
 
+const { t } = useTranslation();
+const { setInstitutionContent } = useDisplayStore();
+const { setFlairData } = useAccountStore();
+
 const university = ref<UniversityData | null>(null);
 const guild = ref<GuildData | null>(null);
 const username = ref("");
 
-const { t } = useTranslation();
-
-const { setInstitutionContent } = useDisplayStore();
 onMounted(() => setInstitutionContent());
 
 const handleRegistrationClick = () => {
@@ -52,13 +48,16 @@ const handleRegistrationClick = () => {
       guild: guild.value,
       university: university.value,
     };
-    emit("onRegisterClick", accountData);
+    setFlairData(accountData);
+    emit("onRegisterClick");
   } else {
     alert(t("authentication.intitutionNotPicked"));
   }
 };
+
 const handleUniversityPick = (data: UniversityData | null) =>
-  university.value ? (university.value = null) : (university.value = data);
+  (university.value = data);
+
 const handleGuildPick = (data: GuildData | null) => (guild.value = data);
 </script>
 <template>

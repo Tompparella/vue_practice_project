@@ -1,4 +1,5 @@
-export default (password: string): boolean => {
+export default (password?: string): boolean => {
+  if (!password) return false;
   const longEnough = password.length >= 8;
   const hasCapital = /[A-Z]/.test(password);
   const hasSpecial = /[ `!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?~]/.test(password);

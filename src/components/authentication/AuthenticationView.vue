@@ -1,46 +1,56 @@
 <script setup lang="ts">
 import { Registration } from "./register";
 import { Login } from "./login";
-import type { AccountData, AuthenticationData } from "@/types";
-import { ref, type Ref, shallowRef, onMounted } from "vue";
-import { useCommonStore } from "@/stores";
+import { type Ref, shallowRef, onMounted } from "vue";
+import { useCommonStore, useAccountStore } from "@/stores";
 import { useTranslation } from "i18next-vue";
+import { storeToRefs } from "pinia";
+import { setUserToken } from "../../utils";
+import { useRouter } from "vue-router";
+import { Path } from "@/router";
+import { getUserToken } from "@/utils";
 
 const options = {
   registration: Registration,
   login: Login,
 };
+
 const { t } = useTranslation();
-const common = useCommonStore();
+const { setHeaderSubLabel, setHeaderLabel } = useCommonStore();
+const accountStore = useAccountStore();
+const router = useRouter();
+
+const { verifiedAccountData } = storeToRefs(accountStore);
+const currentComponent: Ref = shallowRef(options.login);
 
 onMounted(() => {
   // Bullshittery to make i18n initialize fully
   setTimeout(() => {
-    common.setHeaderSubLabel(t("authentication.login"));
-    common.setHeaderLabel(t("appName"));
+    setHeaderSubLabel(t("authentication.login"));
+    setHeaderLabel(t("appName"));
   }, 100);
 });
 
-const currentComponent: Ref = shallowRef(options.login);
-const authenticationData: Ref<AuthenticationData> = ref({
-  email: "",
-  password: "",
-});
-const handleLogin = (data?: AuthenticationData) => {
-  if (!data) {
-    currentComponent.value = options.login;
-    common.setHeaderSubLabel(t("authentication.login"));
-  } else authenticationData.value = data;
-};
-const handleRegister = (data?: AccountData) => {
-  if (!data) {
-    currentComponent.value = options.registration;
-    common.setHeaderSubLabel(t("authentication.newAccount"));
-  } else {
-    // Handle registration completion either here or in the registration component
-    console.debug(data);
+const handleLogin = (/*data: AuthenticationData To be used on actual login*/) =>
+  getUserToken() && router.push(Path.Main);
+
+const handleRegister = () => {
+  // Handle registration completion either here or in the registration component
+  if (verifiedAccountData.value) {
+    setUserToken(verifiedAccountData.value.username);
     alert("Registration complete!");
     currentComponent.value = options.login;
+  }
+};
+
+const changeView = (data: "login" | "register") => {
+  switch (data) {
+    case "login":
+      currentComponent.value = options.login;
+      break;
+    case "register":
+      currentComponent.value = options.registration;
+      break;
   }
 };
 </script>
@@ -50,5 +60,6 @@ const handleRegister = (data?: AccountData) => {
     :is="currentComponent"
     @onLoginClick="handleLogin"
     @onRegisterClick="handleRegister"
+    @onChangeView="changeView"
   />
 </template>

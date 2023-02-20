@@ -1,16 +1,28 @@
 <script setup lang="ts">
 import { Input, Label, Button } from "@/components/common";
 import { onMounted, ref, type Ref } from "vue";
-import { useDisplayStore } from "@/stores";
+import { useDisplayStore, useCommonStore } from "@/stores";
 import type { AuthenticationData } from "@/types";
+import { useTranslation } from "i18next-vue";
+
 type Emits = {
   (e: "onLoginClick", data: AuthenticationData): void;
-  (e: "onRegisterClick", data: AuthenticationData): void;
+  (e: "onChangeView", data: "register"): void;
 };
-const { setLoginContent } = useDisplayStore();
 const emit = defineEmits<Emits>();
+
+const { setLoginContent } = useDisplayStore();
+const { setHeaderSubLabel } = useCommonStore();
+const { t } = useTranslation();
+
 const email: Ref<string> = ref("");
 const password: Ref<string> = ref("");
+
+onMounted(() => {
+  setHeaderSubLabel(t("authentication.login"));
+  setLoginContent();
+});
+
 const handleLoginClick = () => {
   const data: AuthenticationData = {
     email: email.value,
@@ -18,7 +30,6 @@ const handleLoginClick = () => {
   };
   emit("onLoginClick", data);
 };
-onMounted(() => setLoginContent());
 </script>
 
 <template>
@@ -36,7 +47,7 @@ onMounted(() => setLoginContent());
     <Button
       :color="'green'"
       :label="$t('authentication.newAccount')"
-      @onPress="$emit('onRegisterClick')"
+      @onPress="$emit('onChangeView', 'register')"
     />
   </view>
 </template>

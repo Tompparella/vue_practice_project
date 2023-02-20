@@ -1,4 +1,5 @@
-export default (email: string) => {
+export default (email?: string) => {
+  if (!email) return false;
   return String(email)
     .toLowerCase()
     .match(

@@ -1,17 +1,20 @@
 <script setup lang="ts">
 import { onMounted, ref, type Ref } from "vue";
 import { Input, Label, Button } from "@/components/common";
-import type { AuthenticationData, FlairData } from "@/types";
-import { useDisplayStore } from "@/stores";
+import type { AuthenticationData } from "@/types";
+import { useDisplayStore, useAccountStore } from "@/stores";
 
 interface Emits {
-  (e: "onRegisterClick", data: FlairData | AuthenticationData): void;
+  (e: "onRegisterClick"): void;
   (e: "onBackClick"): void;
 }
 
 const emit = defineEmits<Emits>();
 
 const { setRegistrationContent } = useDisplayStore();
+const { setAuthenticationData } = useAccountStore();
+
+onMounted(() => setRegistrationContent());
 
 const email: Ref<string> = ref("");
 const password: Ref<string> = ref("");
@@ -23,9 +26,9 @@ const handleRegistrationClick = () => {
     password: password.value,
     rePassword: rePassword.value,
   };
-  emit("onRegisterClick", data);
+  setAuthenticationData(data);
+  emit("onRegisterClick");
 };
-onMounted(() => setRegistrationContent());
 </script>
 
 <template>

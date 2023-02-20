@@ -1,17 +1,22 @@
 <script setup lang="ts">
-import { ref, shallowRef } from "vue";
+import { onMounted, shallowRef } from "vue";
 import { validateEmail, validatePassword } from "@/utils";
 import { default as First } from "./RegistrationFirst.vue";
 import { default as Second } from "./RegistrationSecond.vue";
-import type { AccountData, AuthenticationData, FlairData } from "@/types";
-import { t } from "i18next";
+import { useCommonStore, useAccountStore } from "@/stores";
+import { useTranslation } from "i18next-vue";
+import { storeToRefs } from "pinia";
 
 interface Emits {
-  (e: "onRegisterClick", data: AccountData): void;
-  (e: "onLoginClick"): void;
+  (e: "onRegisterClick"): void;
+  (e: "onChangeView", data: "login"): void;
 }
-
 const emit = defineEmits<Emits>();
+
+const { t } = useTranslation();
+const { setHeaderSubLabel } = useCommonStore();
+
+onMounted(() => setHeaderSubLabel(t("authentication.newAccount")));
 
 const options = {
   first: First,
@@ -19,13 +24,11 @@ const options = {
 };
 
 const currentPhase = shallowRef(options.first);
-const authenticationData = ref<AuthenticationData>();
+const accountStore = useAccountStore();
+const { accountData } = storeToRefs(accountStore);
 
-const verify = ({
-  email,
-  password,
-  rePassword,
-}: AuthenticationData): boolean => {
+const verify = () => {
+  const { email, password, rePassword } = accountData.value;
   if (password !== rePassword) {
     alert(t("authentication.passwordMatch"));
     return false;
@@ -41,40 +44,26 @@ const verify = ({
   return true;
 };
 
-const handleRegistrationClick = <T extends FlairData | AuthenticationData>(
-  data: T
-) => {
-  if (currentPhase.value === options.first) {
-    const authData = data as AuthenticationData;
-    if (!authData.email) return;
-    const { email, password, rePassword } = authData;
-    if (verify(authData)) {
-      console.log(`${email} ${password} ${rePassword}`);
-      currentPhase.value = options.second;
-      authenticationData.value = authData;
-    }
-  } else if (currentPhase.value === options.second) {
-    const flairData = data as FlairData;
-    if (
-      flairData.guild.id &&
-      flairData.university.id &&
-      authenticationData.value?.email &&
-      authenticationData.value?.password
-    ) {
-      const accountData = {
-        ...authenticationData.value,
-        ...flairData,
-      };
-      emit("onRegisterClick", accountData);
-    } else {
-      console.debug("Something went wrong registering new user");
-    }
+const handleRegistrationClick = () => {
+  switch (currentPhase.value) {
+    case options.first:
+      if (verify()) currentPhase.value = options.second;
+      break;
+    case options.second:
+      emit("onRegisterClick");
+      break;
   }
 };
+
 const handleBackClick = () => {
-  if (currentPhase.value === options.first) emit("onLoginClick");
-  else if (currentPhase.value === options.second)
-    currentPhase.value = options.first;
+  switch (currentPhase.value) {
+    case options.first:
+      emit("onChangeView", "login");
+      break;
+    case options.second:
+      currentPhase.value = options.first;
+      break;
+  }
 };
 </script>
 
