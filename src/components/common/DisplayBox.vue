@@ -7,11 +7,22 @@ const { content } = storeToRefs(display);
 </script>
 <template>
   <div class="container">
-    <div class="paper">
+    <ul class="paper">
       <li v-for="(item, index) in content" :key="index">
-        <Text v-if="item.text" :label="item.text" :type="'M'" />
+        <Text
+          v-if="item.text"
+          :label="item.text"
+          :type="'S'"
+          :class="item.color"
+        />
+        <Text
+          v-else-if="item.localizedText"
+          :label="$t(item.localizedText)"
+          :type="'S'"
+          :class="item.color"
+        />
       </li>
-    </div>
+    </ul>
   </div>
 </template>
 <style scoped lang="scss">
@@ -23,21 +34,51 @@ const { content } = storeToRefs(display);
 .paper {
   user-select: none;
   display: flex;
-  margin: auto;
   justify-content: center;
   align-items: center;
   box-shadow: 1px 2px 4px 1px $shadowColor inset;
   background: $displayBackground;
   border-radius: 5px;
   min-width: 350px;
-  width: 21vw;
+  width: 25vw;
   padding: 10px;
-  min-height: 75px;
-  height: 7vh;
+  min-height: 50px;
+  height: fit-content;
   font-weight: bold;
+  flex-wrap: wrap;
 }
 li {
   list-style: none;
-  margin: 0;
+}
+p {
+  text-indent: 5px;
+  text-align: center;
+}
+.brown {
+  color: $brown;
+}
+.lightBlue {
+  color: $lightBlue;
+}
+.deepBlue {
+  color: $deepBlue;
+}
+.deepGreen {
+  color: $deepGreen;
+}
+.deepYellow {
+  color: $deepYellow;
+}
+.pink {
+  color: $pink;
+}
+.violet {
+  color: $violet;
+}
+.deepCyan {
+  color: $deepCyan;
+}
+.cyan {
+  color: $cyan;
 }
 </style>

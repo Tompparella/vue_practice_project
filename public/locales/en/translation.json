@@ -1,18 +1,49 @@
 {
-  "appName": "AppName",
+  "appName": "UniMemer",
   "common": {
-    "welcome": "Welcome!"
+    "welcome": "Welcome!",
+    "university": "University",
+    "guild": "Guild",
+    "username": "Username",
+    "goBack": "Go back",
+    "ready": "Ready!",
+    "choose": "Choose"
   },
   "authentication": {
     "newAccount": "Create an account",
     "email": "Email",
     "password": "Password",
     "passwordVerify": "Verify password",
-    "passwordRequirements": "Make password minimum 8 letters long, contain at least 1 special character, 1 number, and 1 capital letter",
+    "passwordRequirements": {
+      "minimum": "Make password minimum ",
+      "length": "8 letters long, ",
+      "contain": "contain at least ",
+      "special": "1 special character, ",
+      "number": "1 number, ",
+      "capital": "and 1 capital letter"
+    },
+    "institutionInfo": {
+      "which": "Which ",
+      "and": " and ",
+      "from": " are you from? ",
+      "affects": "This affects many things so an honest answer would be appreciated ",
+      "also": "Also make up a good"
+    },
     "passwordMatch": "Passwords don't match!",
     "emailValidity": "Please give a valid email",
     "register": "Register",
     "login": "Login",
-    "goToLogin": "Go to Login"
+    "goToLogin": "Go to Login",
+    "usernameLength": "Please make your username at least 5 characters long!",
+    "intitutionNotPicked": "Please pick a university and a guild!"
+  },
+  "display": {
+    "welcome_1": "Hey again!",
+    "welcome_2": "Woah you're back!",
+    "loginDirection_1": "Login to get back to business!",
+    "loginDirection_2": "Quick, there's lots of fresh memes!",
+    "bearEmoji": "ʕ •ᴥ•ʔ",
+    "heartEmoji": "( ͡♥ ͜ʖ ͡♥)",
+    "cutesyEmoji": ":3"
   }
 }

@@ -62,14 +62,14 @@ button {
 .inner {
   display: flex;
   width: 100%;
-  background: $buttonLightBlue;
+  background: $lightBlue;
   border-radius: 5px;
 }
 .lightBlue {
-  background: $buttonLightBlue;
+  background: $lightBlue;
 }
 .lightGreen {
-  background: $buttonLightGreen;
+  background: $lightGreen;
 }
 .label {
   display: flex;
@@ -80,10 +80,10 @@ button {
   text-shadow: 2px 2px 3px $textShadowColor, 0 0 rgb(0, 0, 0);
 }
 .blue {
-  text-shadow: 2px 2px 3px $textShadowColor, 0 0 $buttonBlue;
+  text-shadow: 2px 2px 3px $textShadowColor, 0 0 $deepBlue;
 }
 .green {
-  text-shadow: 2px 2px 3px $textShadowColor, 0 0 $buttonGreen;
+  text-shadow: 2px 2px 3px $textShadowColor, 0 0 $deepGreen;
 }
 .bold {
   font-size: xx-large;

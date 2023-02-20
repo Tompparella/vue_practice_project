@@ -1,64 +1,89 @@
 <script setup lang="ts">
-import { ref, type Ref } from "vue";
+import { ref, shallowRef } from "vue";
 import { validateEmail, validatePassword } from "@/utils";
-import { Input, Label, Button } from "@/components/common";
-import type { AuthenticationData } from "../types";
+import { default as First } from "./RegistrationFirst.vue";
+import { default as Second } from "./RegistrationSecond.vue";
+import type { AccountData, AuthenticationData, FlairData } from "@/types";
 import { t } from "i18next";
 
 interface Emits {
-  (e: "onRegisterClick", data: AuthenticationData): void;
-  (e: "onLoginClick", data: AuthenticationData): void;
+  (e: "onRegisterClick", data: AccountData): void;
+  (e: "onLoginClick"): void;
 }
 
 const emit = defineEmits<Emits>();
 
-const content: Ref<number> = ref(0);
-const email: Ref<string> = ref("");
-const password: Ref<string> = ref("");
-const rePassword: Ref<string> = ref("");
+const options = {
+  first: First,
+  second: Second,
+};
 
-const verify = (): boolean => {
-  if (password.value !== rePassword.value) {
+const currentPhase = shallowRef(options.first);
+const authenticationData = ref<AuthenticationData>();
+
+const verify = ({
+  email,
+  password,
+  rePassword,
+}: AuthenticationData): boolean => {
+  if (password !== rePassword) {
     alert(t("authentication.passwordMatch"));
     return false;
   }
-  if (!validateEmail(email.value)) {
+  if (!validateEmail(email)) {
     alert(t("authentication.emailValidity"));
     return false;
   }
-  if (!validatePassword(password.value)) {
+  if (!validatePassword(password)) {
     alert(t("authentication.passwordRequirements"));
     return false;
   }
   return true;
 };
 
-const handleRegistrationClick = () => {
-  if (verify()) {
-    console.log(`${email.value} ${password.value} ${rePassword.value}`);
-    content.value = 1;
+const handleRegistrationClick = <T extends FlairData | AuthenticationData>(
+  data: T
+) => {
+  if (currentPhase.value === options.first) {
+    const authData = data as AuthenticationData;
+    if (!authData.email) return;
+    const { email, password, rePassword } = authData;
+    if (verify(authData)) {
+      console.log(`${email} ${password} ${rePassword}`);
+      currentPhase.value = options.second;
+      authenticationData.value = authData;
+    }
+  } else if (currentPhase.value === options.second) {
+    const flairData = data as FlairData;
+    if (
+      flairData.guild.id &&
+      flairData.university.id &&
+      authenticationData.value?.email &&
+      authenticationData.value?.password
+    ) {
+      const accountData = {
+        ...authenticationData.value,
+        ...flairData,
+      };
+      emit("onRegisterClick", accountData);
+    } else {
+      console.debug("Something went wrong registering new user");
+    }
   }
+};
+const handleBackClick = () => {
+  if (currentPhase.value === options.first) emit("onLoginClick");
+  else if (currentPhase.value === options.second)
+    currentPhase.value = options.first;
 };
 </script>
 
 <template>
   <view class="container">
-    <Label type="M" :label="$t('authentication.email')" />
-    <Input v-model="email" />
-    <Label type="M" :label="$t('authentication.password')" />
-    <Input v-model="password" :secret="true" />
-    <Label type="M" :label="$t('authentication.passwordVerify')" />
-    <Input v-model="rePassword" :secret="true" />
-    <Button
-      :label="$t('authentication.register')"
-      color="green"
-      :bold="true"
-      @onPress="handleRegistrationClick"
-    />
-    <Button
-      :label="$t('authentication.goToLogin')"
-      color="blue"
-      @onPress="$emit('onLoginClick')"
+    <component
+      :is="currentPhase"
+      @onRegisterClick="handleRegistrationClick"
+      @onBackClick="handleBackClick"
     />
   </view>
 </template>

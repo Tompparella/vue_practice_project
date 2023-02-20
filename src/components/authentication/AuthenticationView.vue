@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { Registration } from "./register";
 import { Login } from "./login";
-import { Settings } from "./settings";
-import type { AuthenticationData } from "./types";
+import type { AccountData, AuthenticationData } from "@/types";
 import { ref, type Ref, shallowRef, onMounted } from "vue";
 import { useCommonStore } from "@/stores";
 import { useTranslation } from "i18next-vue";
@@ -10,7 +9,6 @@ import { useTranslation } from "i18next-vue";
 const options = {
   registration: Registration,
   login: Login,
-  settings: Settings,
 };
 const { t } = useTranslation();
 const common = useCommonStore();
@@ -34,11 +32,16 @@ const handleLogin = (data?: AuthenticationData) => {
     common.setHeaderSubLabel(t("authentication.login"));
   } else authenticationData.value = data;
 };
-const handleRegister = (data?: AuthenticationData) => {
+const handleRegister = (data?: AccountData) => {
   if (!data) {
     currentComponent.value = options.registration;
     common.setHeaderSubLabel(t("authentication.newAccount"));
-  } else currentComponent.value = options.settings;
+  } else {
+    // Handle registration completion either here or in the registration component
+    console.debug(data);
+    alert("Registration complete!");
+    currentComponent.value = options.login;
+  }
 };
 </script>
 

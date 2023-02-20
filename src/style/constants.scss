@@ -5,18 +5,28 @@ $desktopWidth: 1200px;
 
 // Colors
 
+$brown: rgb(178, 113, 85);
+$pink: rgb(255, 108, 179);
+$violet: rgb(200, 112, 191);
+$lightViolet: rgb(255, 195, 249);
+$cyan: rgb(201, 252, 246);
+$deepCyan: rgb(53, 188, 172);
+$blue: rgb(0, 179, 218);
+$lightBlue: rgb(196, 241, 255, 23);
+$deepBlue: rgb(65, 115, 190, 66);
+$deepYellow: rgb(225, 156, 22);
+$green: rgb(196, 254, 240, 23);
+$lightGreen: rgb(244, 255, 222);
+$deepGreen: rgb(57, 137, 75, 58);
+
 $frameBackground: rgb(167, 224, 194, 80);
 
 $shadowColor: rgb(0,0,0, 0.5);
 
 $textColor: rgb(73, 73, 73, 100);
 $textShadowColor: rgba(255, 255, 255, 0.25);
-$textHover: #412c00;
+$textHover: rgb(65, 44, 0);
 
-$buttonBlue: rgb(65, 115, 190, 66);
-$buttonLightBlue: rgb(196, 241, 255, 23);
-$buttonGreen: rgb(57, 137, 75, 58);
-$buttonLightGreen: rgb(196, 254, 240, 23);
 $buttonOuter: rgb(223, 247, 255, 13);
 $buttonOuterHover: rgb(255, 245, 214);
 $buttonHover: rgb(255, 235, 170);
