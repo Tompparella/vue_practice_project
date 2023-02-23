@@ -1,7 +1,9 @@
 <script setup lang="ts">
+import { Label } from ".";
+
 type Props = {
   label: string;
-  color?: "green" | "blue";
+  color?: "violet" | "green" | "cyan" | "lightBlue" | "lightGreen" | "blue";
   bold?: boolean;
 };
 interface Emits {
@@ -22,38 +24,41 @@ defineEmits<Emits>();
           : undefined
       "
     >
-      <h1 class="label" :class="[color, { bold: bold }]">
-        {{ label }}
-      </h1>
+      <Label :label="label" type="S" :color="color" />
     </div>
   </button>
 </template>
 
 <style scoped lang="scss">
 @import "../../style/constants.scss";
+div,
+h1 {
+  transition: 0.3s all;
+}
 button {
   display: flex;
-  background: $buttonOuter;
+  background-color: $buttonOuter;
   border: none;
-  width: 200px;
-  min-height: 75px;
-  padding: 13px;
-  border-radius: 5px;
-  transition: 0.1s all;
+  width: 33%;
+  min-height: 8vh;
+  padding: 1.2vh;
+  border-radius: $border;
+  transition: 0.2s all;
   &:hover {
-    background: $buttonOuterHover;
+    background-color: $buttonOuterHover;
+    box-shadow: 0 0 0 3px white;
   }
   &:hover div {
-    background: $buttonHover;
+    background-color: $buttonHover;
   }
   &:hover h1 {
     color: $textHover;
   }
   &:active {
-    background: $buttonHover;
+    background-color: $buttonHover;
   }
   &:active div {
-    background: $buttonOuterHover;
+    background-color: $buttonOuterHover;
   }
   &:active h1 {
     color: white;
@@ -62,30 +67,9 @@ button {
 .inner {
   display: flex;
   width: 100%;
-  background: $lightBlue;
-  border-radius: 5px;
-}
-.lightBlue {
-  background: $lightBlue;
-}
-.lightGreen {
-  background: $lightGreen;
-}
-.label {
-  display: flex;
-  margin: auto;
-  color: transparent;
-  line-height: 1;
-  padding: 3px;
-  text-shadow: 2px 2px 3px $textShadowColor, 0 0 rgb(0, 0, 0);
-}
-.blue {
-  text-shadow: 2px 2px 3px $textShadowColor, 0 0 $deepBlue;
-}
-.green {
-  text-shadow: 2px 2px 3px $textShadowColor, 0 0 $deepGreen;
-}
-.bold {
-  font-size: xx-large;
+  background-color: $lightBlue;
+  border-radius: $border;
+  align-items: center;
+  justify-content: center;
 }
 </style>

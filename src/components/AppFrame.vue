@@ -1,9 +1,9 @@
 <script setup lang="ts"></script>
 
 <template>
-  <view class="base-frame">
+  <div class="base-frame">
     <slot />
-  </view>
+  </div>
 </template>
 
 <style scoped lang="scss">
@@ -13,10 +13,9 @@
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  border-radius: 20px;
+  border-radius: $border;
   background: $frameBackground;
   margin: auto;
-  overflow: hidden;
   border: 2px solid grey;
 }
 @media (max-width: $mobileWidth) {
@@ -30,7 +29,7 @@
     min-width: $mobileWidth;
     max-width: ((calc((2 * $desktopWidth) / 3)));
     width: 90vw;
-    height: 95vh;
+    height: 98vh;
   }
 }
 </style>

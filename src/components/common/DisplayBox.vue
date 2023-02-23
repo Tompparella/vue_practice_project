@@ -6,8 +6,8 @@ const display = useDisplayStore();
 const { content } = storeToRefs(display);
 </script>
 <template>
-  <div class="container">
-    <ul class="paper">
+  <div class="display-box">
+    <ul class="display">
       <li v-for="(item, index) in content" :key="index">
         <Text
           v-if="item.text"
@@ -27,23 +27,25 @@ const { content } = storeToRefs(display);
 </template>
 <style scoped lang="scss">
 @import "../../style/constants.scss";
-.container {
-  display: flex;
+.display-box {
   flex: 1;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: flex-end;
 }
-.paper {
+.display {
   user-select: none;
   display: flex;
+  flex: 4;
+  margin-inline: 10px;
   justify-content: center;
   align-items: center;
   box-shadow: 1px 2px 4px 1px $shadowColor inset;
-  background: $displayBackground;
-  border-radius: 5px;
-  min-width: 350px;
-  width: 25vw;
-  padding: 10px;
-  min-height: 50px;
-  height: fit-content;
+  background-color: $displayBackground;
+  border-radius: $border;
+  min-height: 80%;
+  max-height: 100%;
   font-weight: bold;
   flex-wrap: wrap;
 }

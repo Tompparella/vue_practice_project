@@ -50,5 +50,3 @@ const handleRegistrationClick = () => {
     @onPress="$emit('onBackClick')"
   />
 </template>
-
-<style scoped lang="scss"></style>

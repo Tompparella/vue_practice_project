@@ -35,10 +35,10 @@ const handleOnPick = (data: GuildData | UniversityData) => {
 <style scoped lang="scss">
 @import "../../style/constants.scss";
 .logo-container {
-  height: 125px;
-  width: 125px;
+  height: 15vh;
+  width: 15vh;
   background: white;
-  border-radius: 5px;
+  border-radius: $borderSharp;
   &:hover .hover-overlay {
     opacity: 0.8;
   }
@@ -53,7 +53,7 @@ const handleOnPick = (data: GuildData | UniversityData) => {
   height: inherit;
   background: $cyan;
   transition: 0.2s ease;
-  transform: translate(0, -103%);
+  transform: translate(0, -100%);
   opacity: 0;
 }
 .overlay-text {

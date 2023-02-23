@@ -18,13 +18,11 @@ const handleChange = (event: Event) => {
 <style scoped lang="scss">
 @import "../../style/constants.scss";
 input {
-  min-width: 350px;
-  width: 22vw;
-  height: 60px;
-  border-radius: 5px;
+  width: 60%;
+  height: 7vh;
+  border-radius: $border;
   border: none;
   box-shadow: 1px 2px 4px 1px $shadowColor inset;
-  font-size: x-large;
   text-align: center;
 }
 </style>

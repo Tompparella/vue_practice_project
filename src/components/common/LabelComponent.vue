@@ -2,7 +2,7 @@
 type Props = {
   label: string;
   type: "S" | "M" | "L";
-  color?: string;
+  color?: "violet" | "green" | "cyan" | "lightBlue" | "lightGreen" | "blue";
   backdrop?: boolean;
   inset?: boolean;
 };
@@ -29,18 +29,9 @@ h3 {
   margin: 0;
   text-align: center;
 }
-h1 {
-  font-size: 60px;
-}
-h2 {
-  font-size: 44px;
-}
-h3 {
-  font-size: 32px;
-}
 .backdrop {
   background: white;
-  border-radius: 5px;
+  border-radius: $border;
   padding-inline: 20px;
   padding-block: 5px;
   box-shadow: 1px 2px 2px 0px $shadowColor;
@@ -65,5 +56,17 @@ h3 {
 }
 .cyan.backdrop {
   background: $cyan;
+}
+.lightBlue {
+  background-color: $lightBlue;
+}
+.lightGreen {
+  background-color: $lightGreen;
+}
+.blue {
+  text-shadow: 2px 2px 3px $textShadowColor, 0 0 $deepBlue;
+}
+.green {
+  text-shadow: 2px 2px 3px $textShadowColor, 0 0 $deepGreen;
 }
 </style>

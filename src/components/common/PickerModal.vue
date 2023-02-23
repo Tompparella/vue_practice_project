@@ -53,7 +53,7 @@ defineEmits<Emits>();
   width: 100%;
   height: 100%;
   background: $lightGreen;
-  border-radius: 20px;
+  border-radius: $borderSoft;
   opacity: 0.9;
   box-shadow: 0px 0px 15px 2px $shadowColor;
 }
@@ -88,7 +88,7 @@ li {
 img {
   height: inherit;
   width: inherit;
-  border-radius: 5px;
+  border-radius: $border;
   object-fit: cover;
   background: white;
   box-shadow: 1px 1px 10px 2px $shadowColor;
@@ -99,7 +99,7 @@ img {
   bottom: 0;
   right: 0;
   left: 0;
-  border-radius: 5px;
+  border-radius: $border;
   transition: 0.2s;
   opacity: 0;
   background: $cyan;

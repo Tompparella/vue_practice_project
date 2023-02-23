@@ -134,17 +134,19 @@ const handleGuildPick = (data: GuildData | null) => (guild.value = data);
 }
 .secondary-container,
 .bottom-container {
+  flex: 1;
+  width: 90%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
 }
-.bottom-container {
-  flex: 1;
-}
 .label {
-  min-width: 200px;
-  min-height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  height: 6vh;
 }
 
 // Transitions
