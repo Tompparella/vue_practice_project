@@ -9,9 +9,9 @@ $imageHeight: 66vh;
 
 // Border
 
-$borderSharp: 5px;
-$border: 10px;
-$borderSoft: 15px;
+$borderSharp: 0.2rem;
+$border: 0.5rem;
+$borderSoft: 0.7rem;
 
 // Colors
 
@@ -33,6 +33,7 @@ $lightRed: rgb(255, 216, 216);
 $deepRed: rgb(230, 107, 107);
 
 $frameBackground: rgb(167, 224, 194, 80);
+$reportButtonBackground: rgba(255, 0, 0, 0.2);
 
 $shadowColor: rgb(0,0,0, 0.5);
 

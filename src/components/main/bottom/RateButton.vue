@@ -11,7 +11,7 @@ defineEmits<Emits>();
 <template>
   <div @click="$emit('onPress')" :class="color" class="rate-button">
     <div class="inner">
-      <i :class="color === 'red' ? 'las la-angry' : 'las la-laugh-squint'"></i>
+      <i :class="color === 'red' ? 'las la-angry' : 'las la-laugh-squint'" />
     </div>
   </div>
 </template>
@@ -20,6 +20,7 @@ defineEmits<Emits>();
 @import "../../../style/constants.scss";
 $buttonSize: 12vh;
 $iconSize: $buttonSize - 3vh;
+$animationTime: 0.1s;
 i {
   margin: auto;
   font-size: $iconSize;
@@ -33,10 +34,11 @@ i.la-laugh-squint {
 }
 .rate-button {
   display: flex;
-  width: $buttonSize;
   height: $buttonSize;
   border-radius: $border;
-  box-shadow: 0 4px 8px 0 $shadowColor;
+  box-shadow: 0 4px 4px 0 $shadowColor;
+  transition: $animationTime ease all;
+  -moz-transition: $animationTime ease all;
 }
 .inner {
   margin: 1vh;

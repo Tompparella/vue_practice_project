@@ -32,7 +32,7 @@ import backgroundImage from "@/assets/images/fry.jpg";
   height: 100%;
   width: 100%;
   margin: auto;
-  margin-inline: 15px;
+  margin-inline: 1.5rem;
   border: 5px rgba(255, 255, 255, 0) solid;
   border-radius: $border;
   background-color: rgba(0, 0, 0, 0.76);
