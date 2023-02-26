@@ -22,6 +22,10 @@ defineProps<Props>();
   display: flex;
   height: 55%;
   width: 60%;
+  transition: 0.2s ease-in-out all;
+  &:hover {
+    transform: scale(1.1);
+  }
 }
 .base-bar {
   height: 100%;

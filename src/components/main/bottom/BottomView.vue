@@ -20,8 +20,6 @@ const onReport = () => console.log("Report");
 .bottom {
   flex: 1;
   display: flex;
-  margin-top: 0.5rem;
-  margin-inline: 1.5rem;
   position: relative;
   justify-content: space-between;
   align-items: flex-start;

@@ -14,17 +14,15 @@ defineEmits<Emits>();
 <style scoped lang="scss">
 @import "../../../style/constants.scss";
 i {
-  display: flex;
   font-size: 4vh;
   margin-inline: auto;
 }
 .report {
   display: flex;
   position: absolute;
-  bottom: 0;
+  bottom: -5px;
   left: 50%;
   width: 10vh;
-  height: 35%;
   opacity: 0.4;
   border: 4px $deepRed solid;
   border-radius: $borderSoft $borderSoft 0 0;

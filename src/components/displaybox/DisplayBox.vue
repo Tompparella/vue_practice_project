@@ -3,43 +3,48 @@ import { storeToRefs } from "pinia";
 import { Text } from "../common";
 import { default as SpaceBox } from "./SpaceBox.vue";
 import { default as LabelView } from "./LabelView.vue";
+import { default as IconRow } from "./IconRow.vue";
 import { useDisplayStore } from "../../stores";
 const display = useDisplayStore();
 const { content } = storeToRefs(display);
 </script>
 <template>
-  <div class="display-box">
-    <LabelView />
-    <ul class="display">
-      <li v-for="(item, index) in content" :key="index">
-        <Text
-          v-if="item.text"
-          :label="item.text"
-          :type="'S'"
-          :class="item.color"
-        />
-        <Text
-          v-else-if="item.localizedText"
-          :label="$t(item.localizedText)"
-          :type="'S'"
-          :class="item.color"
-        />
-      </li>
-    </ul>
-    <SpaceBox />
+  <div class="container">
+    <IconRow />
+    <div class="display-box">
+      <LabelView />
+      <ul class="display">
+        <li v-for="(item, index) in content" :key="index">
+          <Text
+            v-if="item.text"
+            :label="item.text"
+            :type="'S'"
+            :class="item.color"
+          />
+          <Text
+            v-else-if="item.localizedText"
+            :label="$t(item.localizedText)"
+            :type="'S'"
+            :class="item.color"
+          />
+        </li>
+      </ul>
+      <SpaceBox />
+    </div>
   </div>
 </template>
 <style scoped lang="scss">
 @import "../../style/constants.scss";
-
+.container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
 .display-box {
   flex: 1;
   display: flex;
-  width: 100%;
-  height: 100%;
-  padding-inline: 1.5rem;
-  margin-block: 0.5rem;
-  justify-content: center;
   align-items: flex-end;
 }
 .display {
@@ -51,7 +56,7 @@ const { content } = storeToRefs(display);
   box-shadow: 1px 2px 4px 1px $shadowColor inset;
   background-color: $displayBackground;
   border-radius: $border;
-  min-height: 11vh;
+  min-height: $headerHeight;
   max-height: 100%;
   font-weight: bold;
   flex-wrap: wrap;

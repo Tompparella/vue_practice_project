@@ -16,20 +16,22 @@
   border-radius: $border;
   background: $frameBackground;
   margin: auto;
-  border: 2px solid grey;
+  border: 5px solid $borderColor;
 }
 @media (max-width: $mobileWidth) {
   .base-frame {
     width: 100vw;
     height: 100vh;
+    padding-inline: 1vh;
   }
 }
 @media (min-width: ($mobileWidth)) {
   .base-frame {
     min-width: $mobileWidth;
-    max-width: ((calc((2 * $desktopWidth) / 3)));
+    max-width: ((calc($desktopWidth * 2 / 3)));
     width: 90vw;
-    height: 98vh;
+    height: 99vh;
+    padding-inline: 2vh;
   }
 }
 </style>

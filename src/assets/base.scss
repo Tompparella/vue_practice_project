@@ -5,8 +5,13 @@
 }
 html {
 }
+#app {
+  margin: auto;
+  display: inline;
+}
 body {
-    width: 100%;
+    width: auto;
+    height: 100svh;
     height: 100vh;
     border: 5px dotted red;
 }

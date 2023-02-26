@@ -25,6 +25,7 @@ import backgroundImage from "@/assets/images/fry.jpg";
   width: 100%;
   justify-content: center;
   align-items: center;
+  margin-block: 0.5rem;
 }
 .content {
   z-index: 0;
@@ -32,7 +33,6 @@ import backgroundImage from "@/assets/images/fry.jpg";
   height: 100%;
   width: 100%;
   margin: auto;
-  margin-inline: 1.5rem;
   border: 5px rgba(255, 255, 255, 0) solid;
   border-radius: $border;
   background-color: rgba(0, 0, 0, 0.76);

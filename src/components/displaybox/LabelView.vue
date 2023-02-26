@@ -1,14 +1,20 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { default as LabelEntry } from "./LabelEntry.vue";
+</script>
 
 <template>
-  <div class="label-container"></div>
+  <div class="label-container">
+    <LabelEntry />
+    <LabelEntry />
+  </div>
 </template>
 
 <style scoped lang="scss">
 @import "../../style/constants.scss";
 .label-container {
   display: flex;
-  width: 11vh;
-  height: 11vh;
+  flex-direction: column;
+  width: $headerHeight;
+  min-height: $headerHeight;
 }
 </style>

@@ -8,8 +8,8 @@
 @import "../../style/constants.scss";
 .space-container {
   display: flex;
-  width: 11vh;
-  height: 11vh;
+  width: $headerHeight;
+  height: $headerHeight;
   border-radius: $border;
   background: white;
   box-shadow: 1px 2px 4px 1px $shadowColor inset;
