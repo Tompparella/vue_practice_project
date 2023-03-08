@@ -6,9 +6,6 @@ import { useCommonStore, useAccountStore } from "@/stores";
 import { useTranslation } from "i18next-vue";
 import { storeToRefs } from "pinia";
 import { setUserToken } from "../../utils";
-import { useRouter } from "vue-router";
-import { Path } from "@/router";
-import { getUserToken } from "@/utils";
 
 const options = {
   registration: Registration,
@@ -18,8 +15,6 @@ const options = {
 const { t } = useTranslation();
 const { setHeaderSubLabel, setHeaderLabel } = useCommonStore();
 const accountStore = useAccountStore();
-const router = useRouter();
-
 const { verifiedAccountData } = storeToRefs(accountStore);
 const currentComponent: Ref = shallowRef(options.login);
 
@@ -30,9 +25,6 @@ onMounted(() => {
     setHeaderLabel(t("appName"));
   }, 100);
 });
-
-const handleLogin = (/*data: AuthenticationData To be used on actual login*/) =>
-  getUserToken() && router.push(Path.Main);
 
 const handleRegister = () => {
   // Handle registration completion either here or in the registration component
@@ -58,7 +50,6 @@ const changeView = (data: "login" | "register") => {
 <template>
   <component
     :is="currentComponent"
-    @onLoginClick="handleLogin"
     @onRegisterClick="handleRegister"
     @onChangeView="changeView"
   />

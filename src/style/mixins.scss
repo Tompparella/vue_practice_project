@@ -1,6 +1,7 @@
 @mixin display-icon {
   display: flex;
-  margin: auto;
+  margin-inline: auto;
+  margin-block: 10px;
   justify-content: center;
   align-items: center;
   color: $shadowColor;
@@ -10,7 +11,6 @@
   border-radius: $borderSharp;
   border: 3px solid rgb(0, 0, 0, 0.5);
   box-shadow: 0 1px 4px 0 $shadowColor;
-  margin-bottom: 5px;
   &:hover {
     color: black;
     transform: scale(1.1);

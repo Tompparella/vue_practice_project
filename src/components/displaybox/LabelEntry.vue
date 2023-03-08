@@ -17,8 +17,8 @@ import Logo from "../../assets/images/logo_white.png";
 img {
   margin-block: auto;
   margin-inline: 0.5rem;
-  width: 5vh;
-  height: 5vh;
+  width: 4vh;
+  height: 4vh;
 }
 .label-entry {
   user-select: none;
@@ -26,9 +26,11 @@ img {
   height: 4vh;
   transform: translateX(-10%) rotate(4deg);
   transition: 0.2s all ease;
-  &:hover {
+  z-index: 1;
+  &:hover,
+  &:active {
     transform: scale(1.2);
-    z-index: 1;
+    z-index: 2;
   }
 }
 .card {

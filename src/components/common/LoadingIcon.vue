@@ -9,9 +9,8 @@
 .lds-hourglass {
   display: inline-block;
   position: relative;
-  width: 6rem;
-  height: 6rem;
-  color: "blue";
+  width: 5rem;
+  height: 5rem;
 }
 .lds-hourglass:after {
   content: " ";
@@ -21,7 +20,7 @@
   height: 0;
   margin: 8px;
   box-sizing: border-box;
-  border: 2.5rem solid #fff;
+  border: 2rem solid #fff;
   border-color: $lightViolet transparent $green transparent;
   animation: lds-hourglass 1.2s infinite;
 }

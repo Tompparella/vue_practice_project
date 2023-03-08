@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { default as LabelEntry } from "./LabelEntry.vue";
-const onIconPress = () => {
-  console.log("Moro");
-};
+const onIconPress = () => {};
 </script>
 
 <template>

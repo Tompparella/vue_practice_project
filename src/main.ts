@@ -8,9 +8,10 @@ import axios from "axios";
 import router from "./router";
 
 import "./assets/main.scss";
+import { Environment } from "./utils";
 
 const checkEnvironment = () => {
-  const baseURL = import.meta.env.VITE_API_URL;
+  const baseURL = Environment.API_URL;
   if (!baseURL) {
     throw new Error("Environment variable VUE_APP_BASE_URL not set!");
   }
@@ -18,7 +19,7 @@ const checkEnvironment = () => {
 
 checkEnvironment();
 
-axios.defaults.baseURL = import.meta.env.VITE_API_URL;
+axios.defaults.baseURL = Environment.API_URL;
 axios.defaults.withCredentials = true;
 
 const app = createApp(App);

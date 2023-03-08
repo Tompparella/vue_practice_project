@@ -2,18 +2,19 @@
 import { Input, Label, Button } from "@/components/common";
 import { onMounted, ref, type Ref } from "vue";
 import { useDisplayStore, useCommonStore } from "@/stores";
-import type { AuthenticationData } from "@/types";
 import { useTranslation } from "i18next-vue";
+import { useLoginMutation } from "@/hooks/queries/useLoginMutation";
+import type { LoginData } from "@/api";
 
 type Emits = {
-  (e: "onLoginClick", data: AuthenticationData): void;
   (e: "onChangeView", data: "register"): void;
 };
-const emit = defineEmits<Emits>();
+defineEmits<Emits>();
 
 const { setLoginContent } = useDisplayStore();
 const { setHeaderSubLabel } = useCommonStore();
 const { t } = useTranslation();
+const { mutate } = useLoginMutation();
 
 const email: Ref<string> = ref("");
 const password: Ref<string> = ref("");
@@ -24,11 +25,11 @@ onMounted(() => {
 });
 
 const handleLoginClick = () => {
-  const data: AuthenticationData = {
+  const data: LoginData = {
     email: email.value,
     password: password.value,
   };
-  emit("onLoginClick", data);
+  mutate(data);
 };
 </script>
 

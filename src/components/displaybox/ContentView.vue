@@ -7,37 +7,50 @@ type Props = {
   content?: Content[];
 };
 defineProps<Props>();
+
+const onIconPress = () => {
+  console.log("Info pressed");
+};
 </script>
 
 <template>
-  <ul class="display">
-    <div v-if="loading" class="loading">
-      <Loading />
-      <Text :label="$t('authentication.loading')" :type="'S'" />
-    </div>
-    <li v-else v-for="(item, index) in content" :key="index">
-      <Text
-        v-if="item.text"
-        :label="item.text"
-        :type="'S'"
-        :class="item.color"
-      />
-      <Text
-        v-else-if="item.localizedText"
-        :label="$t(item.localizedText)"
-        :type="'S'"
-        :class="item.color"
-      />
-    </li>
-  </ul>
+  <div class="content-view">
+    <i class="icon las la-info-circle" @click="onIconPress" />
+    <ul class="display">
+      <div v-if="loading" class="loading">
+        <Loading />
+        <Text :label="$t('authentication.loading')" :type="'S'" />
+      </div>
+      <li v-else v-for="(item, index) in content" :key="index">
+        <Text
+          v-if="item.text"
+          :label="item.text"
+          :type="'S'"
+          :class="item.color"
+        />
+        <Text
+          v-else-if="item.localizedText"
+          :label="$t(item.localizedText)"
+          :type="'S'"
+          :class="item.color"
+        />
+      </li>
+    </ul>
+  </div>
 </template>
 
 <style scoped lang="scss">
 @import "../../style/constants.scss";
-.display {
-  user-select: none;
-  display: flex;
+@import "../../style/mixins.scss";
+.icon {
+  @include display-icon;
+}
+.content-view {
   flex: 4;
+  user-select: none;
+}
+.display {
+  display: flex;
   justify-content: center;
   align-items: center;
   box-shadow: 1px 2px 4px 1px $shadowColor inset;
@@ -48,6 +61,7 @@ defineProps<Props>();
   font-weight: bold;
   flex-wrap: wrap;
   margin-inline: 0.5rem;
+  overflow-y: scroll;
 }
 .loading {
   display: flex;
