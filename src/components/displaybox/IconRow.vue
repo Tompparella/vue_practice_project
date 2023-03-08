@@ -28,24 +28,4 @@ const onSpacePress = () => {
   padding-block: 0.5vh;
   margin-inline: 3vh;
 }
-.icon {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: $shadowColor;
-  height: 5vh;
-  width: 5vh;
-  font-size: 4.5vh;
-  border-radius: $borderSharp;
-  border: 3px solid rgb(0, 0, 0, 0.5);
-  box-shadow: 0 1px 4px 0 $shadowColor;
-  &:hover {
-    color: black;
-    transform: scale(1.1);
-    transition: 0.2s all ease;
-  }
-  &:active {
-    transform: scale(1.3);
-  }
-}
 </style>

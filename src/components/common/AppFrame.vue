@@ -7,12 +7,15 @@
 </template>
 
 <style scoped lang="scss">
-@import "../style/constants.scss";
+@import "../../style/constants.scss";
 .base-frame {
   display: flex;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
   flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
   border-radius: $border;
   background: $frameBackground;
   margin: auto;
@@ -20,8 +23,6 @@
 }
 @media (max-width: $mobileWidth) {
   .base-frame {
-    width: 100vw;
-    height: 100vh;
     padding-inline: 1vh;
   }
 }

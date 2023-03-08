@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { Label } from "./common";
-import { useCommonStore } from "../stores";
+import { default as Label } from "./LabelComponent.vue";
+import { useCommonStore } from "../../stores";
 import { storeToRefs } from "pinia";
 const common = useCommonStore();
 const { headerLabel, headerSubLabel } = storeToRefs(common);
@@ -20,7 +20,7 @@ const { headerLabel, headerSubLabel } = storeToRefs(common);
 </template>
 
 <style scoped lang="scss">
-@import "../style/constants.scss";
+@import "../../style/constants.scss";
 .header-container {
   flex: 1;
   display: flex;

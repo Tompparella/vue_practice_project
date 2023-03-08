@@ -18,8 +18,12 @@ const getRegistrationContent = (): Content[] => {
 
 export const useDisplayStore = defineStore("display", () => {
   const content = ref<Content[]>();
+  const loading = ref<boolean>();
   const setContent = (value: Content[]) => {
     content.value = value;
+  };
+  const setLoading = (value: boolean) => {
+    loading.value = value;
   };
   const setLoginContent = () => {
     content.value = getLoginContent();
@@ -33,7 +37,9 @@ export const useDisplayStore = defineStore("display", () => {
 
   return {
     content,
+    loading,
     setContent,
+    setLoading,
     setLoginContent,
     setRegistrationContent,
     setInstitutionContent,

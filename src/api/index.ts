@@ -1,0 +1,1 @@
+export { getIdentity } from "./getIdentity";

@@ -8,7 +8,7 @@
 @import "../../style/constants.scss";
 .space-container {
   display: flex;
-  width: $headerHeight;
+  flex: 1;
   height: $headerHeight;
   border-radius: $border;
   background: white;

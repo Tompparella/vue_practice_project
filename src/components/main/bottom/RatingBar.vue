@@ -24,6 +24,7 @@ defineProps<Props>();
   width: 60%;
   transition: 0.2s ease-in-out all;
   &:hover {
+    z-index: 1;
     transform: scale(1.1);
   }
 }

@@ -23,9 +23,8 @@ img {
 .label-entry {
   user-select: none;
   position: relative;
-  width: 18vh;
-  height: 5vh;
-  transform: translateX(-40%) rotate(4deg);
+  height: 4vh;
+  transform: translateX(-10%) rotate(4deg);
   transition: 0.2s all ease;
   &:hover {
     transform: scale(1.2);
@@ -39,10 +38,12 @@ img {
   border: 2px solid $borderColor;
   border-radius: $border;
   display: flex;
-  width: 100%;
-  height: 6vh;
+  height: 5vh;
+  min-width: 125%;
+  max-width: 150%;
 }
 .text {
   margin-block: auto;
+  word-break: break-all;
 }
 </style>
