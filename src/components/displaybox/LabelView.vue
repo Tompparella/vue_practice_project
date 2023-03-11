@@ -31,7 +31,7 @@ const onIconPress = () => (iconsVisible.value = !iconsVisible.value);
 @import "../../style/mixins.scss";
 .label-view {
   width: $headerHeight;
-  height: $headerHeight;
+  height: 100%;
 }
 .label-container {
   display: flex;
@@ -42,7 +42,7 @@ const onIconPress = () => (iconsVisible.value = !iconsVisible.value);
   @include display-icon;
 }
 .slideOut {
-  transform: translateX(-10rem);
+  transform: translateX(-2rem);
   opacity: 0;
 }
 </style>

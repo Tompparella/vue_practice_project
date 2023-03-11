@@ -23,7 +23,7 @@
 }
 @media (max-width: $mobileWidth) {
   .base-frame {
-    padding-inline: 1vh;
+    padding-inline: 0.5rem;
   }
 }
 @media (min-width: ($mobileWidth)) {
@@ -32,7 +32,7 @@
     max-width: ((calc($desktopWidth * 2 / 3)));
     width: 90vw;
     height: 99vh;
-    padding-inline: 2vh;
+    padding-inline: 0.5rem;
   }
 }
 </style>

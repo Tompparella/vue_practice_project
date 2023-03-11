@@ -20,8 +20,10 @@ defineProps<Props>();
 .bar-container {
   position: relative;
   display: flex;
-  height: 55%;
-  width: 60%;
+  height: 3rem;
+  width: 100%;
+  max-width: 25rem;
+  margin-inline: 0.5rem;
   transition: 0.2s ease-in-out all;
   &:hover {
     z-index: 1;
@@ -33,12 +35,12 @@ defineProps<Props>();
   width: 100%;
   background-color: white;
   border-radius: $borderSoft;
-  border: 5px solid $borderColor;
-  box-shadow: 0 4px 8px 0 $borderColor;
+  border: 3px solid $borderColor;
+  box-shadow: 0 2px 4px 0 $borderColor;
   z-index: 0;
 }
 .fill-bar {
-  height: 55%;
+  height: 60%;
   left: 0;
   right: 0;
   top: 0;

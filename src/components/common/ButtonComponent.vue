@@ -39,9 +39,9 @@ button {
   display: flex;
   background-color: $buttonOuter;
   border: none;
-  width: 33%;
-  min-height: 8vh;
-  padding: 1.2vh;
+  width: 10rem;
+  min-height: 3.5rem;
+  padding: 0.5rem;
   border-radius: $border;
   transition: 0.2s all;
   &:hover {
@@ -68,7 +68,7 @@ button {
   display: flex;
   width: 100%;
   background-color: $lightBlue;
-  border-radius: $border;
+  border-radius: $borderSharp;
   align-items: center;
   justify-content: center;
 }

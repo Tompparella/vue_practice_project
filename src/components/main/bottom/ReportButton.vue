@@ -14,7 +14,7 @@ defineEmits<Emits>();
 <style scoped lang="scss">
 @import "../../../style/constants.scss";
 i {
-  font-size: 4vh;
+  font-size: 2rem;
   margin-inline: auto;
 }
 .report {
@@ -22,8 +22,9 @@ i {
   position: absolute;
   bottom: -5px;
   left: 50%;
-  width: 10vh;
+  width: 5rem;
   opacity: 0.4;
+  height: 2.5rem;
   border: 4px $deepRed solid;
   border-radius: $borderSoft $borderSoft 0 0;
   background-color: $reportButtonBackground;

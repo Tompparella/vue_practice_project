@@ -19,8 +19,8 @@ const handleChange = (event: Event) => {
 @import "../../style/constants.scss";
 input {
   width: 60%;
-  height: 7vh;
-  border-radius: $border;
+  height: 3rem;
+  border-radius: $borderSharp;
   border: none;
   box-shadow: 1px 2px 4px 1px $shadowColor inset;
   text-align: center;

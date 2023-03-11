@@ -145,7 +145,7 @@ const handleGuildPick = (data: GuildData | null) => (guild.value = data);
   align-items: center;
   justify-content: center;
   width: 80%;
-  height: 6vh;
+  height: 3rem;
 }
 
 // Transitions

@@ -25,5 +25,6 @@ const { content, loading, optionsVisible } = storeToRefs(display);
 .display-box {
   flex: 1;
   display: flex;
+  align-items: center;
 }
 </style>

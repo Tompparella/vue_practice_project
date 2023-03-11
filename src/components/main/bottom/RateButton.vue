@@ -34,20 +34,21 @@ const handlePress = () => {
 
 <style scoped lang="scss">
 @import "../../../style/constants.scss";
-$buttonSize: 11vh;
-$iconSize: $buttonSize - 3vh;
+$buttonSize: 5rem;
+$iconSize: $buttonSize - 1.5rem;
 $animationTime: 0.1s;
 @keyframes fireworks-effect {
   0% {
-    width: 1vmin;
+    width: 1rem;
     opacity: 1;
   }
   80% {
-    width: 23vmin;
+    width: 10rem;
     opacity: 1;
+    transform: translate(100% -50%);
   }
   100% {
-    width: 23vmin;
+    width: 10rem;
     opacity: 0;
     transform: translate(-50%, -33%);
   }
@@ -120,19 +121,19 @@ i.la-laugh-squint {
   transform: translate(-50%, -50%) rotate(-37deg) !important;
 }
 .inner {
-  margin: 1vh;
+  margin: 0.5rem;
   border-radius: $borderSoft;
 }
 .red.rate-button {
   background-color: $red;
-  border: 5px solid $redHover;
+  border: 3px solid $redHover;
 }
 .red.rate-button .inner {
   background-color: $lightRed;
 }
 .green.rate-button {
   background-color: $green;
-  border: 5px solid $redHover;
+  border: 3px solid $redHover;
 }
 .green.rate-button .inner {
   background-color: $lightGreen;

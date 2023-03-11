@@ -45,9 +45,10 @@ defineEmits<Emits>();
   position: fixed;
   top: 10%;
   bottom: 10%;
-  right: 30%;
-  left: 30%;
+  right: 0;
+  left: 0;
   transition: 0.2s;
+  margin-inline: 2rem;
 }
 .background {
   width: 100%;
@@ -58,7 +59,9 @@ defineEmits<Emits>();
   box-shadow: 0px 0px 15px 2px $shadowColor;
 }
 .content {
+  display: flex;
   position: absolute;
+  flex-wrap: "wrap";
   top: 10px;
   left: 25px;
   right: 25px;
@@ -66,9 +69,9 @@ defineEmits<Emits>();
 }
 .item {
   position: relative;
-  margin: auto;
-  width: 100px;
-  height: 100px;
+  margin: 5px;
+  width: 5rem;
+  height: 5rem;
   &:hover .item-overlay {
     opacity: 0.6;
   }

@@ -21,7 +21,7 @@ const onReport = () => console.log("Report");
   flex: 1;
   display: flex;
   position: relative;
-  justify-content: space-between;
+  justify-content: center;
   align-items: flex-start;
 }
 </style>
