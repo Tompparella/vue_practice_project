@@ -5,25 +5,23 @@ import { default as LabelView } from "./LabelView.vue";
 import { default as ContentView } from "./ContentView.vue";
 import { useDisplayStore } from "../../stores";
 const display = useDisplayStore();
-const { content, loading } = storeToRefs(display);
+const { content, loading, optionsVisible } = storeToRefs(display);
 </script>
 
 <template>
-  <div class="container">
-    <div class="display-box">
-      <LabelView />
-      <ContentView :loading="loading" :content="content" />
-      <SpaceBox />
-    </div>
+  <div class="display-box">
+    <LabelView :hidden="!optionsVisible" />
+    <ContentView
+      :hidden="!optionsVisible"
+      :loading="loading"
+      :content="content"
+    />
+    <SpaceBox :hidden="!optionsVisible" />
   </div>
 </template>
 
 <style scoped lang="scss">
 @import "../../style/constants.scss";
-.container {
-  flex: 1;
-  display: flex;
-}
 .display-box {
   flex: 1;
   display: flex;

@@ -1,14 +1,17 @@
-import { login, type LoginData } from "@/api";
+import { register } from "@/api";
 import { Path } from "@/router";
 import { useDisplayStore, useUserStore } from "@/stores";
+import type { AccountData } from "@/types";
+import { useTranslation } from "i18next-vue";
 import { useMutation } from "vue-query";
 import { useRouter } from "vue-router";
 
-export const useLoginMutation = () => {
+export const useRegisterMutation = () => {
   const displayStore = useDisplayStore();
   const userStore = useUserStore();
+  const { t } = useTranslation();
   const router = useRouter();
-  const mutation = useMutation((data: LoginData) => login(data), {
+  const mutation = useMutation((data: AccountData) => register(data), {
     onMutate: () => {
       displayStore.setLoading(true);
     },
@@ -17,15 +20,14 @@ export const useLoginMutation = () => {
     },
     onSuccess: (data) => {
       userStore.setUserDataFromResponse(data);
+      // TODO: Possible new user introduction sequence
       router.push(Path.Main);
     },
-    onError: (e: any) => {
-      console.warn(e);
-      if (e.message === "credentials") {
-        displayStore.setInvalidCredentialsContent();
-      } else {
-        displayStore.setLoginErrorContent();
-      }
+    onError: (e: unknown) => {
+      console.error(e);
+      displayStore.setContent([
+        { localizedText: t("authentication.registrationError") },
+      ]);
     },
   });
   return mutation;

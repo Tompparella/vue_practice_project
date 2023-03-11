@@ -2,7 +2,7 @@
 import { onMounted, ref, type Ref } from "vue";
 import { Input, Label, Button } from "@/components/common";
 import type { AuthenticationData } from "@/types";
-import { useDisplayStore, useAccountStore } from "@/stores";
+import { useDisplayStore, useRegistrationStore } from "@/stores";
 
 interface Emits {
   (e: "onRegisterClick"): void;
@@ -12,7 +12,7 @@ interface Emits {
 const emit = defineEmits<Emits>();
 
 const { setRegistrationContent } = useDisplayStore();
-const { setAuthenticationData } = useAccountStore();
+const { setAuthenticationData } = useRegistrationStore();
 
 onMounted(() => setRegistrationContent());
 

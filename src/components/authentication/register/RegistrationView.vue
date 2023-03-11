@@ -3,12 +3,12 @@ import { onMounted, shallowRef } from "vue";
 import { validateEmail, validatePassword } from "@/utils";
 import { default as First } from "./RegistrationFirst.vue";
 import { default as Second } from "./RegistrationSecond.vue";
-import { useCommonStore, useAccountStore } from "@/stores";
+import { useCommonStore, useRegistrationStore } from "@/stores";
 import { useTranslation } from "i18next-vue";
 import { storeToRefs } from "pinia";
+import { useRegisterMutation } from "@/hooks/queries";
 
 interface Emits {
-  (e: "onRegisterClick"): void;
   (e: "onChangeView", data: "login"): void;
 }
 const emit = defineEmits<Emits>();
@@ -24,8 +24,9 @@ const options = {
 };
 
 const currentPhase = shallowRef(options.first);
-const accountStore = useAccountStore();
-const { accountData } = storeToRefs(accountStore);
+const registrationStore = useRegistrationStore();
+const { accountData, verifiedAccountData } = storeToRefs(registrationStore);
+const { mutate } = useRegisterMutation();
 
 const verify = () => {
   const { email, password, rePassword } = accountData.value;
@@ -50,7 +51,9 @@ const handleRegistrationClick = () => {
       if (verify()) currentPhase.value = options.second;
       break;
     case options.second:
-      emit("onRegisterClick");
+      if (verifiedAccountData.value) {
+        mutate(verifiedAccountData.value);
+      }
       break;
   }
 };

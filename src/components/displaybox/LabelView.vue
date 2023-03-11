@@ -1,15 +1,28 @@
 <script setup lang="ts">
+import { ref } from "vue";
 import { default as LabelEntry } from "./LabelEntry.vue";
-const onIconPress = () => {};
+
+type Props = {
+  hidden: boolean;
+};
+
+defineProps<Props>();
+
+const iconsVisible = ref(true);
+const onIconPress = () => (iconsVisible.value = !iconsVisible.value);
 </script>
 
 <template>
   <div class="label-view">
-    <i class="icon las la-tags" @click="onIconPress" />
-    <div class="label-container">
+    <i v-if="!hidden" class="icon las la-tags" @click="onIconPress" />
+    <ul
+      v-if="!hidden"
+      class="label-container"
+      :class="!iconsVisible && 'slideOut'"
+    >
       <LabelEntry />
       <LabelEntry />
-    </div>
+    </ul>
   </div>
 </template>
 
@@ -17,14 +30,19 @@ const onIconPress = () => {};
 @import "../../style/constants.scss";
 @import "../../style/mixins.scss";
 .label-view {
-  flex: 1;
+  width: $headerHeight;
+  height: $headerHeight;
 }
 .label-container {
   display: flex;
   flex-direction: column;
-  min-height: $headerHeight;
+  transition: 0.5s all ease-in-out;
 }
 .icon {
   @include display-icon;
+}
+.slideOut {
+  transform: translateX(-10rem);
+  opacity: 0;
 }
 </style>

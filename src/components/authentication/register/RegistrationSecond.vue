@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Button, Input, Label, LogoPicker } from "@/components/common";
-import { useDisplayStore, useAccountStore } from "@/stores";
+import { useDisplayStore, useRegistrationStore } from "@/stores";
 import { onMounted, ref } from "vue";
 import type { GuildData, UniversityData, FlairData } from "@/types";
 import img_1 from "@/assets/images/logo_ebin.png";
@@ -9,15 +9,15 @@ import img_3 from "@/assets/images/logo_white.png";
 import { useTranslation } from "i18next-vue";
 
 const universityData: UniversityData[] = [
-  { name: "Cluster Ry21321", id: "123", logo: img_3 },
-  { name: "Ebin xD32132", id: "69", logo: img_2 },
-  { name: "Paitakisa3321", id: "420", logo: img_1 },
+  { name: "Cluster Ry21321", id: "1", logo: img_3 },
+  { name: "Ebin xD32132", id: "2", logo: img_2 },
+  { name: "Paitakisa3321", id: "3", logo: img_1 },
 ];
 
 const guildData: GuildData[] = [
-  { name: "Cluster Ry", id: "123", logo: img_3 },
-  { name: "Ebin xD", id: "69", logo: img_2 },
-  { name: "Paitakisa", id: "420", logo: img_1 },
+  { name: "Cluster Ry", id: "1", logo: img_3 },
+  { name: "Ebin xD", id: "2", logo: img_2 },
+  { name: "Paitakisa", id: "3", logo: img_1 },
 ];
 
 interface Emits {
@@ -29,7 +29,7 @@ const emit = defineEmits<Emits>();
 
 const { t } = useTranslation();
 const { setInstitutionContent } = useDisplayStore();
-const { setFlairData } = useAccountStore();
+const { setFlairData } = useRegistrationStore();
 
 const university = ref<UniversityData | null>(null);
 const guild = ref<GuildData | null>(null);
@@ -45,8 +45,7 @@ const handleRegistrationClick = () => {
   if (!!guild.value && !!university.value) {
     const accountData: FlairData = {
       username: username.value,
-      guild: guild.value,
-      university: university.value,
+      guildId: parseInt(guild.value.id, 10),
     };
     setFlairData(accountData);
     emit("onRegisterClick");

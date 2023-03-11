@@ -70,3 +70,19 @@ export const institutionContent: Content[] = [
   },
   { text: "!" },
 ];
+
+export const invalidCredentialsContent: Content[] = [
+  { localizedText: "authentication.loginError.credentials" },
+  {
+    localizedText: "display.frownEmoji",
+    color: "deepCyan",
+  },
+];
+
+export const loginErrorContent: Content[] = [
+  {
+    localizedText: "display.bearTableEmoji",
+    color: "deepCyan",
+  },
+  { localizedText: "authentication.loginError.other" },
+];

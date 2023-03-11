@@ -1,6 +1,14 @@
 <script setup lang="ts">
 import { Image } from "./image";
 import { Bottom } from "./bottom";
+import { onBeforeMount } from "vue";
+import { useDisplayStore } from "@/stores";
+
+const { setOptionsVisible } = useDisplayStore();
+
+onBeforeMount(() => {
+  setOptionsVisible(true);
+});
 </script>
 
 <template>

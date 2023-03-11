@@ -1,9 +1,8 @@
 import axios, { type AxiosResponse, type AxiosError } from "axios";
-import type { LoginData } from "./data";
 import { Path } from "./path";
-export const login = async (data: LoginData): Promise<AxiosResponse> => {
+export const logout = async (): Promise<AxiosResponse> => {
   try {
-    const res = await axios.post(Path.Login, data, {
+    const res = await axios.post(Path.Logout, {
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
     });
     return res;

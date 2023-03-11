@@ -36,7 +36,13 @@
     "login": "Login",
     "goToLogin": "Go to Login",
     "usernameLength": "Please make your username at least 5 characters long!",
-    "intitutionNotPicked": "Please pick a university and a guild!"
+    "intitutionNotPicked": "Please pick a university and a guild!",
+    "loginError": {
+      "credentials": "Invalid login credentials",
+      "other": "Failed to login, please try again later. If the problem persists, please contact administration"
+    },
+    "logoutError": "Logout failed. Please try again.",
+    "registrationError": "Registration failed. Please try again."
   },
   "display": {
     "welcome_1": "Hey again!",
@@ -45,6 +51,8 @@
     "loginDirection_2": "Quick, there's lots of fresh memes!",
     "bearEmoji": "ʕ •ᴥ•ʔ",
     "heartEmoji": "( ͡♥ ͜ʖ ͡♥)",
-    "cutesyEmoji": ":3"
+    "cutesyEmoji": ":3",
+    "frownEmoji": ":(",
+    "bearTableEmoji": "ʕノ•ᴥ•ʔノ ︵ ┻━┻"
   }
 }

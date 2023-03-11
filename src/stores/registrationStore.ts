@@ -9,13 +9,13 @@ const isValidAccountData = (
   return (
     !!asserted.email &&
     !!asserted.password &&
+    !!asserted.rePassword &&
     !!asserted.username &&
-    !!asserted.university.id &&
-    !!asserted.guild.id
+    !!asserted.guildId
   );
 };
 
-export const useAccountStore = defineStore("account", () => {
+export const useRegistrationStore = defineStore("registration", () => {
   const accountData = ref<Partial<AccountData>>({});
 
   const setAuthenticationData = (value: AuthenticationData) =>

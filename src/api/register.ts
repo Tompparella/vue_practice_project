@@ -1,11 +1,21 @@
+import type { AccountData } from "@/types";
 import axios, { type AxiosResponse, type AxiosError } from "axios";
-import type { LoginData } from "./data";
 import { Path } from "./path";
-export const login = async (data: LoginData): Promise<AxiosResponse> => {
+export const register = async (data: AccountData): Promise<AxiosResponse> => {
   try {
-    const res = await axios.post(Path.Login, data, {
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    });
+    console.log(data);
+    const res = await axios.post(
+      Path.Register,
+      {
+        email: data.email,
+        username: data.username,
+        guildId: data.guildId,
+        password: data.password,
+      },
+      {
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      }
+    );
     return res;
   } catch (err) {
     const error = <AxiosError>err;
@@ -13,10 +23,8 @@ export const login = async (data: LoginData): Promise<AxiosResponse> => {
       console.warn(
         `Error: ${error.response.status} : ${error.response.headers}`
       );
-      throw new Error("credentials");
     } else if (error.request) {
       console.warn(`Error: ${error.request.status} : ${error.request.headers}`);
-      console.warn(error.request.data);
     } else {
       console.warn(`Error: ${error.message}`);
     }

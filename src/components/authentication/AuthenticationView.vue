@@ -2,10 +2,8 @@
 import { Registration } from "./register";
 import { Login } from "./login";
 import { type Ref, shallowRef, onMounted } from "vue";
-import { useCommonStore, useAccountStore } from "@/stores";
+import { useCommonStore, useDisplayStore } from "@/stores";
 import { useTranslation } from "i18next-vue";
-import { storeToRefs } from "pinia";
-import { setUserToken } from "../../utils";
 
 const options = {
   registration: Registration,
@@ -14,26 +12,17 @@ const options = {
 
 const { t } = useTranslation();
 const { setHeaderSubLabel, setHeaderLabel } = useCommonStore();
-const accountStore = useAccountStore();
-const { verifiedAccountData } = storeToRefs(accountStore);
+const { setOptionsVisible } = useDisplayStore();
 const currentComponent: Ref = shallowRef(options.login);
 
 onMounted(() => {
+  setOptionsVisible(false);
   // Bullshittery to make i18n initialize fully
   setTimeout(() => {
     setHeaderSubLabel(t("authentication.login"));
     setHeaderLabel(t("appName"));
   }, 100);
 });
-
-const handleRegister = () => {
-  // Handle registration completion either here or in the registration component
-  if (verifiedAccountData.value) {
-    setUserToken(verifiedAccountData.value.username);
-    alert("Registration complete!");
-    currentComponent.value = options.login;
-  }
-};
 
 const changeView = (data: "login" | "register") => {
   switch (data) {
@@ -48,9 +37,5 @@ const changeView = (data: "login" | "register") => {
 </script>
 
 <template>
-  <component
-    :is="currentComponent"
-    @onRegisterClick="handleRegister"
-    @onChangeView="changeView"
-  />
+  <component :is="currentComponent" @onChangeView="changeView" />
 </template>

@@ -1,4 +1,10 @@
 <script setup lang="ts">
+type Props = {
+  hidden: boolean;
+};
+
+defineProps<Props>();
+
 const onIconPress = () => {
   console.log("Space pressed");
 };
@@ -6,8 +12,8 @@ const onIconPress = () => {
 
 <template>
   <div class="space-box">
-    <i class="icon las la-box" @click="onIconPress" />
-    <div class="space-container"></div>
+    <i v-if="!hidden" class="icon las la-box" @click="onIconPress" />
+    <div v-if="!hidden" class="space-container"></div>
   </div>
 </template>
 
@@ -20,6 +26,7 @@ const onIconPress = () => {
 .space-box {
   display: flex;
   flex-direction: column;
+  width: $headerHeight;
 }
 .space-container {
   height: $headerHeight;

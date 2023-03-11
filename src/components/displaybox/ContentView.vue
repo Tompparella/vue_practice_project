@@ -1,21 +1,25 @@
 <script setup lang="ts">
+import { useLogoutMutation } from "@/hooks/queries/useLogoutMutation";
 import type { Content } from "@/stores/constants";
 import { Loading, Text } from "../common";
 
 type Props = {
+  hidden: boolean;
   loading?: boolean;
   content?: Content[];
 };
 defineProps<Props>();
 
+const { mutate } = useLogoutMutation();
+
 const onIconPress = () => {
-  console.log("Info pressed");
+  mutate();
 };
 </script>
 
 <template>
   <div class="content-view">
-    <i class="icon las la-info-circle" @click="onIconPress" />
+    <i v-if="!hidden" class="icon las la-info-circle" @click="onIconPress" />
     <ul class="display">
       <div v-if="loading" class="loading">
         <Loading />
@@ -46,7 +50,7 @@ const onIconPress = () => {
   @include display-icon;
 }
 .content-view {
-  flex: 4;
+  flex: 1;
   user-select: none;
 }
 .display {

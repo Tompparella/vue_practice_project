@@ -19,6 +19,7 @@ import backgroundImage from "@/assets/images/fry.jpg";
 <style scoped lang="scss">
 @import "@/style/constants.scss";
 .container {
+  user-select: none;
   flex: 4;
   display: flex;
   height: 100%;

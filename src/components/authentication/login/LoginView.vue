@@ -3,7 +3,7 @@ import { Input, Label, Button } from "@/components/common";
 import { onMounted, ref, type Ref } from "vue";
 import { useDisplayStore, useCommonStore } from "@/stores";
 import { useTranslation } from "i18next-vue";
-import { useLoginMutation } from "@/hooks/queries/useLoginMutation";
+import { useLoginMutation } from "@/hooks/queries";
 import type { LoginData } from "@/api";
 
 type Emits = {

@@ -4,27 +4,31 @@ import Logo from "../../assets/images/logo_white.png";
 </script>
 
 <template>
-  <div class="label-entry">
+  <li class="label-entry">
     <div class="card">
       <img :src="Logo" />
-      <Text class="text" :label="'Testi'" :type="'S'" />
+      <Text
+        class="text"
+        :label="'Testitestitestittestitestitestit'"
+        :type="'S'"
+      />
     </div>
-  </div>
+  </li>
 </template>
 
 <style scoped lang="scss">
 @import "../../style/constants.scss";
 img {
   margin-block: auto;
-  margin-inline: 0.5rem;
-  width: 4vh;
-  height: 4vh;
+  margin-inline: 0.25rem;
+  width: 2.5rem;
+  height: 2.5rem;
 }
 .label-entry {
   user-select: none;
   position: relative;
-  height: 4vh;
-  transform: translateX(-10%) rotate(4deg);
+  height: 2.5rem;
+  transform: translateX(-35%) rotate(4deg);
   transition: 0.2s all ease;
   z-index: 1;
   &:hover,
@@ -40,9 +44,8 @@ img {
   border: 2px solid $borderColor;
   border-radius: $border;
   display: flex;
-  height: 5vh;
-  min-width: 125%;
-  max-width: 150%;
+  height: 3rem;
+  width: 10rem;
 }
 .text {
   margin-block: auto;

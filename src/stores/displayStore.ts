@@ -5,6 +5,8 @@ import {
   loginContent,
   registrationContent,
   institutionContent,
+  invalidCredentialsContent,
+  loginErrorContent,
 } from "./constants";
 
 const getLoginContent = (): Content[] => {
@@ -19,6 +21,7 @@ const getRegistrationContent = (): Content[] => {
 export const useDisplayStore = defineStore("display", () => {
   const content = ref<Content[]>();
   const loading = ref<boolean>();
+  const optionsVisible = ref<boolean>(false);
   const setContent = (value: Content[]) => {
     content.value = value;
   };
@@ -34,14 +37,27 @@ export const useDisplayStore = defineStore("display", () => {
   const setInstitutionContent = () => {
     content.value = institutionContent;
   };
+  const setInvalidCredentialsContent = () => {
+    content.value = invalidCredentialsContent;
+  };
+  const setLoginErrorContent = () => {
+    content.value = loginErrorContent;
+  };
+  const setOptionsVisible = (value: boolean) => {
+    optionsVisible.value = value;
+  };
 
   return {
     content,
     loading,
+    optionsVisible,
     setContent,
     setLoading,
     setLoginContent,
     setRegistrationContent,
     setInstitutionContent,
+    setInvalidCredentialsContent,
+    setLoginErrorContent,
+    setOptionsVisible,
   };
 });
