@@ -1,20 +1,17 @@
-import { getIdentity } from "@/api";
+import { getUniversities } from "@/api";
 import { ref } from "vue";
 import { useDisplayStore } from "@/stores/displayStore";
-import { useRouter } from "vue-router";
 import { useQuery } from "vue-query";
-import { Path } from "@/router";
 
-export const useCheckAuthQuery = () => {
+export const useGetUniversitiesQuery = () => {
   const displayStore = useDisplayStore();
-  const router = useRouter();
   const enabled = ref<boolean>(true);
 
   return useQuery(
-    "checkAuth",
+    "getUniversities",
     async () => {
       displayStore.setLoading(true);
-      return await getIdentity();
+      return await getUniversities();
     },
     {
       staleTime: Infinity,
@@ -27,10 +24,10 @@ export const useCheckAuthQuery = () => {
         enabled.value = false;
       },
       onSuccess: () => {
-        router.push(Path.Main);
+        //
       },
       onError: () => {
-        router.push(Path.Authentication);
+        //
       },
     }
   );

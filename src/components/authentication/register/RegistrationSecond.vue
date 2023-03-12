@@ -2,12 +2,13 @@
 import { Button, Input, Label, LogoPicker } from "@/components/common";
 import { useDisplayStore, useRegistrationStore } from "@/stores";
 import { onMounted, ref } from "vue";
-import type { GuildData, UniversityData, FlairData } from "@/types";
+import type { FlairData, InstitutionData } from "@/types";
 import img_1 from "@/assets/images/logo_ebin.png";
 import img_2 from "@/assets/images/logo_test.png";
 import img_3 from "@/assets/images/logo_white.png";
 import { useTranslation } from "i18next-vue";
-
+import { useGetUniversitiesQuery, useGetGuildsMutation } from "@/hooks/queries";
+/*
 const universityData: UniversityData[] = [
   { name: "Cluster Ry21321", id: "1", logo: img_3 },
   { name: "Ebin xD32132", id: "2", logo: img_2 },
@@ -19,7 +20,7 @@ const guildData: GuildData[] = [
   { name: "Ebin xD", id: "2", logo: img_2 },
   { name: "Paitakisa", id: "3", logo: img_1 },
 ];
-
+ */
 interface Emits {
   (e: "onRegisterClick"): void;
   (e: "onBackClick"): void;
@@ -31,9 +32,12 @@ const { t } = useTranslation();
 const { setInstitutionContent } = useDisplayStore();
 const { setFlairData } = useRegistrationStore();
 
-const university = ref<UniversityData | null>(null);
-const guild = ref<GuildData | null>(null);
+const university = ref<InstitutionData | null>(null);
+const guild = ref<InstitutionData | null>(null);
 const username = ref("");
+
+const universityQuery = useGetUniversitiesQuery();
+const guildQuery = useGetGuildsMutation();
 
 onMounted(() => setInstitutionContent());
 
@@ -45,7 +49,7 @@ const handleRegistrationClick = () => {
   if (!!guild.value && !!university.value) {
     const accountData: FlairData = {
       username: username.value,
-      guildId: parseInt(guild.value.id, 10),
+      guildId: guild.value.id,
     };
     setFlairData(accountData);
     emit("onRegisterClick");
@@ -54,10 +58,15 @@ const handleRegistrationClick = () => {
   }
 };
 
-const handleUniversityPick = (data: UniversityData | null) =>
-  (university.value = data);
-
-const handleGuildPick = (data: GuildData | null) => (guild.value = data);
+const handleUniversityPick = (data: InstitutionData | null) => {
+  if (university.value !== data && data?.id) {
+    guildQuery.mutate(data.id);
+  }
+  university.value = data;
+};
+const handleGuildPick = (data: InstitutionData | null) => {
+  guild.value = data;
+};
 </script>
 <template>
   <div class="main-container">
@@ -71,7 +80,7 @@ const handleGuildPick = (data: GuildData | null) => (guild.value = data);
         />
         <LogoPicker
           :currentInstitution="university"
-          :institutionData="universityData"
+          :institutionData="universityQuery.data.value"
           @onPick="handleUniversityPick"
           class="picker"
         />
@@ -92,7 +101,7 @@ const handleGuildPick = (data: GuildData | null) => (guild.value = data);
         />
         <LogoPicker
           :currentInstitution="guild"
-          :institutionData="guildData"
+          :institutionData="guildQuery.data?.value"
           @onPick="handleGuildPick"
           class="picker"
         />

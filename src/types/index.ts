@@ -5,15 +5,14 @@ export type AuthenticationData = {
   password: string;
   rePassword?: string;
 };
-export type UniversityData = {
+export type InstitutionData = {
+  id: number;
   name: string;
-  id: string;
-  logo: string;
+  logo?: string;
 };
-export type GuildData = {
-  name: string;
-  id: string;
-  logo: string;
+export type UniversityData = InstitutionData & {};
+export type GuildData = InstitutionData & {
+  universityId: number;
 };
 export type FlairData = {
   username: string;

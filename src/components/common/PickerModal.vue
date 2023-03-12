@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { GuildData, UniversityData } from "@/types";
 type Props = {
-  data: GuildData[] | UniversityData[];
+  data?: GuildData[] | UniversityData[];
   visible: boolean;
 };
 type Emits = {
@@ -48,7 +48,8 @@ defineEmits<Emits>();
   right: 0;
   left: 0;
   transition: 0.2s;
-  margin-inline: 2rem;
+  max-width: 45rem;
+  margin: auto;
 }
 .background {
   width: 100%;

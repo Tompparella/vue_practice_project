@@ -8,7 +8,7 @@ export const useLoginMutation = () => {
   const displayStore = useDisplayStore();
   const userStore = useUserStore();
   const router = useRouter();
-  const mutation = useMutation((data: LoginData) => login(data), {
+  const mutation = useMutation("login", (data: LoginData) => login(data), {
     onMutate: () => {
       displayStore.setLoading(true);
     },

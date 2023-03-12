@@ -11,24 +11,28 @@ export const useRegisterMutation = () => {
   const userStore = useUserStore();
   const { t } = useTranslation();
   const router = useRouter();
-  const mutation = useMutation((data: AccountData) => register(data), {
-    onMutate: () => {
-      displayStore.setLoading(true);
-    },
-    onSettled: () => {
-      displayStore.setLoading(false);
-    },
-    onSuccess: (data) => {
-      userStore.setUserDataFromResponse(data);
-      // TODO: Possible new user introduction sequence
-      router.push(Path.Main);
-    },
-    onError: (e: unknown) => {
-      console.error(e);
-      displayStore.setContent([
-        { localizedText: t("authentication.registrationError") },
-      ]);
-    },
-  });
+  const mutation = useMutation(
+    "register",
+    (data: AccountData) => register(data),
+    {
+      onMutate: () => {
+        displayStore.setLoading(true);
+      },
+      onSettled: () => {
+        displayStore.setLoading(false);
+      },
+      onSuccess: (data) => {
+        userStore.setUserDataFromResponse(data);
+        // TODO: Possible new user introduction sequence
+        router.push(Path.Main);
+      },
+      onError: (e: unknown) => {
+        console.error(e);
+        displayStore.setContent([
+          { localizedText: t("authentication.registrationError") },
+        ]);
+      },
+    }
+  );
   return mutation;
 };

@@ -10,7 +10,7 @@ export const useLogoutMutation = () => {
   const userStore = useUserStore();
   const router = useRouter();
   const { t } = useTranslation();
-  const mutation = useMutation(() => logout(), {
+  const mutation = useMutation("logout", () => logout(), {
     onMutate: () => {
       displayStore.setLoading(true);
     },

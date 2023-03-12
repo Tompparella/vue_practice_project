@@ -1,19 +1,19 @@
 <script setup lang="ts">
-import type { GuildData, UniversityData } from "@/types";
+import type { InstitutionData } from "@/types";
 import { ref } from "vue";
 import { Text, PickerModal } from ".";
 type Props = {
-  institutionData: GuildData[] | UniversityData[];
-  currentInstitution: GuildData | UniversityData | null;
+  institutionData?: InstitutionData[];
+  currentInstitution: InstitutionData | null;
 };
 type Emits = {
-  (e: "onPick", data: GuildData | UniversityData | null): void;
+  (e: "onPick", data: InstitutionData | null): void;
 };
 defineProps<Props>();
 const emit = defineEmits<Emits>();
 const modalVisible = ref(false);
 const onPress = () => (modalVisible.value = !modalVisible.value);
-const handleOnPick = (data: GuildData | UniversityData) => {
+const handleOnPick = (data: InstitutionData) => {
   emit("onPick", data);
 };
 </script>
