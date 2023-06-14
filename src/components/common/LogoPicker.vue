@@ -2,7 +2,7 @@
 import type { InstitutionData } from "@/types";
 import { ref } from "vue";
 import { Text, PickerModal } from ".";
-import { getImagePath } from "../../utils";
+import { getInstitutionImagePath } from "../../utils";
 
 type Props = {
   institutionData?: InstitutionData[];
@@ -23,7 +23,7 @@ const handleOnPick = (data: InstitutionData) => {
 <template>
   <div class="logo-container" @click="onPress">
     <img
-      :src="getImagePath(currentInstitution?.imageUrl)"
+      :src="getInstitutionImagePath(currentInstitution?.imageUrl)"
       :placeholder="'Institution'"
     />
     <div class="hover-overlay">
