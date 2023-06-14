@@ -2,13 +2,14 @@ import { getUniversities } from "@/api";
 import { ref } from "vue";
 import { useDisplayStore } from "@/stores/displayStore";
 import { useQuery } from "vue-query";
+import { QueryId } from "./keys";
 
 export const useGetUniversitiesQuery = () => {
   const displayStore = useDisplayStore();
   const enabled = ref<boolean>(true);
 
   return useQuery(
-    "getUniversities",
+    [QueryId.Universities],
     async () => {
       displayStore.setLoading(true);
       return await getUniversities();

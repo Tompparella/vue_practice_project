@@ -26,5 +26,10 @@ const { content, loading, optionsVisible } = storeToRefs(display);
   flex: 1;
   display: flex;
   align-items: center;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.display-box::-webkit-scrollbar {
+  display: none;
 }
 </style>

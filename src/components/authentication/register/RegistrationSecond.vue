@@ -3,9 +3,6 @@ import { Button, Input, Label, LogoPicker } from "@/components/common";
 import { useDisplayStore, useRegistrationStore } from "@/stores";
 import { onMounted, ref } from "vue";
 import type { FlairData, InstitutionData } from "@/types";
-import img_1 from "@/assets/images/logo_ebin.png";
-import img_2 from "@/assets/images/logo_test.png";
-import img_3 from "@/assets/images/logo_white.png";
 import { useTranslation } from "i18next-vue";
 import { useGetUniversitiesQuery, useGetGuildsMutation } from "@/hooks/queries";
 /*
@@ -92,7 +89,11 @@ const handleGuildPick = (data: InstitutionData | null) => {
           :inset="true"
         />
       </div>
-      <div v-if="!!university" class="secondary-container" key="university">
+      <div
+        v-if="Boolean(university)"
+        class="secondary-container"
+        key="university"
+      >
         <Label
           :label="$t('common.guild')"
           type="M"

@@ -29,7 +29,6 @@
 @media (min-width: ($mobileWidth)) {
   .base-frame {
     min-width: $mobileWidth;
-    max-width: ((calc($desktopWidth * 2 / 3)));
     width: 90vw;
     height: 99vh;
     padding-inline: 0.5rem;

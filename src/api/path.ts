@@ -5,4 +5,5 @@ export const Path = {
   Identify: "/users/whoami",
   Universities: "/institutions/universities",
   Guilds: "/institutions/guilds",
+  InstitutionImage: "/files/institution",
 };

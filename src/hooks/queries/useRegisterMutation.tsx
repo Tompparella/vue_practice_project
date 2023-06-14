@@ -5,6 +5,7 @@ import type { AccountData } from "@/types";
 import { useTranslation } from "i18next-vue";
 import { useMutation } from "vue-query";
 import { useRouter } from "vue-router";
+import { MutationKey } from "./keys";
 
 export const useRegisterMutation = () => {
   const displayStore = useDisplayStore();
@@ -12,7 +13,7 @@ export const useRegisterMutation = () => {
   const { t } = useTranslation();
   const router = useRouter();
   const mutation = useMutation(
-    "register",
+    [MutationKey.Register],
     (data: AccountData) => register(data),
     {
       onMutate: () => {

@@ -4,6 +4,7 @@ import { useDisplayStore } from "@/stores/displayStore";
 import { useRouter } from "vue-router";
 import { useQuery } from "vue-query";
 import { Path } from "@/router";
+import { QueryId } from "./keys";
 
 export const useCheckAuthQuery = () => {
   const displayStore = useDisplayStore();
@@ -11,7 +12,7 @@ export const useCheckAuthQuery = () => {
   const enabled = ref<boolean>(true);
 
   return useQuery(
-    "checkAuth",
+    [QueryId.CheckAuth],
     async () => {
       displayStore.setLoading(true);
       return await getIdentity();

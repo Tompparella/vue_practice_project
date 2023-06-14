@@ -8,7 +8,7 @@ export type AuthenticationData = {
 export type InstitutionData = {
   id: number;
   name: string;
-  logo?: string;
+  imageUrl?: string;
 };
 export type UniversityData = InstitutionData & {};
 export type GuildData = InstitutionData & {

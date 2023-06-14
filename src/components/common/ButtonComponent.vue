@@ -32,7 +32,9 @@ defineEmits<Emits>();
 <style scoped lang="scss">
 @import "../../style/constants.scss";
 div,
-h1 {
+h1,
+h2,
+h3 {
   transition: 0.3s all;
 }
 button {
@@ -65,11 +67,12 @@ button {
   }
 }
 .inner {
+  flex: 1;
   display: flex;
-  width: 100%;
+  height: 100%;
   background-color: $lightBlue;
   border-radius: $borderSharp;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 }
 </style>

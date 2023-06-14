@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { getImagePath } from "../../utils";
 import type { GuildData, UniversityData } from "@/types";
 type Props = {
   data?: GuildData[] | UniversityData[];
@@ -18,7 +19,7 @@ defineEmits<Emits>();
       <ul class="content">
         <li v-for="item in data" :key="item.id">
           <div class="item" @click="$emit('onPress', item)">
-            <img :src="item.logo" :title="item.name" />
+            <img :src="getImagePath(item.imageUrl)" :title="item.name" />
             <div class="item-overlay" />
           </div>
         </li>
