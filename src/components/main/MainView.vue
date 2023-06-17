@@ -2,21 +2,21 @@
 import { Image } from "./image";
 import { Bottom } from "./bottom";
 import { onBeforeMount } from "vue";
-import { useDisplayStore } from "@/stores";
+import { useCommonStore, useDisplayStore } from "@/stores";
 
 const { setOptionsVisible } = useDisplayStore();
+const { setHeaderLabel } = useCommonStore();
 
 onBeforeMount(() => {
+  setHeaderLabel("");
   setOptionsVisible(true);
 });
 </script>
 
 <template>
   <div class="main">
-    <view class="main">
-      <Image />
-      <Bottom />
-    </view>
+    <Image />
+    <Bottom />
   </div>
 </template>
 

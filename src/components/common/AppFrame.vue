@@ -2,36 +2,41 @@
 
 <template>
   <div class="base-frame">
-    <slot />
+    <div class="app-frame">
+      <slot />
+    </div>
   </div>
 </template>
 
 <style scoped lang="scss">
 @import "../../style/constants.scss";
-.base-frame {
+.base-frame,
+.app-frame {
+  height: inherit;
+}
+.app-frame {
   display: flex;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
+  padding-inline: 1rem;
   flex-direction: column;
   border-radius: $border;
   background: $frameBackground;
-  margin: auto;
   border: 5px solid $borderColor;
 }
 @media (max-width: $mobileWidth) {
   .base-frame {
-    padding-inline: 0.5rem;
+    margin: auto;
   }
 }
 @media (min-width: ($mobileWidth)) {
   .base-frame {
     min-width: $mobileWidth;
-    width: 90vw;
-    height: 99vh;
-    padding-inline: 0.5rem;
+    padding: 0.5rem 5rem;
+  }
+}
+@media (min-width: ($desktopWidth)) {
+  .base-frame {
+    min-width: $desktopWidth;
+    padding: 0.5rem 15rem;
   }
 }
 </style>

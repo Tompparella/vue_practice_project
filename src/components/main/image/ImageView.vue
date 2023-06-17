@@ -20,13 +20,13 @@ import backgroundImage from "@/assets/images/fry.jpg";
 @import "@/style/constants.scss";
 .container {
   user-select: none;
-  flex: 4;
+  flex: 1;
   display: flex;
   height: 100%;
   width: 100%;
   justify-content: center;
   align-items: center;
-  margin-block: 0.5rem;
+  padding-block: 0.5rem;
 }
 .content {
   z-index: 0;
