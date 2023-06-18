@@ -2,10 +2,6 @@
 
 This template should help get you started developing with Vue 3 in Vite.
 
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
 ## Type Support for `.vue` Imports in TS
 
 TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
@@ -66,3 +62,16 @@ npm run test:e2e
 ```sh
 npm run lint
 ```
+
+### File structure
+
+The project is divided into the following file structure under "src":
+- /assets       - Static files, images, etc.
+- /components       - App vue components divided by feature. Folder could just as well be called features
+-   ~/common        - Components that are used often and generically across the application
+-   ~/<FeatureName> - Feature specific items, divided in folders by their use (t.ex. utils, hooks, components) in hierarchical structure
+- /hooks        - Often and generically used hooks, such as queries
+- /router       - Includes index file that specifies the route navigation of the app
+- /stores       - Commonly used stores
+- /style        - Styling files, constants, and mixins
+- /utils        - Utility functions for all-round use
