@@ -13,7 +13,7 @@ import { Environment } from "./utils";
 const checkEnvironment = () => {
   const baseURL = Environment.API_URL;
   if (!baseURL) {
-    throw new Error("Environment variable VUE_APP_BASE_URL not set!");
+    throw new Error("Environment variable VITE_API_URL not set!");
   }
 };
 

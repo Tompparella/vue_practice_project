@@ -5,19 +5,7 @@ import { onMounted, ref } from "vue";
 import type { FlairData, InstitutionData } from "@/types";
 import { useTranslation } from "i18next-vue";
 import { useGetUniversitiesQuery, useGetGuildsMutation } from "@/hooks/queries";
-/*
-const universityData: UniversityData[] = [
-  { name: "Cluster Ry21321", id: "1", logo: img_3 },
-  { name: "Ebin xD32132", id: "2", logo: img_2 },
-  { name: "Paitakisa3321", id: "3", logo: img_1 },
-];
 
-const guildData: GuildData[] = [
-  { name: "Cluster Ry", id: "1", logo: img_3 },
-  { name: "Ebin xD", id: "2", logo: img_2 },
-  { name: "Paitakisa", id: "3", logo: img_1 },
-];
- */
 interface Emits {
   (e: "onRegisterClick"): void;
   (e: "onBackClick"): void;
