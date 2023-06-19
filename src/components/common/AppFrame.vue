@@ -13,6 +13,7 @@
 .base-frame,
 .app-frame {
   height: inherit;
+  margin: auto;
 }
 .app-frame {
   display: flex;
@@ -30,13 +31,18 @@
 @media (min-width: ($mobileWidth)) {
   .base-frame {
     min-width: $mobileWidth;
-    padding: 0.5rem 5rem;
+    width: 50%;
+    padding: 0.5rem;
   }
 }
 @media (min-width: ($desktopWidth)) {
   .base-frame {
-    min-width: $desktopWidth;
-    padding: 0.5rem 15rem;
+    width: 33%;
+  }
+}
+@media (min-height: ($desktopHeight)) {
+  .base-frame {
+    padding-block: 2rem;
   }
 }
 </style>

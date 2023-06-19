@@ -22,7 +22,7 @@ onBeforeMount(() => {
 
 <style scoped lang="scss">
 .main {
-  flex: 6;
+  flex: 7;
   display: flex;
   width: 100%;
   height: 100%;

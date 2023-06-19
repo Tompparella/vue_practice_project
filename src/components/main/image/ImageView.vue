@@ -4,15 +4,13 @@ import backgroundImage from "@/assets/images/fry.jpg";
 </script>
 
 <template>
-  <div class="container">
-    <div class="content">
-      <img :src="placeholderImage" />
-      <div class="shadow" />
-      <div
-        class="background"
-        :style="{ backgroundImage: `url(${backgroundImage})` }"
-      />
-    </div>
+  <div class="content">
+    <img :src="placeholderImage" />
+    <div class="shadow" />
+    <div
+      class="background"
+      :style="{ backgroundImage: `url(${backgroundImage})` }"
+    />
   </div>
 </template>
 
@@ -30,8 +28,9 @@ import backgroundImage from "@/assets/images/fry.jpg";
 }
 .content {
   z-index: 0;
+  min-height: $imageHeight + 1vh;
   position: relative;
-  height: 100%;
+  display: flex;
   width: 100%;
   margin: auto;
   border: 5px rgba(255, 255, 255, 0) solid;
@@ -42,7 +41,7 @@ img {
   overflow: hidden;
   margin: auto;
   max-height: $imageHeight;
-  object-fit: cover;
+  object-fit: contain;
   object-position: top;
   border-radius: $border;
 }

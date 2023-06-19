@@ -18,6 +18,7 @@ const onReport = () => console.log("Report");
 
 <style scoped lang="scss">
 .bottom {
+  padding-block: 0.5rem;
   flex: 1;
   display: flex;
   position: relative;

@@ -104,7 +104,7 @@ i.la-laugh-squint {
     radial-gradient(circle, rgb(255, 191, 71) 1vmin, #0000 0) 100% 50%,
     radial-gradient(circle, rgb(255, 179, 226) 1vmin, #0000 0) 33% 80%,
     radial-gradient(circle, rgb(255, 246, 246) 1vmin, #0000 0) 90% 25%;
-  background-size: 1vmin 1vmin;
+  background-size: 0.5rem 0.5rem;
   background-repeat: no-repeat;
   opacity: 0;
   animation: fireworks-effect 0.8s 1;
