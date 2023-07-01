@@ -34,6 +34,7 @@ const onIconPress = () => (iconsVisible.value = !iconsVisible.value);
   height: 100%;
 }
 .label-container {
+  position: absolute;
   display: flex;
   flex-direction: column;
   transition: 0.5s all ease-in-out;

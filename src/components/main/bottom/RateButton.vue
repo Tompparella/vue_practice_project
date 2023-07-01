@@ -67,7 +67,7 @@ i.la-laugh-squint {
 .rate-button {
   display: flex;
   position: relative;
-  height: $buttonSize;
+  max-height: $buttonSize;
   border-radius: $border;
   box-shadow: 0 1px 4px 0 $shadowColor;
   transition: $animationTime ease all;

@@ -1,7 +1,7 @@
 @mixin display-icon {
   display: flex;
   margin-inline: auto;
-  margin-block: 0.5rem;
+  margin-block: 0.5vh;
   justify-content: center;
   align-items: center;
   color: $shadowColor;

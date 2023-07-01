@@ -28,6 +28,7 @@ const { content, loading, optionsVisible } = storeToRefs(display);
   align-items: center;
   -ms-overflow-style: none;
   scrollbar-width: none;
+  margin-bottom: 0.5vh;
 }
 .display-box::-webkit-scrollbar {
   display: none;
