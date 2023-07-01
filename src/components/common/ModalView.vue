@@ -1,0 +1,49 @@
+<script setup lang="ts">
+type Props = {
+  visible: boolean;
+};
+defineProps<Props>();
+</script>
+
+<template>
+  <Transition name="slide-fade">
+    <div v-if="visible" class="modal">
+      <div class="background" />
+      <slot></slot>
+    </div>
+  </Transition>
+</template>
+
+<style scoped lang="scss">
+@import "../../style/constants.scss";
+.slide-fade-enter-active {
+  transition: all 0.3s ease-out;
+}
+.slide-fade-leave-active {
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  transform: translateY(50px);
+  opacity: 0;
+}
+.modal {
+  z-index: 1;
+  position: fixed;
+  top: 10%;
+  bottom: 10%;
+  right: 0;
+  left: 0;
+  transition: 0.2s;
+  max-width: 45rem;
+  margin: auto;
+}
+.background {
+  width: 100%;
+  height: 100%;
+  background: $lightGreen;
+  border-radius: $borderSoft;
+  opacity: 0.9;
+  box-shadow: 0px 0px 15px 2px $shadowColor;
+}
+</style>

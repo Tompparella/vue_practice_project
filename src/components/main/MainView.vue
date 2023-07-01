@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { Image } from "./image";
+import { New } from "./new";
 import { Bottom } from "./bottom";
 import { onBeforeMount } from "vue";
 import { useCommonStore, useDisplayStore } from "@/stores";
@@ -15,6 +16,7 @@ onBeforeMount(() => {
 
 <template>
   <div class="main">
+    <New />
     <Image />
     <Bottom />
   </div>

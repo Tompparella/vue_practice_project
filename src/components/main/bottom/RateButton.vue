@@ -34,7 +34,6 @@ const handlePress = () => {
 
 <style scoped lang="scss">
 @import "../../../style/constants.scss";
-$buttonSize: 5rem;
 $iconSize: $buttonSize - 1.5rem;
 $animationTime: 0.1s;
 @keyframes fireworks-effect {

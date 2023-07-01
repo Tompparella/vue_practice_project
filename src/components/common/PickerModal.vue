@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { getInstitutionImagePath } from "../../utils";
+import { default as Modal } from "./ModalView.vue";
 import type { GuildData, UniversityData } from "@/types";
 type Props = {
   data?: GuildData[] | UniversityData[];
@@ -13,56 +14,23 @@ defineEmits<Emits>();
 </script>
 
 <template>
-  <Transition name="slide-fade">
-    <div v-if="visible" class="modal">
-      <div class="background" />
-      <ul class="content">
-        <li v-for="item in data" :key="item.id">
-          <div class="item" @click="$emit('onPress', item)">
-            <img
-              :src="getInstitutionImagePath(item.imageUrl)"
-              :title="item.name"
-            />
-            <div class="item-overlay" />
-          </div>
-        </li>
-      </ul>
-    </div>
-  </Transition>
+  <Modal :visible="visible">
+    <ul class="content">
+      <li v-for="item in data" :key="item.id">
+        <div class="item" @click="$emit('onPress', item)">
+          <img
+            :src="getInstitutionImagePath(item.imageUrl)"
+            :title="item.name"
+          />
+          <div class="item-overlay" />
+        </div>
+      </li>
+    </ul>
+  </Modal>
 </template>
 
 <style scoped lang="scss">
 @import "../../style/constants.scss";
-.slide-fade-enter-active {
-  transition: all 0.3s ease-out;
-}
-.slide-fade-leave-active {
-  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
-}
-.slide-fade-enter-from,
-.slide-fade-leave-to {
-  transform: translateY(50px);
-  opacity: 0;
-}
-.modal {
-  z-index: 1;
-  position: fixed;
-  top: 10%;
-  bottom: 10%;
-  right: 0;
-  left: 0;
-  transition: 0.2s;
-  max-width: 45rem;
-  margin: auto;
-}
-.background {
-  width: 100%;
-  height: 100%;
-  background: $lightGreen;
-  border-radius: $borderSoft;
-  opacity: 0.9;
-  box-shadow: 0px 0px 15px 2px $shadowColor;
-}
 .content {
   display: flex;
   position: absolute;

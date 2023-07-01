@@ -7,3 +7,4 @@ export { default as PickerModal } from "./PickerModal.vue";
 export { default as AppFrame } from "./AppFrame.vue";
 export { default as AppHeader } from "./AppHeader.vue";
 export { default as Loading } from "./LoadingIcon.vue";
+export { default as Modal } from "./ModalView.vue";
