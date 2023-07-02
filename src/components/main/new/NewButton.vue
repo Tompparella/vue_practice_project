@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { Modal } from "@/components/common";
+import { default as CreationModal } from "./CreationModal.vue";
 
 const modalVisible = ref(false);
 const onTogglePress = () => (modalVisible.value = !modalVisible.value);
@@ -12,7 +12,7 @@ const onTogglePress = () => (modalVisible.value = !modalVisible.value);
       <i class="las la-plus-circle" />
     </div>
   </div>
-  <Modal :visible="modalVisible"> </Modal>
+  <CreationModal :visible="modalVisible" />
 </template>
 
 <style scoped lang="scss">

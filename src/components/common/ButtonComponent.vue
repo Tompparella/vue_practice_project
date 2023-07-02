@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Label } from ".";
+import { default as Label } from "./LabelComponent.vue";
 
 type Props = {
   label: string;
@@ -69,7 +69,6 @@ button {
 .inner {
   flex: 1;
   display: flex;
-  height: 100%;
   background-color: $lightBlue;
   border-radius: $borderSharp;
   justify-content: center;

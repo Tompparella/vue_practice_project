@@ -1,4 +1,4 @@
-import type { UserData } from ".";
+import type { UserData } from "./index";
 
 export const isUserData = (data: unknown): data is UserData => {
   const userData = data as UserData;

@@ -9,7 +9,9 @@ defineProps<Props>();
   <Transition name="slide-fade">
     <div v-if="visible" class="modal">
       <div class="background" />
-      <slot></slot>
+      <div class="modal-content">
+        <slot />
+      </div>
     </div>
   </Transition>
 </template>
@@ -37,6 +39,13 @@ defineProps<Props>();
   transition: 0.2s;
   max-width: 45rem;
   margin: auto;
+}
+.modal-content {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 .background {
   width: 100%;

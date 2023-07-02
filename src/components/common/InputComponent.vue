@@ -1,11 +1,16 @@
 <script setup lang="ts">
-defineProps({
+const props = defineProps({
   modelValue: String,
   secret: { type: Boolean, required: false },
+  limit: { type: Number, required: false },
 });
 const emit = defineEmits<{ (e: "update:modelValue", value: string): void }>();
 const handleChange = (event: Event) => {
-  emit("update:modelValue", (event.target as HTMLInputElement).value);
+  const value = (event.target as HTMLInputElement).value;
+  if (props.limit && value.length > props.limit) {
+    return event.preventDefault();
+  }
+  emit("update:modelValue", value);
 };
 </script>
 <template>
@@ -13,6 +18,7 @@ const handleChange = (event: Event) => {
     :value="modelValue"
     :type="secret ? 'password' : 'text'"
     @input="handleChange"
+    :maxlength="props.limit"
   />
 </template>
 <style scoped lang="scss">

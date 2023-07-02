@@ -67,7 +67,6 @@ const handleGuildPick = (data: InstitutionData | null) => {
           :currentInstitution="university"
           :institutionData="universityQuery.data.value"
           @onPick="handleUniversityPick"
-          class="picker"
         />
         <Label
           class="label"
@@ -92,7 +91,6 @@ const handleGuildPick = (data: InstitutionData | null) => {
           :currentInstitution="guild"
           :institutionData="guildQuery.data?.value"
           @onPick="handleGuildPick"
-          class="picker"
         />
         <Label
           class="label"

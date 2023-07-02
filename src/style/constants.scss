@@ -11,6 +11,7 @@ $buttonSize: 5rem;
 // Image
 
 $imageHeight: 68vh;
+$smallImageShadow: 1px 2px 4px 1px rgb(0,0,0, 0.5) inset;
 
 // Border
 
@@ -21,6 +22,17 @@ $borderSoft: 1rem;
 // Header
 
  $headerHeight: 8vh;
+
+// Overlay
+// - Use when using the 'HoverOverlay' component on the component wrapping HoverOverlay
+@mixin hover-overlay {
+    &:hover .hover-overlay {
+        opacity: 0.8;
+    }
+    &:active .hover-overlay {
+    background: $deepCyan;
+    }
+}
 
 // Colors
 

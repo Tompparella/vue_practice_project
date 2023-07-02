@@ -21,7 +21,7 @@ onMounted(() => {
   setTimeout(() => {
     setHeaderSubLabel(t("authentication.login"));
     setHeaderLabel(t("appName"));
-  }, 100);
+  }, 1000);
 });
 
 const changeView = (data: "login" | "register") => {

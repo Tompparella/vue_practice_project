@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import type { InstitutionData } from "@/types";
 import { ref } from "vue";
-import { Text, PickerModal } from ".";
+import { default as PickerModal } from "./PickerModal.vue";
+import { default as HoverOverlay } from "./HoverOverlay.vue";
 import { getInstitutionImagePath } from "../../utils";
 
 type Props = {
@@ -26,9 +27,7 @@ const handleOnPick = (data: InstitutionData) => {
       :src="getInstitutionImagePath(currentInstitution?.imageUrl)"
       :placeholder="'Institution'"
     />
-    <div class="hover-overlay">
-      <Text class="overlay-text" :label="$t('common.choose')" type="S" />
-    </div>
+    <HoverOverlay />
     <PickerModal
       :data="institutionData"
       :visible="modalVisible"
@@ -44,30 +43,7 @@ const handleOnPick = (data: InstitutionData) => {
   width: 7rem;
   background: white;
   border-radius: $borderSharp;
-  &:hover .hover-overlay {
-    opacity: 0.8;
-  }
-  &:active .hover-overlay {
-    background: $deepCyan;
-  }
-}
-.hover-overlay {
-  position: absolute;
-  border-radius: inherit;
-  width: inherit;
-  height: inherit;
-  background: $cyan;
-  transition: 0.2s ease;
-  transform: translate(0, -100%);
-  opacity: 0;
-}
-.overlay-text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  user-select: none;
+  @include hover-overlay;
 }
 img {
   margin: auto;
@@ -75,6 +51,6 @@ img {
   width: inherit;
   object-fit: cover;
   border-radius: inherit;
-  box-shadow: 1px 2px 4px 1px $shadowColor inset;
+  box-shadow: $smallImageShadow;
 }
 </style>
