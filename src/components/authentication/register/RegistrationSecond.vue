@@ -45,6 +45,7 @@ const handleRegistrationClick = () => {
 
 const handleUniversityPick = (data: InstitutionData | null) => {
   if (university.value !== data && data?.id) {
+    guild.value = null;
     guildQuery.mutate(data.id);
   }
   university.value = data;

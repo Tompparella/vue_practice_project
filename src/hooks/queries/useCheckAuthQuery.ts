@@ -1,6 +1,6 @@
 import { getIdentity } from "@/api";
 import { ref } from "vue";
-import { useDisplayStore } from "@/stores/displayStore";
+import { useDisplayStore, useUserStore } from "../../stores";
 import { useRouter } from "vue-router";
 import { useQuery } from "vue-query";
 import { Path } from "@/router";
@@ -8,6 +8,7 @@ import { QueryId } from "./keys";
 
 export const useCheckAuthQuery = () => {
   const displayStore = useDisplayStore();
+  const userStore = useUserStore();
   const router = useRouter();
   const enabled = ref<boolean>(true);
 
@@ -27,7 +28,8 @@ export const useCheckAuthQuery = () => {
         displayStore.setLoading(false);
         enabled.value = false;
       },
-      onSuccess: () => {
+      onSuccess: (res) => {
+        userStore.setUserDataFromResponse(res);
         router.push(Path.Main);
       },
       onError: () => {

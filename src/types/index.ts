@@ -14,6 +14,9 @@ export type UniversityData = InstitutionData & {};
 export type GuildData = InstitutionData & {
   universityId: number;
 };
+export type GuildAndUniversityData = InstitutionData & {
+  university: InstitutionData;
+};
 export type FlairData = {
   username: string;
   guildId: number;

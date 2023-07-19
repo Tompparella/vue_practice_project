@@ -3,7 +3,6 @@ import axios, { type AxiosResponse, type AxiosError } from "axios";
 import { Path } from "./path";
 export const register = async (data: AccountData): Promise<AxiosResponse> => {
   try {
-    console.log(data);
     const res = await axios.post(
       Path.Register,
       {

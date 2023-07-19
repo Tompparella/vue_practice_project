@@ -3,10 +3,20 @@ import { Modal, Button } from "@/components/common";
 import { default as InstitutionBox } from "./InstitutionBox.vue";
 import { default as ContentPicker } from "./ContentPicker.vue";
 import { default as TagBox } from "./TagBox.vue";
+import { useUserStore } from "../../../stores";
+import { useGetGuildQuery } from "../../../hooks/queries";
+import { toRef } from "vue";
+import { computed } from "vue";
 type Props = {
   visible: boolean;
 };
-defineProps<Props>();
+const props = defineProps<Props>();
+const userStore = useUserStore();
+const visible = toRef(props, "visible");
+const guildId = computed(() => userStore.userData?.guildId);
+const { data: guildData } = useGetGuildQuery(visible, guildId);
+//const { tagData } = useGetTagData();
+
 const onPress = () => {
   console.log("create");
 };
@@ -16,8 +26,16 @@ const onPress = () => {
   <Modal :visible="visible">
     <div class="frame">
       <div class="institution-row">
-        <InstitutionBox :visible="true" />
-        <InstitutionBox :visible="true" />
+        <InstitutionBox
+          :title="'Creating a meme for'"
+          :institution="guildData?.name"
+          :imageUrl="guildData?.imageUrl"
+        />
+        <InstitutionBox
+          :title="'Which is a subsidiary of'"
+          :institution="guildData?.university.name"
+          :imageUrl="guildData?.university.imageUrl"
+        />
       </div>
       <ContentPicker />
       <TagBox />
@@ -46,6 +64,7 @@ const onPress = () => {
 .button-container {
   flex: 1;
   display: flex;
+  height: 100%;
   justify-content: center;
   align-items: center;
 }

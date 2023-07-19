@@ -1,20 +1,22 @@
 <script setup lang="ts">
-import Lol from "../../../assets/images/logo_ebin.png";
 import { Text } from "@/components/common";
+import { getInstitutionImagePath } from "@/utils";
 type Props = {
-  visible: boolean;
+  title: string;
+  institution?: string;
+  imageUrl?: string;
 };
 defineProps<Props>();
 </script>
 
 <template>
-  <div v-if="visible" class="container">
-    <Text label="Creating a meme for" type="M" />
+  <div class="container">
+    <Text :label="title" type="M" />
     <div class="row-container">
       <div class="text-container">
-        <Text label="Foo" type="M" />
+        <Text :label="institution ?? '...'" type="M" />
       </div>
-      <img class="image" :src="Lol" />
+      <img class="image" :src="getInstitutionImagePath(imageUrl)" />
     </div>
   </div>
 </template>
@@ -29,6 +31,7 @@ defineProps<Props>();
 .row-container {
   display: flex;
   flex-direction: row;
+  padding-top: 0.5rem;
 }
 .text-container {
   flex: 1;
@@ -40,5 +43,8 @@ defineProps<Props>();
   height: $buttonSize;
   width: $buttonSize;
   object-fit: cover;
+  padding: 0.5rem;
+  border-radius: $borderSharp;
+  box-shadow: $smallImageShadow;
 }
 </style>
