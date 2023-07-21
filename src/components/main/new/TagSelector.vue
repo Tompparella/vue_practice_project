@@ -1,19 +1,33 @@
 <script setup lang="ts">
-import { Text, HoverOverlay } from "@/components/common";
-import Thing from "../../../assets/images/test_meme.png";
+import { Text, HoverOverlay, CornerButton } from "@/components/common";
+import { getTagImagePath } from "../../../utils";
+import type { Tag } from "@/types";
+type Props = {
+  tag?: Tag;
+  weight?: number;
+};
+type Emits = {
+  (e: "onTagPress"): void;
+  (e: "onRemove"): void;
+};
+const props = defineProps<Props>();
+defineEmits<Emits>();
+const getWeight = () =>
+  props.weight ? `${Math.round(100 * props.weight)}%` : "?";
 </script>
 
 <template>
   <div class="tag-container">
     <div class="image-container">
-      <img class="image" :src="Thing" />
-      <HoverOverlay />
+      <CornerButton v-if="Boolean(tag)" @onPress="$emit('onRemove')" />
+      <img class="image" :src="tag && getTagImagePath(tag.imageUrl)" />
+      <HoverOverlay @click="$emit('onTagPress')" />
     </div>
     <div class="info-container">
       <div class="weighing">
-        <Text type="M" label="33%" />
+        <Text type="M" :label="getWeight()" />
       </div>
-      <Text type="S" label="Boomer" />
+      <Text type="S" :label="tag?.name ?? ''" />
     </div>
   </div>
 </template>
@@ -33,6 +47,7 @@ import Thing from "../../../assets/images/test_meme.png";
   margin-left: 0.5rem;
 }
 .image-container {
+  position: relative;
   height: $buttonSize;
   width: $buttonSize;
   border-radius: $borderSharp;

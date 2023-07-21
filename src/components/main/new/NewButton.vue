@@ -12,7 +12,7 @@ const onTogglePress = () => (modalVisible.value = !modalVisible.value);
       <i class="las la-plus-circle" />
     </div>
   </div>
-  <CreationModal :visible="modalVisible" />
+  <CreationModal :visible="modalVisible" @onClose="onTogglePress" />
 </template>
 
 <style scoped lang="scss">

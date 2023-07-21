@@ -6,4 +6,6 @@ export const Path = {
   Universities: "/institutions/universities",
   Guilds: "/institutions/guilds",
   InstitutionImage: "/files/institution",
+  TagImage: "/files/tag",
+  Tags: "/tags",
 };

@@ -1,28 +1,31 @@
 <script setup lang="ts">
-import { getInstitutionImagePath } from "../../utils";
+import { Text } from "../common";
 import { default as Modal } from "./ModalView.vue";
-import type { GuildData, UniversityData } from "@/types";
+type Data = {
+  id: number;
+  imageUrl: string;
+  title: string;
+};
 type Props = {
-  data?: GuildData[] | UniversityData[];
+  data?: Data[];
   visible: boolean;
 };
 type Emits = {
-  (e: "onPress", data: GuildData | UniversityData): void;
+  (e: "onPress", id: number): void;
+  (e: "onClose"): void;
 };
 defineProps<Props>();
 defineEmits<Emits>();
 </script>
 
 <template>
-  <Modal :visible="visible">
+  <Modal :visible="visible" @onClose="$emit('onClose')">
     <ul class="content">
-      <li v-for="item in data" :key="item.id">
-        <div class="item" @click="$emit('onPress', item)">
-          <img
-            :src="getInstitutionImagePath(item.imageUrl)"
-            :title="item.name"
-          />
+      <li v-for="{ imageUrl, title, id } in data" :key="id">
+        <div class="item" @click="$emit('onPress', id)">
+          <img :src="imageUrl" :title="title" />
           <div class="item-overlay" />
+          <Text class="label" :label="title" type="S" />
         </div>
       </li>
     </ul>
@@ -33,12 +36,13 @@ defineEmits<Emits>();
 @import "../../style/constants.scss";
 .content {
   display: flex;
-  position: absolute;
+  flex: 1;
   flex-wrap: "wrap";
-  top: 10px;
-  left: 25px;
-  right: 25px;
-  bottom: 10px;
+  height: 100%;
+}
+.label {
+  text-align: center;
+  padding-block: 0.5rem;
 }
 .item {
   position: relative;

@@ -21,6 +21,14 @@ export type FlairData = {
   username: string;
   guildId: number;
 };
+
+export type Tag = {
+  id: number;
+  name: string;
+  description: string;
+  imageUrl: string;
+};
+
 // New account
 export type AccountData = AuthenticationData & FlairData;
 

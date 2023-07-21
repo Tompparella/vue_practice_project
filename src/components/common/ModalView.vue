@@ -2,7 +2,11 @@
 type Props = {
   visible: boolean;
 };
+type Emits = {
+  (e: "onClose"): void;
+};
 defineProps<Props>();
+defineEmits<Emits>();
 </script>
 
 <template>
@@ -10,6 +14,7 @@ defineProps<Props>();
     <div v-if="visible" class="modal">
       <div class="background" />
       <div class="modal-content">
+        <i class="las la-times-circle close-button" @click="$emit('onClose')" />
         <slot />
       </div>
     </div>
@@ -54,5 +59,15 @@ defineProps<Props>();
   border-radius: $borderSoft;
   opacity: 0.9;
   box-shadow: 0px 0px 15px 2px $shadowColor;
+}
+.close-button {
+  transition: 0.3s all;
+  position: absolute;
+  right: 0;
+  margin: 1rem;
+  font-size: 2rem;
+  &:hover {
+    color: $borderColor;
+  }
 }
 </style>

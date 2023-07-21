@@ -1,27 +1,28 @@
 <script setup lang="ts">
-import { computed, ref, type Ref } from "vue";
+import { computed } from "vue";
 import { Text, Input, HoverOverlay } from "@/components/common";
 // TODO: Replace with a better default image
 import logo from "../../../assets/images/logo_white.png";
+import { useCreationStore } from "@/stores";
+import { storeToRefs } from "pinia";
 const acceptedMimeTypes = [
   "image/png",
   "image/jpeg",
   "image/gif",
   "image/webp",
 ];
-const name: Ref<string> = ref("");
+const store = useCreationStore();
+const { title } = storeToRefs(store);
 // HOX! Name saattaa olla eripitkä. Tarkista
-const file: Ref<File | undefined> = ref();
-const fileMimeType = computed(() => file.value?.type);
 const previewUrl = computed(
-  () => file.value && URL.createObjectURL(file.value)
+  () => store.image && URL.createObjectURL(store.image)
 );
 
 const onUpload = (e: Event) => {
   const target = e.target as HTMLInputElement;
   const newFile = target.files ? target.files[0] : undefined;
   if (newFile && acceptedMimeTypes.includes(newFile.type)) {
-    file.value = newFile;
+    store.setImage(newFile);
   } else {
     alert("Wrong file format!");
   }
@@ -36,7 +37,7 @@ const onUpload = (e: Event) => {
       <HoverOverlay />
     </div>
     <Text type="M" label="Give your meme a title!" />
-    <Input v-model="name" :limit="64" />
+    <Input v-model="title" :limit="64" />
   </div>
 </template>
 
@@ -68,6 +69,6 @@ const onUpload = (e: Event) => {
   height: inherit;
   transform: translateY(-100%);
   opacity: 0;
-  z-index: 999;
+  z-index: 1;
 }
 </style>

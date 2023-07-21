@@ -10,4 +10,5 @@ export enum QueryId {
   CheckAuth = "CheckAuth",
   GetGuilds = "GetGuilds",
   GetGuild = "GetGuild",
+  GetTags = "GetTags",
 }

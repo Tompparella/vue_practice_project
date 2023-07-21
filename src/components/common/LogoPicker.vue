@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { InstitutionData } from "@/types";
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import { default as PickerModal } from "./PickerModal.vue";
 import { default as HoverOverlay } from "./HoverOverlay.vue";
 import { getInstitutionImagePath } from "../../utils";
@@ -12,13 +12,23 @@ type Props = {
 type Emits = {
   (e: "onPick", data: InstitutionData | null): void;
 };
-defineProps<Props>();
+const props = defineProps<Props>();
 const emit = defineEmits<Emits>();
 const modalVisible = ref(false);
 const onPress = () => (modalVisible.value = !modalVisible.value);
-const handleOnPick = (data: InstitutionData) => {
-  emit("onPick", data);
+const handleOnPick = (id: number) => {
+  const selected: InstitutionData | null = props.institutionData
+    ? props.institutionData.find((item) => item.id === id) ?? null
+    : null;
+  emit("onPick", selected);
 };
+const pickerData = computed(() =>
+  props.institutionData?.map(({ id, name, imageUrl }) => ({
+    id,
+    title: name,
+    imageUrl: getInstitutionImagePath(imageUrl),
+  }))
+);
 </script>
 
 <template>
@@ -29,9 +39,10 @@ const handleOnPick = (data: InstitutionData) => {
     />
     <HoverOverlay />
     <PickerModal
-      :data="institutionData"
+      :data="pickerData"
       :visible="modalVisible"
       @onPress="handleOnPick"
+      @onClose="onPress"
     />
   </div>
 </template>

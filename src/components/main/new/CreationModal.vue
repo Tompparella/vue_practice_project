@@ -3,27 +3,33 @@ import { Modal, Button } from "@/components/common";
 import { default as InstitutionBox } from "./InstitutionBox.vue";
 import { default as ContentPicker } from "./ContentPicker.vue";
 import { default as TagBox } from "./TagBox.vue";
-import { useUserStore } from "../../../stores";
-import { useGetGuildQuery } from "../../../hooks/queries";
-import { toRef } from "vue";
-import { computed } from "vue";
+import { useCreationStore, useUserStore } from "../../../stores";
+import { useGetGuildQuery, useGetTagsQuery } from "../../../hooks/queries";
+import { toRef, computed } from "vue";
 type Props = {
   visible: boolean;
 };
+type Emits = {
+  (e: "onClose"): void;
+};
 const props = defineProps<Props>();
+defineEmits<Emits>();
 const userStore = useUserStore();
+const creationStore = useCreationStore();
 const visible = toRef(props, "visible");
 const guildId = computed(() => userStore.userData?.guildId);
 const { data: guildData } = useGetGuildQuery(visible, guildId);
-//const { tagData } = useGetTagData();
+const { data: tagData } = useGetTagsQuery(visible);
 
-const onPress = () => {
-  console.log("create");
+const onCreate = () => {
+  console.log(creationStore.title);
+  console.log(creationStore.tags);
+  console.log(creationStore.image);
 };
 </script>
 
 <template>
-  <Modal :visible="visible">
+  <Modal :visible="visible" @onClose="$emit('onClose')">
     <div class="frame">
       <div class="institution-row">
         <InstitutionBox
@@ -38,9 +44,9 @@ const onPress = () => {
         />
       </div>
       <ContentPicker />
-      <TagBox />
+      <TagBox :tags="tagData ?? null" />
       <div class="button-container">
-        <Button label="Create!" @onPress="onPress" />
+        <Button label="Create!" @onPress="onCreate" />
       </div>
     </div>
   </Modal>

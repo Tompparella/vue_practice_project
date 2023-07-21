@@ -9,3 +9,4 @@ export { default as AppHeader } from "./AppHeader.vue";
 export { default as Loading } from "./LoadingIcon.vue";
 export { default as Modal } from "./ModalView.vue";
 export { default as HoverOverlay } from "./HoverOverlay.vue";
+export { default as CornerButton } from "./CornerButton.vue";

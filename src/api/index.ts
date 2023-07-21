@@ -1,3 +1,4 @@
+export { getTags } from "./getTags";
 export { getIdentity } from "./getIdentity";
 export { getUniversities } from "./getUniversities";
 export { getGuilds } from "./getGuilds";

@@ -1,3 +1,4 @@
+export { useGetTagsQuery } from "./useGetTagsQuery";
 export { useCheckAuthQuery } from "./useCheckAuthQuery";
 export { useLoginMutation } from "./useLoginMutation";
 export { useLogoutMutation } from "./useLogoutMutation";

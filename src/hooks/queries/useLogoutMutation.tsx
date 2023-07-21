@@ -23,7 +23,7 @@ export const useLogoutMutation = () => {
       router.push(Path.Authentication);
     },
     onError: (e: any) => {
-      console.log(e);
+      console.error(e);
       displayStore.setContent([
         { localizedText: t("authentication.logoutError") },
       ]);

@@ -7,7 +7,6 @@ export const useGetGuildQuery = (
   enabled: Ref<boolean>,
   guildId?: Ref<number | undefined>
 ) => {
-  console.log(enabled);
   return useQuery(
     [QueryId.GetGuild, enabled, guildId],
     () => getGuild(guildId?.value),
