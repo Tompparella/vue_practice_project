@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Text } from "@/components/common";
+import { Label, Text } from "@/components/common";
 import { getInstitutionImagePath } from "@/utils";
 type Props = {
   title: string;
@@ -11,7 +11,7 @@ defineProps<Props>();
 
 <template>
   <div class="container">
-    <Text :label="title" type="M" />
+    <Label :label="title" type="M" />
     <div class="row-container">
       <div class="text-container">
         <Text :label="institution ?? '...'" type="M" />
@@ -43,7 +43,6 @@ defineProps<Props>();
   height: $buttonSize;
   width: $buttonSize;
   object-fit: cover;
-  padding: 0.5rem;
   border-radius: $borderSharp;
   box-shadow: $smallImageShadow;
 }

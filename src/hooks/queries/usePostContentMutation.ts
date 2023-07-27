@@ -1,4 +1,4 @@
-import { postContent } from "@/api";
+import { postContent, type PostContentRequest } from "@/api";
 import { useTranslation } from "i18next-vue";
 import { useMutation } from "vue-query";
 import { MutationKey } from "./keys";
@@ -7,7 +7,15 @@ import { useDisplayStore } from "@/stores";
 export const usePostContentMutation = () => {
   const displayStore = useDisplayStore();
   const { t } = useTranslation();
-  const mutation = useMutation([MutationKey.PostContent], postContent, {
+  const query = async (
+    value: PostContentRequest & { callback?: () => void }
+  ) => {
+    const result = await postContent(value);
+    if (result.id && value.callback) {
+      value.callback();
+    }
+  };
+  const mutation = useMutation([MutationKey.PostContent], query, {
     onMutate: () => {
       displayStore.setLoading(true);
     },

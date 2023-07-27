@@ -23,6 +23,11 @@ export const useCreationStore = defineStore("creation", () => {
   const setImage = (value: File) => {
     image.value = value;
   };
+  const clearContent = () => {
+    title.value = "";
+    tags.value = [];
+    image.value = undefined;
+  };
 
   return {
     title,
@@ -33,5 +38,6 @@ export const useCreationStore = defineStore("creation", () => {
     insertTag,
     removeTag,
     setImage,
+    clearContent,
   };
 });

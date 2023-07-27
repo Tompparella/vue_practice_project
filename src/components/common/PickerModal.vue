@@ -45,9 +45,13 @@ defineEmits<Emits>();
   padding-block: 0.5rem;
 }
 .item {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
   position: relative;
   margin: 5px;
   width: 5rem;
+  min-height: 5rem;
   height: 5rem;
   &:hover .item-overlay {
     opacity: 0.6;
@@ -67,6 +71,7 @@ li {
 }
 img {
   height: inherit;
+  min-height: inherit;
   width: inherit;
   border-radius: $border;
   object-fit: cover;

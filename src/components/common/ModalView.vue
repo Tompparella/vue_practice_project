@@ -3,7 +3,7 @@ type Props = {
   visible: boolean;
 };
 type Emits = {
-  (e: "onClose"): void;
+  (e: "onClose", value: Event): void;
 };
 defineProps<Props>();
 defineEmits<Emits>();
@@ -14,7 +14,10 @@ defineEmits<Emits>();
     <div v-if="visible" class="modal">
       <div class="background" />
       <div class="modal-content">
-        <i class="las la-times-circle close-button" @click="$emit('onClose')" />
+        <i
+          class="las la-times-circle close-button"
+          @click="(e) => $emit('onClose', e)"
+        />
         <slot />
       </div>
     </div>

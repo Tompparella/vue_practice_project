@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import { Text, Input, HoverOverlay } from "@/components/common";
+import { Label, Input, HoverOverlay } from "@/components/common";
 // TODO: Replace with a better default image
 import logo from "../../../assets/images/logo_white.png";
 import { useCreationStore } from "@/stores";
@@ -36,7 +36,7 @@ const onUpload = (e: Event) => {
       <input class="file-upload" type="file" @change="onUpload" />
       <HoverOverlay />
     </div>
-    <Text type="M" label="Give your meme a title!" />
+    <Label type="M" label="Give your meme a title!" class="label" />
     <Input v-model="title" :limit="64" />
   </div>
 </template>
@@ -62,6 +62,9 @@ const onUpload = (e: Event) => {
   width: inherit;
   box-shadow: $smallImageShadow;
   border-radius: inherit;
+}
+.label {
+  margin-block: 0.5rem;
 }
 .file-upload {
   position: absolute;

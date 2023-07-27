@@ -9,7 +9,7 @@ export const useGetTagsQuery = (enabled?: Ref<boolean>) => {
       //
     },
     onError: (err) => {
-      //
+      // TODO: Add error message displayal to display
     },
     enabled: enabled ?? true,
   });

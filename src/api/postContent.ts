@@ -1,16 +1,16 @@
-import type { Content } from "@/types";
 import axios, { type AxiosError } from "axios";
 import { Path } from "./path";
+import type { PostContentRequest } from "./data";
+import type { Content } from "@/types";
 export const postContent = async ({
   title,
   tags,
   image,
-}: Content): Promise<number> => {
+}: PostContentRequest): Promise<Content> => {
   const data = new FormData();
   data.append("title", title);
   data.append("image", image);
   tags.forEach((tag) => data.append("tagIds", tag.id.toString()));
-  console.log(data);
   try {
     const res = await axios.post(Path.ContentImage, data);
     return res.data;

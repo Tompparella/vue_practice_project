@@ -42,7 +42,7 @@ button {
   background-color: $buttonOuter;
   border: none;
   width: 10rem;
-  min-height: 3.5rem;
+  min-height: 3rem;
   padding: 0.5rem;
   border-radius: $border;
   transition: 0.2s all;
@@ -68,6 +68,7 @@ button {
 }
 .inner {
   flex: 1;
+  min-height: inherit;
   display: flex;
   background-color: $lightBlue;
   border-radius: $borderSharp;

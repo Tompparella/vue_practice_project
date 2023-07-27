@@ -43,7 +43,7 @@ const getWeight = () =>
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   margin-left: 0.5rem;
 }
 .image-container {
@@ -54,7 +54,11 @@ const getWeight = () =>
   @include hover-overlay;
 }
 .weighing {
-  padding: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 4rem;
+  height: 3rem;
   border-radius: $borderSharp;
   background-color: $displayBackground;
   box-shadow: $smallImageShadow;

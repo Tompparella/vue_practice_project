@@ -1,5 +1,7 @@
 export { isUserData } from "./typeGuards";
 
+// Account creation
+
 export type AuthenticationData = {
   email: string;
   password: string;
@@ -22,19 +24,6 @@ export type FlairData = {
   guildId: number;
 };
 
-export type Tag = {
-  id: number;
-  name: string;
-  description: string;
-  imageUrl: string;
-};
-
-export type Content = {
-  title: string;
-  tags: Tag[];
-  image: File;
-};
-
 // New account
 export type AccountData = AuthenticationData & FlairData;
 
@@ -42,4 +31,24 @@ export type AccountData = AuthenticationData & FlairData;
 export type UserData = Omit<AccountData, "rePassword"> & {
   id: number;
   guildId: number;
+};
+
+// Tag
+
+export type Tag = {
+  id: number;
+  name: string;
+  description: string;
+  imageUrl: string;
+};
+
+// Content
+export type Content = {
+  id: number;
+  guild: InstitutionData & {
+    university: InstitutionData;
+  };
+  tags: Tag[];
+  title: string;
+  url: string;
 };

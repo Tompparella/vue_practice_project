@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Text, PickerModal } from "@/components/common";
+import { Label, PickerModal } from "@/components/common";
 import { default as TagSelector } from "./TagSelector.vue";
 import type { Tag } from "@/types";
 import { ref, computed } from "vue";
@@ -51,7 +51,7 @@ const unselectTag = (index: number) => {
 
 <template>
   <div class="tag-box">
-    <Text type="M" label="Give your meme at least one tag" />
+    <Label type="M" label="Give your meme at least one tag" />
     <div class="tag-row">
       <TransitionGroup name="group">
         <li v-for="(tag, index) in store.tags" :key="tag.id">
