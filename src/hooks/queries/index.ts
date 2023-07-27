@@ -6,4 +6,5 @@ export { useRegisterMutation } from "./useRegisterMutation";
 export { useGetUniversitiesQuery } from "./useGetUniversitiesQuery";
 export { useGetGuildsMutation } from "./useGetGuildsMutation";
 export { useGetGuildQuery } from "./useGetGuildQuery";
+export { usePostContentMutation } from "./usePostContentMutation";
 export { MutationKey, QueryId } from "./keys";

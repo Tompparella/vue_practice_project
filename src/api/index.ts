@@ -1,3 +1,4 @@
+export { postContent } from "./postContent";
 export { getTags } from "./getTags";
 export { getIdentity } from "./getIdentity";
 export { getUniversities } from "./getUniversities";

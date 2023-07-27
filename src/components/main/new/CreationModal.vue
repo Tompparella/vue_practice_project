@@ -4,7 +4,11 @@ import { default as InstitutionBox } from "./InstitutionBox.vue";
 import { default as ContentPicker } from "./ContentPicker.vue";
 import { default as TagBox } from "./TagBox.vue";
 import { useCreationStore, useUserStore } from "../../../stores";
-import { useGetGuildQuery, useGetTagsQuery } from "../../../hooks/queries";
+import {
+  useGetGuildQuery,
+  useGetTagsQuery,
+  usePostContentMutation,
+} from "../../../hooks/queries";
 import { toRef, computed } from "vue";
 type Props = {
   visible: boolean;
@@ -16,15 +20,25 @@ const props = defineProps<Props>();
 defineEmits<Emits>();
 const userStore = useUserStore();
 const creationStore = useCreationStore();
+const { mutate } = usePostContentMutation();
 const visible = toRef(props, "visible");
 const guildId = computed(() => userStore.userData?.guildId);
 const { data: guildData } = useGetGuildQuery(visible, guildId);
 const { data: tagData } = useGetTagsQuery(visible);
 
 const onCreate = () => {
-  console.log(creationStore.title);
-  console.log(creationStore.tags);
-  console.log(creationStore.image);
+  const { title, tags, image } = creationStore;
+  if (title && tags && image) {
+    mutate({
+      title,
+      tags,
+      image,
+    });
+  } else {
+    alert(
+      "Failed to post content. Please check that the content values are set correctly!"
+    );
+  }
 };
 </script>
 

@@ -29,6 +29,12 @@ export type Tag = {
   imageUrl: string;
 };
 
+export type Content = {
+  title: string;
+  tags: Tag[];
+  image: File;
+};
+
 // New account
 export type AccountData = AuthenticationData & FlairData;
 
