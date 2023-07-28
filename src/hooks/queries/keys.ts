@@ -12,4 +12,5 @@ export enum QueryId {
   GetGuilds = "GetGuilds",
   GetGuild = "GetGuild",
   GetTags = "GetTags",
+  GetContent = "GetContent",
 }

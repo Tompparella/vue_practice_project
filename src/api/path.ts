@@ -9,4 +9,5 @@ export const Path = {
   TagImage: "/files/tag",
   ContentImage: "/files/image",
   Tags: "/tags",
+  GetContent: "/content",
 };

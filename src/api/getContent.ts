@@ -1,22 +1,26 @@
+import type { ContentApiResponse, GuildAndUniversityData } from "@/types";
 import axios, { type AxiosError } from "axios";
 import { Path } from "./path";
-import type { PostContentRequest } from "./data";
-import type { Content } from "@/types";
-export const postContent = async ({
-  title,
-  tags,
-  image,
-}: PostContentRequest): Promise<Content> => {
-  const data = new FormData();
-  data.append("title", title);
-  data.append("image", image);
-  tags.forEach((tag) => data.append("tagIds[]", tag.id.toString()));
-  for (const pair of data.entries()) {
-    console.log(pair[0] + ", " + pair[1]);
+type Props = {
+  universityId?: number;
+  guildId?: number;
+  index?: number;
+};
+export const getContent = async ({
+  universityId,
+  guildId,
+  index,
+}: Props): Promise<ContentApiResponse | undefined> => {
+  if (guildId === undefined && universityId === undefined) {
+    // TODO: Error. Choose type
+    return;
   }
   try {
-    const res = await axios.post(Path.ContentImage, data);
-    return res.data;
+    const res = await axios.get(Path.GetContent, {
+      params: { guildId, universityId, index },
+    });
+    const guildData: ContentApiResponse = res.data;
+    return guildData;
   } catch (err) {
     const error = <AxiosError>err;
     if (error.response) {

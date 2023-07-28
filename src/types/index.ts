@@ -52,3 +52,8 @@ export type Content = {
   title: string;
   url: string;
 };
+
+export type ContentApiResponse = Content & {
+  type: "image" | "clip";
+  creator: UserData;
+};
