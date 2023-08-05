@@ -37,6 +37,8 @@ export type UserData = Omit<AccountData, "rePassword"> & {
 
 export type ContentType = "image" | "clip";
 
+export type Rating = "like" | "dislike";
+
 export type Creator = {
   id: number;
   username: string;
@@ -59,4 +61,6 @@ export type Content = {
   url: string;
   type: ContentType;
   creator: Creator;
+  likes: number[];
+  dislikes: number[];
 };

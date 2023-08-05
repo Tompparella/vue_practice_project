@@ -3,4 +3,9 @@ export { default as validateEmail } from "./validateEmail";
 export { default as validatePassword } from "./validatePassword";
 export { setUserToken, getUserToken } from "./localStorage";
 export { Environment } from "./environment";
-export { getInstitutionImagePath, getTagImagePath } from "./getImagePath";
+export {
+  getInstitutionImagePath,
+  getTagImagePath,
+  getContentClipPath,
+  getContentImagePath,
+} from "./getImagePath";

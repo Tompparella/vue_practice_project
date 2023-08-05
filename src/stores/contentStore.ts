@@ -1,8 +1,8 @@
 import { computed, ref } from "vue";
 import { defineStore } from "pinia";
-import { useGetContentQuery } from "@/hooks/queries";
+import { useGetContentQuery, useRateContentMutation } from "@/hooks/queries";
 import type { Content } from "@/types";
-import { getContentClipPath, getContentImagePath } from "@/utils/getImagePath";
+import { getContentClipPath, getContentImagePath } from "@/utils";
 
 export const useContentStore = defineStore("content", () => {
   const enabled = ref<boolean>(true);
@@ -15,18 +15,6 @@ export const useContentStore = defineStore("content", () => {
     guildId,
     universityId,
     index,
-  });
-  const selectedContent = computed<Content | undefined>(() => {
-    const content = contentData.data.value
-      ? { ...contentData.data.value[selectedIndex.value] }
-      : undefined;
-    if (content) {
-      content.url =
-        content?.type === "image"
-          ? getContentImagePath(content.url)
-          : getContentClipPath(content.url);
-    }
-    return content;
   });
 
   const next = () => {
@@ -48,12 +36,37 @@ export const useContentStore = defineStore("content", () => {
     }
   };
 
-  const like = () => {};
+  const { mutate: rateContent } = useRateContentMutation(next);
 
-  const dislike = () => {};
+  const selectedContent = computed<Content | undefined>(() => {
+    const content = contentData.data.value
+      ? { ...contentData.data.value[selectedIndex.value] }
+      : undefined;
+    if (content) {
+      content.url =
+        content?.type === "image"
+          ? getContentImagePath(content.url)
+          : getContentClipPath(content.url);
+    }
+    return content;
+  });
+
+  const like = () => {
+    selectedContent.value
+      ? rateContent({ content: selectedContent.value, rating: "like" })
+      : alert("Failed to like content"); // TODO: Create actual error handling
+  };
+
+  const dislike = () => {
+    selectedContent.value
+      ? rateContent({ content: selectedContent.value, rating: "dislike" })
+      : alert("Failed to dislike content"); // TODO: Create actual error handling
+  };
 
   return {
     selectedContent,
+    like,
+    dislike,
     next,
     back,
   };

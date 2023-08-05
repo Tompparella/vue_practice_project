@@ -11,4 +11,5 @@ export const Path = {
   ContentClip: "/files/clip",
   Tags: "/tags",
   GetContent: "/content",
+  RateContent: "/content/rate",
 };

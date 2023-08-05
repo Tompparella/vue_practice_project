@@ -3,6 +3,7 @@ export enum MutationKey {
   Logout = "Logout",
   Register = "Register",
   PostContent = "PostContent",
+  RateContent = "RateContent",
 }
 
 export enum QueryId {

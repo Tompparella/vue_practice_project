@@ -9,4 +9,5 @@ export { logout } from "./logout";
 export { register } from "./register";
 export { Path } from "./path";
 export { getContent } from "./getContent";
+export { rateContent } from "./rateContent";
 export type { LoginData, PostContentRequest } from "./data";
