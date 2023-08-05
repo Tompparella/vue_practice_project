@@ -34,7 +34,7 @@ $iconSize: $buttonSize - 2rem;
   border-left-color: white;
   justify-content: center;
   align-items: center;
-  z-index: 3;
+  z-index: 1;
   height: $buttonSize;
   width: $buttonSize;
   background-color: $lightViolet;

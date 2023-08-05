@@ -33,7 +33,14 @@ export type UserData = Omit<AccountData, "rePassword"> & {
   guildId: number;
 };
 
-// Tag
+// Content
+
+export type ContentType = "image" | "clip";
+
+export type Creator = {
+  id: number;
+  username: string;
+};
 
 export type Tag = {
   id: number;
@@ -42,7 +49,6 @@ export type Tag = {
   imageUrl: string;
 };
 
-// Content
 export type Content = {
   id: number;
   guild: InstitutionData & {
@@ -51,9 +57,6 @@ export type Content = {
   tags: Tag[];
   title: string;
   url: string;
-};
-
-export type ContentApiResponse = Content & {
-  type: "image" | "clip";
-  creator: UserData;
+  type: ContentType;
+  creator: Creator;
 };

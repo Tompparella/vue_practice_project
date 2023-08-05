@@ -1,4 +1,4 @@
-export interface Content {
+export interface DisplayContent {
   text?: string;
   localizedText?: string;
   linebreak?: boolean; // Currently not set up correctly
@@ -6,7 +6,7 @@ export interface Content {
   image?: string;
 }
 
-export const loginContent: Content[][] = [
+export const loginContent: DisplayContent[][] = [
   [
     { localizedText: "display.welcome_1" },
     { localizedText: "display.bearEmoji", color: "brown", linebreak: true },
@@ -23,7 +23,7 @@ export const loginContent: Content[][] = [
   ],
 ];
 
-export const registrationContent: Content[][] = [
+export const registrationContent: DisplayContent[][] = [
   [
     { localizedText: "authentication.passwordRequirements.minimum" },
     {
@@ -46,7 +46,7 @@ export const registrationContent: Content[][] = [
   ],
 ];
 
-export const institutionContent: Content[] = [
+export const institutionContent: DisplayContent[] = [
   { localizedText: "authentication.institutionInfo.which" },
   {
     localizedText: "common.university",
@@ -71,7 +71,7 @@ export const institutionContent: Content[] = [
   { text: "!" },
 ];
 
-export const invalidCredentialsContent: Content[] = [
+export const invalidCredentialsContent: DisplayContent[] = [
   { localizedText: "authentication.loginError.credentials" },
   {
     localizedText: "display.frownEmoji",
@@ -79,7 +79,7 @@ export const invalidCredentialsContent: Content[] = [
   },
 ];
 
-export const loginErrorContent: Content[] = [
+export const loginErrorContent: DisplayContent[] = [
   {
     localizedText: "display.bearTableEmoji",
     color: "deepCyan",

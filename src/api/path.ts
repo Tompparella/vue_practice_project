@@ -8,6 +8,7 @@ export const Path = {
   InstitutionImage: "/files/institution",
   TagImage: "/files/tag",
   ContentImage: "/files/image",
+  ContentClip: "/files/clip",
   Tags: "/tags",
   GetContent: "/content",
 };

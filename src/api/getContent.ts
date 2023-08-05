@@ -1,4 +1,4 @@
-import type { ContentApiResponse, GuildAndUniversityData } from "@/types";
+import type { Content } from "@/types";
 import axios, { type AxiosError } from "axios";
 import { Path } from "./path";
 type Props = {
@@ -10,17 +10,13 @@ export const getContent = async ({
   universityId,
   guildId,
   index,
-}: Props): Promise<ContentApiResponse | undefined> => {
-  if (guildId === undefined && universityId === undefined) {
-    // TODO: Error. Choose type
-    return;
-  }
+}: Props): Promise<Content[]> => {
   try {
     const res = await axios.get(Path.GetContent, {
       params: { guildId, universityId, index },
     });
-    const guildData: ContentApiResponse = res.data;
-    return guildData;
+    const contentData: Content[] = res.data;
+    return contentData;
   } catch (err) {
     const error = <AxiosError>err;
     if (error.response) {

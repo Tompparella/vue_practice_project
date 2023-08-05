@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { useLogoutMutation } from "@/hooks/queries/useLogoutMutation";
-import type { Content } from "@/stores/constants";
+import type { DisplayContent } from "@/stores/constants";
 import { Loading, Text } from "../common";
 
 type Props = {
   hidden: boolean;
   loading?: boolean;
-  content?: Content[];
+  content?: DisplayContent[];
 };
 defineProps<Props>();
 

@@ -47,6 +47,7 @@ defineEmits<Emits>();
   transition: 0.2s;
   max-width: 45rem;
   margin: auto;
+  user-select: none;
 }
 .modal-content {
   position: absolute;

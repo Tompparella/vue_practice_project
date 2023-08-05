@@ -1,11 +1,14 @@
 <script setup lang="ts">
-import placeholderImage from "@/assets/images/test_meme.png";
 import backgroundImage from "@/assets/images/fry.jpg";
+import { useContentStore } from "@/stores";
+import { storeToRefs } from "pinia";
+const contentStore = useContentStore();
+const content = storeToRefs(contentStore);
 </script>
 
 <template>
   <div class="content">
-    <img :src="placeholderImage" />
+    <img :src="content.selectedContent.value?.url" />
     <div class="shadow" />
     <div
       class="background"
@@ -16,17 +19,8 @@ import backgroundImage from "@/assets/images/fry.jpg";
 
 <style scoped lang="scss">
 @import "@/style/constants.scss";
-.container {
-  user-select: none;
-  flex: 1;
-  display: flex;
-  height: 100%;
-  width: 100%;
-  justify-content: center;
-  align-items: center;
-  padding-block: 0.5rem;
-}
 .content {
+  user-select: none;
   z-index: 0;
   min-height: $imageHeight + 1vh;
   position: relative;

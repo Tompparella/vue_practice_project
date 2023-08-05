@@ -1,7 +1,7 @@
 import { ref } from "vue";
 import { defineStore } from "pinia";
 import {
-  type Content,
+  type DisplayContent,
   loginContent,
   registrationContent,
   institutionContent,
@@ -9,20 +9,20 @@ import {
   loginErrorContent,
 } from "./constants";
 
-const getLoginContent = (): Content[] => {
+const getLoginContent = (): DisplayContent[] => {
   const index = Math.round(Math.random() * (loginContent.length - 1));
   return loginContent[index];
 };
-const getRegistrationContent = (): Content[] => {
+const getRegistrationContent = (): DisplayContent[] => {
   const index = Math.round(Math.random() * (registrationContent.length - 1));
   return registrationContent[index];
 };
 
 export const useDisplayStore = defineStore("display", () => {
-  const content = ref<Content[]>();
+  const content = ref<DisplayContent[]>();
   const loading = ref<boolean>();
   const optionsVisible = ref<boolean>(false);
-  const setContent = (value: Content[]) => {
+  const setContent = (value: DisplayContent[]) => {
     content.value = value;
   };
   const setLoading = (value: boolean) => {

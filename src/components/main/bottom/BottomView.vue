@@ -1,9 +1,11 @@
 <script setup lang="ts">
+import { useContentStore } from "@/stores";
 import { default as RateButton } from "./RateButton.vue";
 import { default as RatingBar } from "./RatingBar.vue";
 import { default as ReportButton } from "./ReportButton.vue";
-const onLike = () => console.log("Like");
-const onDislike = () => console.log("Dislike");
+const { next, back } = useContentStore();
+const onLike = () => next();
+const onDislike = () => back();
 const onReport = () => console.log("Report");
 </script>
 
