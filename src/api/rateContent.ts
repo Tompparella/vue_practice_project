@@ -7,18 +7,18 @@ export const rateContent = async (
   rating: Rating
 ): Promise<boolean> => {
   try {
-    const res = await axios.patch(Path.RateContent, {
-      data: { contentId, rating },
-    });
+    const res = await axios.patch(
+      Path.RateContent,
+      { contentId, rating },
+      { headers: { "Content-Type": "application/x-www-form-urlencoded" } }
+    );
     const success: boolean = res.data;
     return success;
   } catch (err) {
     const error = <AxiosError>err;
     if (error.response) {
-      console.warn(
-        `Error: ${error.response.status} : ${error.response.headers}`
-      );
-      console.warn(error.response.data);
+      console.warn(`Error: ${error.message} : ${error.response.headers}`);
+      throw new Error(JSON.stringify((error.response?.data as any)["message"]));
     } else if (error.request) {
       console.warn(`Error: ${error.request.status} : ${error.request.headers}`);
       console.warn(error.request.data);

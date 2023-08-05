@@ -4,16 +4,16 @@ import { Path } from "./path";
 type Props = {
   universityId?: number;
   guildId?: number;
-  index?: number;
+  pageParam?: number;
 };
 export const getContent = async ({
   universityId,
   guildId,
-  index,
+  pageParam = 0,
 }: Props): Promise<Content[]> => {
   try {
     const res = await axios.get(Path.GetContent, {
-      params: { guildId, universityId, index },
+      params: { guildId, universityId, index: pageParam },
     });
     const contentData: Content[] = res.data;
     return contentData;

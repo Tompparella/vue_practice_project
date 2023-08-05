@@ -26,9 +26,9 @@ export const useRateContentMutation = (callback: () => void) => {
     return rateContent(content.id, rating);
   };
   const mutation = useMutation([MutationKey.RateContent], rate, {
-    onSuccess: callback,
-    onError: () => {
-      //
+    onSettled: callback,
+    onError: (e) => {
+      // TODO: Actual error handling
     },
   });
   return mutation;

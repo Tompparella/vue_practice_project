@@ -8,23 +8,24 @@ export const useContentStore = defineStore("content", () => {
   const enabled = ref<boolean>(true);
   const guildId = ref<number | undefined>(undefined);
   const universityId = ref<number | undefined>(undefined);
-  const index = ref<number>(0);
-  const selectedIndex = ref<number>(index.value);
+  const selectedIndex = ref<number>(0);
   const contentData = useGetContentQuery({
     enabled,
     guildId,
     universityId,
-    index,
   });
 
   const next = () => {
     const value = selectedIndex.value + 1;
-    const maxValue = contentData.data.value?.length;
-    if (maxValue !== undefined && value >= maxValue) {
-      alert("You've reached the end of content!");
-    } else {
-      selectedIndex.value = value;
+    const maxValue = contentData.data.value?.pages.flat().length;
+    if (maxValue !== undefined) {
+      if (value === maxValue) {
+        contentData.fetchNextPage.value();
+      } else if (value > maxValue) {
+        return;
+      }
     }
+    selectedIndex.value = value;
   };
 
   const back = () => {
@@ -40,7 +41,7 @@ export const useContentStore = defineStore("content", () => {
 
   const selectedContent = computed<Content | undefined>(() => {
     const content = contentData.data.value
-      ? { ...contentData.data.value[selectedIndex.value] }
+      ? { ...contentData.data.value.pages.flat()[selectedIndex.value] }
       : undefined;
     if (content) {
       content.url =
