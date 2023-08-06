@@ -1,12 +1,15 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { default as LabelEntry } from "./LabelEntry.vue";
+import { useContentStore } from "@/stores";
 
 type Props = {
   hidden: boolean;
 };
 
 defineProps<Props>();
+
+const contentStore = useContentStore();
 
 const iconsVisible = ref(true);
 const onIconPress = () => (iconsVisible.value = !iconsVisible.value);
@@ -20,8 +23,11 @@ const onIconPress = () => (iconsVisible.value = !iconsVisible.value);
       class="label-container"
       :class="!iconsVisible && 'slideOut'"
     >
-      <LabelEntry />
-      <LabelEntry />
+      <LabelEntry
+        v-for="tag in contentStore.selectedContent?.tags"
+        :key="tag.id"
+        :tag="tag"
+      />
     </ul>
   </div>
 </template>

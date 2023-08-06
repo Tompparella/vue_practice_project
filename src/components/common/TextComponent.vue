@@ -1,7 +1,7 @@
 <script setup lang="ts">
 type Props = {
   label: string;
-  type: "S" | "M" | "L";
+  type: "XS" | "S" | "M" | "L";
 };
 defineProps<Props>();
 </script>
@@ -13,6 +13,9 @@ defineProps<Props>();
 p {
   color: $textColor;
   margin: 0;
+}
+.XS {
+  font-size: 12px;
 }
 .S {
   font-size: 16px;

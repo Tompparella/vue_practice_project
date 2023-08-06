@@ -1,17 +1,39 @@
 <script setup lang="ts">
 import { Text } from "../common";
-import Logo from "../../assets/images/logo_white.png";
+import type { Tag } from "@/types";
+import { getTagImagePath } from "@/utils";
+import { ref } from "vue";
+
+type Props = {
+  tag: Tag;
+};
+defineProps<Props>();
+const focused = ref<boolean>(false);
+const focusedOn = () => {
+  focused.value = true;
+};
+const focusedOff = () => {
+  focused.value = false;
+};
 </script>
 
 <template>
-  <li class="label-entry">
+  <li
+    class="label-entry"
+    @mouseenter="() => focusedOn()"
+    @mouseleave="() => focusedOff()"
+  >
     <div class="card">
-      <img :src="Logo" />
-      <Text
-        class="text"
-        :label="'Testitestitestittestitestitestit'"
-        :type="'S'"
-      />
+      <img :src="getTagImagePath(tag.imageUrl)" />
+      <div class="text-box">
+        <Text class="text" :label="tag.name" :type="'S'" />
+        <Text
+          v-if="focused"
+          class="text"
+          :label="tag.description"
+          :type="'XS'"
+        />
+      </div>
     </div>
   </li>
 </template>
@@ -44,8 +66,12 @@ img {
   border: 2px solid $borderColor;
   border-radius: $border;
   display: flex;
-  height: 3rem;
+  min-height: 3rem;
   width: 10rem;
+}
+.text-box {
+  display: flex;
+  flex-direction: column;
 }
 .text {
   margin-block: auto;
