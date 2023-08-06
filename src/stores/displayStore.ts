@@ -1,7 +1,7 @@
 import { ref } from "vue";
 import { defineStore } from "pinia";
 import {
-  type DisplayContent,
+  type TextContent,
   loginContent,
   registrationContent,
   institutionContent,
@@ -9,20 +9,20 @@ import {
   loginErrorContent,
 } from "./constants";
 
-const getLoginContent = (): DisplayContent[] => {
+const getLoginContent = (): TextContent[] => {
   const index = Math.round(Math.random() * (loginContent.length - 1));
   return loginContent[index];
 };
-const getRegistrationContent = (): DisplayContent[] => {
+const getRegistrationContent = (): TextContent[] => {
   const index = Math.round(Math.random() * (registrationContent.length - 1));
   return registrationContent[index];
 };
 
 export const useDisplayStore = defineStore("display", () => {
-  const content = ref<DisplayContent[]>();
+  const content = ref<TextContent[]>();
   const loading = ref<boolean>();
   const optionsVisible = ref<boolean>(false);
-  const setContent = (value: DisplayContent[]) => {
+  const setContent = (value: TextContent[]) => {
     content.value = value;
   };
   const setLoading = (value: boolean) => {
@@ -46,6 +46,7 @@ export const useDisplayStore = defineStore("display", () => {
   const setOptionsVisible = (value: boolean) => {
     optionsVisible.value = value;
   };
+  const clearTextContent = () => (content.value = undefined);
 
   return {
     content,
@@ -59,5 +60,6 @@ export const useDisplayStore = defineStore("display", () => {
     setInvalidCredentialsContent,
     setLoginErrorContent,
     setOptionsVisible,
+    clearTextContent,
   };
 });

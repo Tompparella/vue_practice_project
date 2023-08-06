@@ -30,6 +30,7 @@ export const useGetContentQuery = ({
         //
       },
       enabled: enabled.value !== undefined ? true : enabled,
+      staleTime: Infinity,
     }
   );
 };

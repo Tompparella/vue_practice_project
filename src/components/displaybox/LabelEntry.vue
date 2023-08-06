@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Text } from "../common";
+import { Text, Label } from "../common";
 import type { Tag } from "@/types";
 import { getTagImagePath } from "@/utils";
 import { ref } from "vue";
@@ -26,7 +26,7 @@ const focusedOff = () => {
     <div class="card">
       <img :src="getTagImagePath(tag.imageUrl)" />
       <div class="text-box">
-        <Text class="text" :label="tag.name" :type="'S'" />
+        <Label class="text" :label="tag.name" :type="'S'" />
         <Text
           v-if="focused"
           class="text"

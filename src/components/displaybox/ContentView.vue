@@ -1,18 +1,21 @@
 <script setup lang="ts">
 import { useLogoutMutation } from "@/hooks/queries/useLogoutMutation";
-import type { DisplayContent } from "@/stores/constants";
+import type { TextContent } from "@/stores/constants";
 import { Loading, Text } from "../common";
+import { default as TextContentView } from "./TextContent.vue";
+import { default as SelectedContent } from "./SelectedContent.vue";
+import type { Content } from "@/types";
 
 type Props = {
   hidden: boolean;
   loading?: boolean;
-  content?: DisplayContent[];
+  textContent?: TextContent[];
+  selectedContent?: Content;
 };
 defineProps<Props>();
-
 const { mutate } = useLogoutMutation();
-
 const onIconPress = () => {
+  // Placeholder
   mutate();
 };
 </script>
@@ -25,20 +28,11 @@ const onIconPress = () => {
         <Loading />
         <Text :label="$t('authentication.loading')" :type="'S'" />
       </div>
-      <li v-else v-for="(item, index) in content" :key="index">
-        <Text
-          v-if="item.text"
-          :label="item.text"
-          :type="'S'"
-          :class="item.color"
-        />
-        <Text
-          v-else-if="item.localizedText"
-          :label="$t(item.localizedText)"
-          :type="'S'"
-          :class="item.color"
-        />
-      </li>
+      <TextContentView
+        v-else-if="textContent && textContent.length > 0"
+        :content="textContent"
+      />
+      <SelectedContent v-else-if="selectedContent" :content="selectedContent" />
     </ul>
   </div>
 </template>
@@ -70,39 +64,5 @@ const onIconPress = () => {
 .loading {
   display: flex;
   align-items: center;
-}
-li {
-  list-style: none;
-}
-p {
-  text-indent: 5px;
-  text-align: center;
-}
-.brown {
-  color: $brown;
-}
-.lightBlue {
-  color: $lightBlue;
-}
-.deepBlue {
-  color: $deepBlue;
-}
-.deepGreen {
-  color: $deepGreen;
-}
-.deepYellow {
-  color: $deepYellow;
-}
-.pink {
-  color: $pink;
-}
-.violet {
-  color: $violet;
-}
-.deepCyan {
-  color: $deepCyan;
-}
-.cyan {
-  color: $cyan;
 }
 </style>

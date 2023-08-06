@@ -42,6 +42,7 @@ export type Rating = "like" | "dislike";
 export type Creator = {
   id: number;
   username: string;
+  imageUrl?: string;
 };
 
 export type Tag = {

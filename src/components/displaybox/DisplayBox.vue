@@ -3,9 +3,17 @@ import { storeToRefs } from "pinia";
 import { default as SpaceBox } from "./SpaceBox.vue";
 import { default as LabelView } from "./LabelView.vue";
 import { default as ContentView } from "./ContentView.vue";
-import { useDisplayStore } from "../../stores";
-const display = useDisplayStore();
-const { content, loading, optionsVisible } = storeToRefs(display);
+import { useContentStore, useDisplayStore } from "../../stores";
+import { watch } from "vue";
+const displayStore = useDisplayStore();
+const contentStore = useContentStore();
+
+const { content, loading, optionsVisible } = storeToRefs(displayStore);
+const { selectedContent } = storeToRefs(contentStore);
+// If new content is selected, clear shown text from display box to show content information
+watch([selectedContent], () => {
+  displayStore.clearTextContent();
+});
 </script>
 
 <template>
@@ -14,7 +22,8 @@ const { content, loading, optionsVisible } = storeToRefs(display);
     <ContentView
       :hidden="!optionsVisible"
       :loading="loading"
-      :content="content"
+      :textContent="content"
+      :selectedContent="selectedContent"
     />
     <SpaceBox :hidden="!optionsVisible" />
   </div>
