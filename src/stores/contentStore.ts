@@ -2,7 +2,6 @@ import { computed, ref } from "vue";
 import { defineStore } from "pinia";
 import { useGetContentQuery, useRateContentMutation } from "@/hooks/queries";
 import type { Content } from "@/types";
-import { getContentClipPath, getContentImagePath } from "@/utils";
 
 export const useContentStore = defineStore("content", () => {
   const enabled = ref<boolean>(true);
@@ -19,7 +18,7 @@ export const useContentStore = defineStore("content", () => {
     const value = selectedIndex.value + 1;
     const maxValue = contentData.data.value?.pages.flat().length;
     if (maxValue !== undefined) {
-      if (value === maxValue) {
+      if (value >= maxValue) {
         contentData.fetchNextPage.value();
       } else if (value > maxValue) {
         return;
@@ -40,15 +39,11 @@ export const useContentStore = defineStore("content", () => {
   const { mutate: rateContent } = useRateContentMutation(next);
 
   const selectedContent = computed<Content | undefined>(() => {
-    const content = contentData.data.value
-      ? { ...contentData.data.value.pages.flat()[selectedIndex.value] }
-      : undefined;
-    if (content) {
-      content.url =
-        content?.type === "image"
-          ? getContentImagePath(content.url)
-          : getContentClipPath(content.url);
-    }
+    const contentArray = contentData.data.value?.pages.flat();
+    const content =
+      contentArray && contentArray.length > selectedIndex.value
+        ? { ...contentArray[selectedIndex.value] }
+        : undefined;
     return content;
   });
 

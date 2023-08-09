@@ -1,11 +1,15 @@
 import type { GuildData } from "@/types";
 import axios, { type AxiosError } from "axios";
 import { Path } from "./path";
+import { getInstitutionImagePath } from "@/utils";
 export const getGuilds = async (universityId: number): Promise<GuildData[]> => {
   try {
     const res = await axios.get(Path.Guilds, { params: { universityId } });
     const guildData: GuildData[] = res.data;
-    return guildData;
+    return guildData.map((item) => ({
+      ...item,
+      imageUrl: getInstitutionImagePath(item.imageUrl),
+    }));
   } catch (err) {
     const error = <AxiosError>err;
     if (error.response) {

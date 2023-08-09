@@ -1,6 +1,7 @@
 import type { GuildAndUniversityData } from "@/types";
 import axios, { type AxiosError } from "axios";
 import { Path } from "./path";
+import { getInstitutionImagePath } from "@/utils";
 export const getGuild = async (
   guildId: number | undefined
 ): Promise<GuildAndUniversityData | undefined> => {
@@ -10,7 +11,10 @@ export const getGuild = async (
   try {
     const res = await axios.get(`${Path.Guilds}/${guildId}`);
     const guildData: GuildAndUniversityData = res.data;
-    return guildData;
+    return {
+      ...guildData,
+      imageUrl: getInstitutionImagePath(guildData.imageUrl),
+    };
   } catch (err) {
     const error = <AxiosError>err;
     if (error.response) {

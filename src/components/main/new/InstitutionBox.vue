@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { Label, Text } from "@/components/common";
-import { getInstitutionImagePath } from "@/utils";
 type Props = {
   title: string;
   institution?: string;
@@ -16,7 +15,7 @@ defineProps<Props>();
       <div class="text-container">
         <Text :label="institution ?? '...'" type="M" />
       </div>
-      <img class="image" :src="getInstitutionImagePath(imageUrl)" />
+      <img class="image" :src="imageUrl" />
     </div>
   </div>
 </template>

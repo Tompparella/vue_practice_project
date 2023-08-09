@@ -7,6 +7,7 @@ export const Path = {
   Guilds: "/institutions/guilds",
   InstitutionImage: "/files/institution",
   TagImage: "/files/tag",
+  ProfileImage: "/files/profile",
   ContentImage: "/files/image",
   ContentClip: "/files/clip",
   Tags: "/tags",

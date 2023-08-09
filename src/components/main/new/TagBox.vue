@@ -3,7 +3,6 @@ import { Label, PickerModal } from "@/components/common";
 import { default as TagSelector } from "./TagSelector.vue";
 import type { Tag } from "@/types";
 import { ref, computed } from "vue";
-import { getTagImagePath } from "@/utils";
 import { useCreationStore } from "@/stores";
 type Props = {
   tags: Tag[] | null;
@@ -14,13 +13,7 @@ const store = useCreationStore();
 const selectedIndex = ref<number>();
 
 const pickerData = computed(() =>
-  props.tags
-    ?.filter((tag) => !store.tags.includes(tag))
-    .map(({ id, name: title, imageUrl }) => ({
-      id,
-      title,
-      imageUrl: getTagImagePath(imageUrl),
-    }))
+  props.tags?.filter((tag) => !store.tags.includes(tag))
 );
 
 const weight = computed(() => 1 / store.tags.length);

@@ -10,13 +10,18 @@ export const postContent = async ({
   const data = new FormData();
   data.append("title", title);
   data.append("image", image);
-  tags.forEach((tag) => data.append("tagIds[]", tag.id.toString()));
+  const weight = 1 / tags.length;
+  tags.forEach((tag, index) => {
+    data.append(`tagIds[${index}][id]`, tag.id.toString());
+    data.append(`tagIds[${index}][weight]`, weight.toString());
+  });
   for (const pair of data.entries()) {
     console.log(pair[0] + ", " + pair[1]);
   }
   try {
     const res = await axios.post(Path.ContentImage, data);
-    return res.data;
+    const result = res.data;
+    return result;
   } catch (err) {
     const error = <AxiosError>err;
     if (error.response) {

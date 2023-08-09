@@ -49,7 +49,8 @@ export type Tag = {
   id: number;
   name: string;
   description: string;
-  imageUrl: string;
+  weight: number | undefined;
+  imageUrl: string | undefined;
 };
 
 export type Content = {

@@ -2,7 +2,6 @@
 import { Text } from "../common";
 import defaultImage from "../../assets/images/logo_test.png";
 import type { Content } from "@/types";
-import { getInstitutionImagePath } from "@/utils";
 
 type Props = {
   content: Content;
@@ -13,10 +12,7 @@ defineProps<Props>();
 <template>
   <div class="content-info">
     <div class="institution-container">
-      <img
-        :src="getInstitutionImagePath(content.guild.university.imageUrl)"
-        class="institution-image"
-      />
+      <img :src="content.guild.university.imageUrl" class="institution-image" />
     </div>
     <div class="content-card">
       <img
@@ -39,10 +35,7 @@ defineProps<Props>();
       </div>
     </div>
     <div class="institution-container">
-      <img
-        :src="getInstitutionImagePath(content.guild.imageUrl)"
-        class="institution-image"
-      />
+      <img :src="content.guild.imageUrl" class="institution-image" />
     </div>
   </div>
 </template>
@@ -53,6 +46,7 @@ defineProps<Props>();
 .content-text,
 .content-info {
   flex: 1;
+  transition: 0.5s all ease;
 }
 .content-info {
   display: flex;

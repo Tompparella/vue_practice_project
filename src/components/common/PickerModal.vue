@@ -1,13 +1,10 @@
 <script setup lang="ts">
+import type { InstitutionData } from "@/types";
 import { Text } from "../common";
 import { default as Modal } from "./ModalView.vue";
-type Data = {
-  id: number;
-  imageUrl: string;
-  title: string;
-};
+
 type Props = {
-  data?: Data[];
+  data?: InstitutionData[];
   visible: boolean;
 };
 type Emits = {
@@ -21,11 +18,11 @@ defineEmits<Emits>();
 <template>
   <Modal :visible="visible" @onClose="$emit('onClose')">
     <ul class="content">
-      <li v-for="{ imageUrl, title, id } in data" :key="id">
+      <li v-for="{ imageUrl, name, id } in data" :key="id">
         <div class="item" @click="$emit('onPress', id)">
-          <img :src="imageUrl" :title="title" />
+          <img :src="imageUrl" :title="name" />
           <div class="item-overlay" />
-          <Text class="label" :label="title" type="S" />
+          <Text class="label" :label="name" type="S" />
         </div>
       </li>
     </ul>

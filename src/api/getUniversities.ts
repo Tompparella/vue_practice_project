@@ -1,11 +1,15 @@
 import type { UniversityData } from "@/types";
 import axios, { type AxiosError } from "axios";
 import { Path } from "./path";
+import { getInstitutionImagePath } from "@/utils";
 export const getUniversities = async (): Promise<UniversityData[]> => {
   try {
     const res = await axios.get(Path.Universities);
     const universityData: UniversityData[] = res.data;
-    return universityData;
+    return universityData.map((item) => ({
+      ...item,
+      imageUrl: getInstitutionImagePath(item.imageUrl),
+    }));
   } catch (err) {
     const error = <AxiosError>err;
     if (error.response) {

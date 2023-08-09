@@ -1,12 +1,15 @@
 import type { Tag } from "@/types";
 import axios, { type AxiosError } from "axios";
 import { Path } from "./path";
+import { getTagImagePath } from "@/utils";
 export const getTags = async (): Promise<Tag[]> => {
   try {
-    console.debug("GetTags");
     const res = await axios.get(`${Path.Tags}`);
     const tagData: Tag[] = res.data;
-    return tagData;
+    return tagData.map((tag) => ({
+      ...tag,
+      imageUrl: getTagImagePath(tag.imageUrl),
+    }));
   } catch (err) {
     const error = <AxiosError>err;
     if (error.response) {

@@ -3,7 +3,6 @@ import type { InstitutionData } from "@/types";
 import { computed, ref } from "vue";
 import { default as PickerModal } from "./PickerModal.vue";
 import { default as HoverOverlay } from "./HoverOverlay.vue";
-import { getInstitutionImagePath } from "../../utils";
 
 type Props = {
   institutionData?: InstitutionData[];
@@ -22,24 +21,14 @@ const handleOnPick = (id: number) => {
     : null;
   emit("onPick", selected);
 };
-const pickerData = computed(() =>
-  props.institutionData?.map(({ id, name, imageUrl }) => ({
-    id,
-    title: name,
-    imageUrl: getInstitutionImagePath(imageUrl),
-  }))
-);
 </script>
 
 <template>
   <div class="logo-container" @click="onPress">
-    <img
-      :src="getInstitutionImagePath(currentInstitution?.imageUrl)"
-      :placeholder="'Institution'"
-    />
+    <img :src="currentInstitution?.imageUrl" :placeholder="'Institution'" />
     <HoverOverlay />
     <PickerModal
-      :data="pickerData"
+      :data="institutionData"
       :visible="modalVisible"
       @onPress="handleOnPick"
       @onClose="onPress"

@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { Text, Label } from "../common";
 import type { Tag } from "@/types";
-import { getTagImagePath } from "@/utils";
 import { ref } from "vue";
 
 type Props = {
@@ -24,7 +23,7 @@ const focusedOff = () => {
     @mouseleave="() => focusedOff()"
   >
     <div class="card">
-      <img :src="getTagImagePath(tag.imageUrl)" />
+      <img :src="tag.imageUrl" />
       <div class="text-box">
         <Label class="text" :label="tag.name" :type="'S'" />
         <Text

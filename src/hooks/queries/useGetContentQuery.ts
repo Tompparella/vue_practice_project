@@ -22,12 +22,8 @@ export const useGetContentQuery = ({
         pageParam,
       }),
     {
-      getNextPageParam: (_lastPage, pages) => pages.flat().length,
-      onSuccess: () => {
-        //
-      },
-      onError: () => {
-        //
+      getNextPageParam: (_lastPage, pages) => {
+        return pages.flat().length;
       },
       enabled: enabled.value !== undefined ? true : enabled,
       staleTime: Infinity,

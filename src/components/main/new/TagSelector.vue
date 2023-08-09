@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { Text, HoverOverlay, CornerButton } from "@/components/common";
-import { getTagImagePath } from "../../../utils";
 import type { Tag } from "@/types";
 type Props = {
   tag?: Tag;
@@ -20,7 +19,7 @@ const getWeight = () =>
   <div class="tag-container">
     <div class="image-container">
       <CornerButton v-if="Boolean(tag)" @onPress="$emit('onRemove')" />
-      <img class="image" :src="tag && getTagImagePath(tag.imageUrl)" />
+      <img class="image" :src="tag?.imageUrl" />
       <HoverOverlay @click="$emit('onTagPress')" />
     </div>
     <div class="info-container">

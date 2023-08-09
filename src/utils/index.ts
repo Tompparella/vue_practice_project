@@ -6,6 +6,7 @@ export { Environment } from "./environment";
 export {
   getInstitutionImagePath,
   getTagImagePath,
+  getProfileImagePath,
   getContentClipPath,
   getContentImagePath,
 } from "./getImagePath";
