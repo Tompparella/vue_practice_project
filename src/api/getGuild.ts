@@ -14,6 +14,10 @@ export const getGuild = async (
     return {
       ...guildData,
       imageUrl: getInstitutionImagePath(guildData.imageUrl),
+      university: {
+        ...guildData.university,
+        imageUrl: getInstitutionImagePath(guildData.university.imageUrl),
+      },
     };
   } catch (err) {
     const error = <AxiosError>err;

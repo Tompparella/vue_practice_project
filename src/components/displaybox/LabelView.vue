@@ -2,6 +2,7 @@
 import { ref } from "vue";
 import { default as LabelEntry } from "./LabelEntry.vue";
 import { useContentStore } from "@/stores";
+import { computed } from "vue";
 
 type Props = {
   hidden: boolean;
@@ -13,6 +14,21 @@ const contentStore = useContentStore();
 
 const iconsVisible = ref(true);
 const onIconPress = () => (iconsVisible.value = !iconsVisible.value);
+
+const tags = computed(() => {
+  if (contentStore.selectedContent?.tags) {
+    contentStore.selectedContent?.tags;
+    const temp = { ...contentStore.selectedContent?.tags };
+    temp.sort &&
+      temp.sort((prev, next) => {
+        const w1 = next.weight ?? 0;
+        const w2 = prev.weight ?? 0;
+        return w2 - w1;
+      });
+    return temp;
+  }
+  return [];
+});
 </script>
 
 <template>
@@ -23,11 +39,7 @@ const onIconPress = () => (iconsVisible.value = !iconsVisible.value);
       class="label-container"
       :class="!iconsVisible && 'slideOut'"
     >
-      <LabelEntry
-        v-for="tag in contentStore.selectedContent?.tags"
-        :key="tag.id"
-        :tag="tag"
-      />
+      <LabelEntry v-for="tag in tags" :key="tag.id" :tag="tag" />
     </ul>
   </div>
 </template>
