@@ -7,7 +7,7 @@ import type { App } from "vue";
 
 const initialize = (app: App) => {
   i18next.use(Backend).init<HttpBackendOptions>({
-    debug: true,
+    debug: true, // TODO: Change to false when moving to production
     lng: "en",
     fallbackLng: "en",
   });

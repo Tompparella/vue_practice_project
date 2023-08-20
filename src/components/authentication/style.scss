@@ -1,8 +1,7 @@
+@import '../../style/constants.scss';
 .container {
-  width: 100%;
   display: flex;
-  flex: 6;
+  gap: 2rem;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
 }

@@ -1,12 +1,12 @@
 <script setup lang="ts">
 type Props = {
-  label: string;
+  label: string | undefined | null;
   type: "XS" | "S" | "M" | "L";
 };
 defineProps<Props>();
 </script>
 <template>
-  <p :class="type">{{ label }}</p>
+  <p :class="type">{{ label ?? "" }}</p>
 </template>
 <style scoped lang="scss">
 @import "../../style/constants.scss";

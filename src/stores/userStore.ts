@@ -11,8 +11,8 @@ export const useUserStore = defineStore("user", () => {
   };
   const setUserDataFromResponse = (value?: AxiosResponse) => {
     if (!value) return;
-    if (isUserData(value.data)) {
-      setUserData(value.data);
+    if (isUserData(value)) {
+      setUserData(value);
     }
   };
 

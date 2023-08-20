@@ -3,6 +3,7 @@ import { ref } from "vue";
 import { default as LabelEntry } from "./LabelEntry.vue";
 import { useContentStore } from "@/stores";
 import { computed } from "vue";
+import type { ContentProfiling } from "@/types";
 
 type Props = {
   hidden: boolean;
@@ -15,10 +16,11 @@ const contentStore = useContentStore();
 const iconsVisible = ref(true);
 const onIconPress = () => (iconsVisible.value = !iconsVisible.value);
 
-const tags = computed(() => {
-  if (contentStore.selectedContent?.tags) {
-    contentStore.selectedContent?.tags;
-    const temp = { ...contentStore.selectedContent?.tags };
+const profiling = computed(() => {
+  if (contentStore.selectedContent?.profiling) {
+    const temp: ContentProfiling[] = {
+      ...contentStore.selectedContent?.profiling,
+    };
     temp.sort &&
       temp.sort((prev, next) => {
         const w1 = next.weight ?? 0;
@@ -39,7 +41,7 @@ const tags = computed(() => {
       class="label-container"
       :class="!iconsVisible && 'slideOut'"
     >
-      <LabelEntry v-for="tag in tags" :key="tag.id" :tag="tag" />
+      <LabelEntry v-for="{ tag } in profiling" :key="tag.id" :tag="tag" />
     </ul>
   </div>
 </template>

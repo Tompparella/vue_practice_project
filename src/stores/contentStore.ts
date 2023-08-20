@@ -40,7 +40,7 @@ export const useContentStore = defineStore("content", () => {
 
   const selectedContent = computed<Content | undefined>(() => {
     const contentArray = contentData.data.value?.pages.flat();
-    const content =
+    const content: Content | undefined =
       contentArray && contentArray.length > selectedIndex.value
         ? { ...contentArray[selectedIndex.value] }
         : undefined;

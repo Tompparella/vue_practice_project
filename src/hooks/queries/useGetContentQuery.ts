@@ -13,14 +13,16 @@ export const useGetContentQuery = ({
   guildId,
   universityId,
 }: Props) => {
+  const query = (page?: number) => {
+    return getContent({
+      guildId: guildId?.value,
+      universityId: universityId?.value,
+      pageParam: page,
+    });
+  };
   return useInfiniteQuery(
     [QueryId.GetContent, enabled, guildId, universityId],
-    ({ pageParam }) =>
-      getContent({
-        guildId: guildId?.value,
-        universityId: universityId?.value,
-        pageParam,
-      }),
+    ({ pageParam }) => query(pageParam),
     {
       getNextPageParam: (_lastPage, pages) => {
         return pages.flat().length;

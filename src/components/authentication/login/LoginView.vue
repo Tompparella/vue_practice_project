@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Input, Label, Button } from "@/components/common";
-import { onMounted, ref, type Ref } from "vue";
+import { ref, type Ref, watchEffect } from "vue";
 import { useDisplayStore, useCommonStore } from "@/stores";
 import { useTranslation } from "i18next-vue";
 import { useLoginMutation } from "@/hooks/queries";
@@ -19,7 +19,7 @@ const { mutate } = useLoginMutation();
 const email: Ref<string> = ref("");
 const password: Ref<string> = ref("");
 
-onMounted(() => {
+watchEffect(() => {
   setHeaderSubLabel(t("authentication.login"));
   setLoginContent();
 });

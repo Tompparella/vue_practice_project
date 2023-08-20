@@ -22,11 +22,9 @@ checkEnvironment();
 axios.defaults.baseURL = Environment.API_URL;
 axios.defaults.withCredentials = true;
 
-const app = createApp(App);
+const app = i18n(createApp(App));
 
 app.use(VueQueryPlugin);
-
-i18n(app);
 
 app.use(createPinia());
 

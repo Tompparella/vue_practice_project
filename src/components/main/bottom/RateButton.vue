@@ -16,7 +16,7 @@ const handlePress = () => {
   if (timeout.value) {
     clearTimeout(timeout.value);
     timeout.value = undefined;
-    setTimeout(() => (timeout.value = Number(getTimeout())), 10);
+    setTimeout(() => (timeout.value = Number(getTimeout())), 500);
   } else {
     timeout.value = Number(getTimeout());
   }

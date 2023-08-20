@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref, type Ref } from "vue";
+import { ref, type Ref, watchEffect } from "vue";
 import { Input, Label, Button } from "@/components/common";
 import type { AuthenticationData } from "@/types";
 import { useDisplayStore, useRegistrationStore } from "@/stores";
@@ -14,7 +14,7 @@ const emit = defineEmits<Emits>();
 const { setRegistrationContent } = useDisplayStore();
 const { setAuthenticationData } = useRegistrationStore();
 
-onMounted(() => setRegistrationContent());
+watchEffect(() => setRegistrationContent());
 
 const email: Ref<string> = ref("");
 const password: Ref<string> = ref("");

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { InstitutionData } from "@/types";
-import { computed, ref } from "vue";
+import { ref } from "vue";
 import { default as PickerModal } from "./PickerModal.vue";
 import { default as HoverOverlay } from "./HoverOverlay.vue";
 

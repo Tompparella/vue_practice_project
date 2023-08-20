@@ -3,7 +3,7 @@ import { Path } from "./path";
 export const getIdentity = async (): Promise<AxiosResponse> => {
   try {
     const res = await axios.get(Path.Identify);
-    return res;
+    return res.data;
   } catch (err) {
     const error = <AxiosError>err;
     if (error.response) {

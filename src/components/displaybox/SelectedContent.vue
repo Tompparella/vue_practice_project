@@ -17,7 +17,7 @@ defineProps<Props>();
     <div class="content-card">
       <img
         class="profile-image"
-        :src="content.creator.imageUrl ?? defaultImage"
+        :src="content.creator.profile.imageUrl ?? defaultImage"
       />
       <div class="content-text">
         <div class="institution-info">
@@ -28,7 +28,11 @@ defineProps<Props>();
             class="deepGreen"
           />
         </div>
-        <Text type="S" :label="content.creator.username" class="username" />
+        <Text
+          type="S"
+          :label="content.creator.profile.username ?? ''"
+          class="username"
+        />
       </div>
       <div class="content-title">
         <Text type="S" :label="content.title" />
@@ -56,14 +60,15 @@ defineProps<Props>();
 }
 .content-text {
   margin-inline: 0.25rem;
+  padding-inline: 0.25rem;
   border-left: 2px solid $cyan;
   border-right: 2px solid $cyan;
 }
 .institution-container {
+  margin: auto;
   padding: 0.5rem;
 }
 .institution-image {
-  margin: auto;
   max-height: 4.5rem;
   border-radius: $borderSoft;
 }
@@ -74,7 +79,7 @@ defineProps<Props>();
   border-radius: $borderSharp;
 }
 .content-card {
-  flex: 3;
+  flex: 8;
   height: inherit;
   display: flex;
   margin-block: 0.5rem;

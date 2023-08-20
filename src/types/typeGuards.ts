@@ -6,6 +6,6 @@ export const isUserData = (data: unknown): data is UserData => {
     !!userData.email &&
     !!userData.guildId &&
     !!userData.id &&
-    !!userData.username
+    !!userData.profile.username
   );
 };

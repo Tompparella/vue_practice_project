@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { Registration } from "./register";
 import { Login } from "./login";
-import { type Ref, shallowRef, onMounted } from "vue";
+import { type Ref, shallowRef } from "vue";
 import { useCommonStore, useDisplayStore } from "@/stores";
 import { useTranslation } from "i18next-vue";
+import { watchEffect } from "vue";
 
 const options = {
   registration: Registration,
@@ -15,13 +16,10 @@ const { setHeaderSubLabel, setHeaderLabel } = useCommonStore();
 const { setOptionsVisible } = useDisplayStore();
 const currentComponent: Ref = shallowRef(options.login);
 
-onMounted(() => {
+watchEffect(() => {
   setOptionsVisible(false);
-  // Bullshittery to make i18n initialize fully
-  setTimeout(() => {
-    setHeaderSubLabel(t("authentication.login"));
-    setHeaderLabel(t("appName"));
-  }, 1000);
+  setHeaderSubLabel(t("authentication.login"));
+  setHeaderLabel(t("appName"));
 });
 
 const changeView = (data: "login" | "register") => {
@@ -37,5 +35,15 @@ const changeView = (data: "login" | "register") => {
 </script>
 
 <template>
-  <component :is="currentComponent" @onChangeView="changeView" />
+  <view class="container">
+    <component :is="currentComponent" @onChangeView="changeView" />
+  </view>
 </template>
+
+<style lang="scss" scoped>
+.container {
+  flex: 8;
+  display: flex;
+  justify-content: center;
+}
+</style>

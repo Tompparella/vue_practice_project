@@ -14,9 +14,9 @@ export const useCheckAuthQuery = () => {
 
   return useQuery(
     [QueryId.CheckAuth],
-    async () => {
+    () => {
       displayStore.setLoading(true);
-      return await getIdentity();
+      return getIdentity();
     },
     {
       staleTime: Infinity,

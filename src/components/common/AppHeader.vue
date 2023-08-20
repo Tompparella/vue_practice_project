@@ -6,7 +6,7 @@ const common = useCommonStore();
 const { headerLabel, headerSubLabel } = storeToRefs(common);
 </script>
 <template>
-  <div v-if="Boolean(headerLabel)" class="header-container">
+  <div v-if="!!headerLabel" class="header-container">
     <div class="header">
       <Label class="header-text" :label="headerLabel" type="L" />
       <Label

@@ -23,25 +23,16 @@ export const getContent = async ({
       params: { guildId, universityId, index: pageParam },
     });
     const contentData: Content[] = res.data;
-    contentData.forEach((entry) => {
-      const valid = Boolean(entry.guild && entry.guild?.university);
+    return contentData.map((content) => {
+      const { type, url, profiling, guild, creator } = content;
+      const valid = Boolean(guild && guild?.university);
       if (!valid) {
         console.error(
           `Server returned invalid content with either no guild or university assigned!\n\nContent:\n${JSON.stringify(
-            entry
+            content
           )}`
         );
       }
-    });
-    return contentData.map((content) => {
-      const {
-        type,
-        url,
-        tags,
-        guild,
-        creator,
-        guild: { university },
-      } = content;
       return {
         ...content,
         url:
@@ -50,21 +41,23 @@ export const getContent = async ({
           ...guild,
           imageUrl: getInstitutionImagePath(guild.imageUrl),
           university: {
-            ...university,
-            imageUrl: getInstitutionImagePath(university.imageUrl),
+            ...guild.university,
+            imageUrl: getInstitutionImagePath(guild.university.imageUrl),
           },
         },
-        tags: tags.map((entry) => ({
+        profiling: profiling.map((entry) => ({
           ...entry,
-          imageUrl: getTagImagePath(entry.imageUrl),
+          tag: {
+            ...entry.tag,
+            imageUrl: getTagImagePath(entry.tag?.imageUrl),
+          },
         })),
         creator: {
           ...creator,
-          imageUrl: getProfileImagePath(creator.imageUrl),
+          imageUrl: getProfileImagePath(creator.profile?.imageUrl),
         },
       };
     });
-    return contentData;
   } catch (err) {
     const error = <AxiosError>err;
     if (error.response) {

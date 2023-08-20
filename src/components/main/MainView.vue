@@ -2,14 +2,14 @@
 import { Image } from "./image";
 import { New } from "./new";
 import { Bottom } from "./bottom";
-import { onBeforeMount } from "vue";
 import { useCommonStore, useDisplayStore } from "@/stores";
+import { watchEffect } from "vue";
 
 const { setOptionsVisible } = useDisplayStore();
 const { setHeaderLabel } = useCommonStore();
 
-onBeforeMount(() => {
-  setHeaderLabel("");
+watchEffect(() => {
+  setHeaderLabel(null);
   setOptionsVisible(true);
 });
 </script>
