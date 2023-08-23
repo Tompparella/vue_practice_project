@@ -6,7 +6,7 @@ export const login = async (data: LoginData): Promise<AxiosResponse> => {
     const res = await axios.post(Path.Login, data, {
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
     });
-    return res;
+    return res.data;
   } catch (err) {
     const error = <AxiosError>err;
     if (error.response) {

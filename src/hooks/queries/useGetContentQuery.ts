@@ -27,7 +27,7 @@ export const useGetContentQuery = ({
       getNextPageParam: (_lastPage, pages) => {
         return pages.flat().length;
       },
-      enabled: enabled.value !== undefined ? true : enabled,
+      enabled,
       staleTime: Infinity,
     }
   );

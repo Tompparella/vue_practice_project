@@ -1,6 +1,6 @@
 import { register } from "@/api";
 import { Path } from "@/router";
-import { useDisplayStore, useUserStore } from "@/stores";
+import { useContentStore, useDisplayStore, useUserStore } from "@/stores";
 import type { AccountData } from "@/types";
 import { useTranslation } from "i18next-vue";
 import { useMutation } from "vue-query";
@@ -10,6 +10,7 @@ import { MutationKey } from "./keys";
 export const useRegisterMutation = () => {
   const displayStore = useDisplayStore();
   const userStore = useUserStore();
+  const contentStore = useContentStore();
   const { t } = useTranslation();
   const router = useRouter();
   const mutation = useMutation(
@@ -23,7 +24,9 @@ export const useRegisterMutation = () => {
         displayStore.setLoading(false);
       },
       onSuccess: (data) => {
+        contentStore.enable();
         userStore.setUserDataFromResponse(data);
+
         // TODO: Possible new user introduction sequence
         router.push(Path.Main);
       },

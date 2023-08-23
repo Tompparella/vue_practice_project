@@ -4,7 +4,7 @@ import { useGetContentQuery, useRateContentMutation } from "@/hooks/queries";
 import type { Content } from "@/types";
 
 export const useContentStore = defineStore("content", () => {
-  const enabled = ref<boolean>(true);
+  const enabled = ref<boolean>(false);
   const guildId = ref<number | undefined>(undefined);
   const universityId = ref<number | undefined>(undefined);
   const selectedIndex = ref<number>(0);
@@ -14,14 +14,28 @@ export const useContentStore = defineStore("content", () => {
     universityId,
   });
 
-  const next = () => {
-    const value = selectedIndex.value + 1;
+  const random = (_min: number, _max: number) => {
+    const max = Math.floor(_max);
+    const min = Math.ceil(_min);
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  };
+
+  const enable = () => {
+    enabled.value = true;
+  };
+
+  const disable = () => {
+    enabled.value = false;
+    contentData.remove.value();
+  };
+
+  const next = async () => {
+    let value = selectedIndex.value + 1;
     const maxValue = contentData.data.value?.pages.flat().length;
-    if (maxValue !== undefined) {
-      if (value >= maxValue) {
-        contentData.fetchNextPage.value();
-      } else if (value > maxValue) {
-        return;
+    if (maxValue !== undefined && value >= maxValue) {
+      contentData.fetchNextPage.value();
+      if (value === maxValue) {
+        value = random(0, maxValue - 1);
       }
     }
     selectedIndex.value = value;
@@ -47,16 +61,20 @@ export const useContentStore = defineStore("content", () => {
     return content;
   });
 
+  const onFail = () => {
+    alert("Failed to rate content"); // TODO: Create actual error handling
+  };
+
   const like = () => {
     selectedContent.value
       ? rateContent({ content: selectedContent.value, rating: "like" })
-      : alert("Failed to like content"); // TODO: Create actual error handling
+      : onFail();
   };
 
   const dislike = () => {
     selectedContent.value
       ? rateContent({ content: selectedContent.value, rating: "dislike" })
-      : alert("Failed to dislike content"); // TODO: Create actual error handling
+      : onFail();
   };
 
   return {
@@ -65,5 +83,7 @@ export const useContentStore = defineStore("content", () => {
     dislike,
     next,
     back,
+    enable,
+    disable,
   };
 });

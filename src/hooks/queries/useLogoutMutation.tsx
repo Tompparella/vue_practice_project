@@ -1,6 +1,6 @@
 import { logout } from "@/api";
 import { Path } from "@/router";
-import { useDisplayStore, useUserStore } from "@/stores";
+import { useContentStore, useDisplayStore, useUserStore } from "@/stores";
 import { useTranslation } from "i18next-vue";
 import { useMutation } from "vue-query";
 import { useRouter } from "vue-router";
@@ -9,9 +9,10 @@ import { MutationKey } from "./keys";
 export const useLogoutMutation = () => {
   const displayStore = useDisplayStore();
   const userStore = useUserStore();
+  const contentStore = useContentStore();
   const router = useRouter();
   const { t } = useTranslation();
-  const mutation = useMutation([MutationKey.Logout], () => logout(), {
+  const mutation = useMutation([MutationKey.Logout], logout, {
     onMutate: () => {
       displayStore.setLoading(true);
     },
@@ -20,6 +21,7 @@ export const useLogoutMutation = () => {
     },
     onSuccess: () => {
       userStore.setUserData();
+      contentStore.disable();
       router.push(Path.Authentication);
     },
     onError: (e: any) => {

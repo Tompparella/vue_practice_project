@@ -53,12 +53,12 @@ const onCreate = () => {
     <div class="frame">
       <div class="institution-row">
         <InstitutionBox
-          :title="'Creating a meme for'"
+          :title="$t('creationModal.guild')"
           :institution="guildData?.name"
           :imageUrl="guildData?.imageUrl"
         />
         <InstitutionBox
-          :title="'Which is a subsidiary of'"
+          :title="$t('creationModal.university')"
           :institution="guildData?.university.name"
           :imageUrl="guildData?.university.imageUrl"
         />
@@ -66,7 +66,7 @@ const onCreate = () => {
       <ContentPicker />
       <TagBox :tags="tagData ?? null" />
       <div class="button-container">
-        <Button label="Create!" @onPress="onCreate" />
+        <Button :label="$t('creationModal.create')" @onPress="onCreate" />
       </div>
     </div>
   </Modal>

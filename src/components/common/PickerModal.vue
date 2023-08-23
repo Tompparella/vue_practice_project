@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import type { InstitutionData } from "@/types";
 import { Text } from "../common";
 import { default as Modal } from "./ModalView.vue";
 
 type Props = {
-  data?: InstitutionData[];
+  data?: { imageUrl?: string; name: string; id: number }[];
   visible: boolean;
 };
 type Emits = {

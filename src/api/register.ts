@@ -15,7 +15,7 @@ export const register = async (data: AccountData): Promise<AxiosResponse> => {
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
       }
     );
-    return res;
+    return res.data;
   } catch (err) {
     const error = <AxiosError>err;
     if (error.response) {

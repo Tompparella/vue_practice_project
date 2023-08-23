@@ -5,7 +5,7 @@ export const logout = async (): Promise<AxiosResponse> => {
     const res = await axios.post(Path.Logout, {
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
     });
-    return res;
+    return res.data;
   } catch (err) {
     const error = <AxiosError>err;
     if (error.response) {

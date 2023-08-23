@@ -44,6 +44,13 @@
     "logoutError": "Logout failed. Please try again.",
     "registrationError": "Registration failed. Please try again."
   },
+  "creationModal": {
+    "guild": "Creating a meme for",
+    "university": "Which is a subsidiary of",
+    "title": "Give your stuff a title!",
+    "tag": "...and at least one tag :)",
+    "create": "Create!"
+  },
   "display": {
     "welcome_1": "Hey again!",
     "welcome_2": "Woah you're back!",

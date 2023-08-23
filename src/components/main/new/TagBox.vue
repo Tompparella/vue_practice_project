@@ -44,7 +44,7 @@ const unselectTag = (index: number) => {
 
 <template>
   <div class="tag-box">
-    <Label type="M" label="Give your meme at least one tag" />
+    <Label type="M" :label="$t('creationModal.tag')" />
     <div class="tag-row">
       <TransitionGroup name="group">
         <li v-for="(tag, index) in store.tags" :key="tag.id">

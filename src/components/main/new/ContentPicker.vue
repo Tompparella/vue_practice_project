@@ -36,7 +36,7 @@ const onUpload = (e: Event) => {
       <input class="file-upload" type="file" @change="onUpload" />
       <HoverOverlay />
     </div>
-    <Label type="M" label="Give your meme a title!" class="label" />
+    <Label type="M" :label="$t('creationModal.title')" class="label" />
     <Input v-model="title" :limit="64" />
   </div>
 </template>
