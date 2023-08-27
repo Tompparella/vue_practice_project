@@ -23,17 +23,6 @@ $borderSoft: 1rem;
 
  $headerHeight: 8vh;
 
-// Overlay
-// - Use when using the 'HoverOverlay' component on the component wrapping HoverOverlay
-@mixin hover-overlay {
-    &:hover .hover-overlay {
-        opacity: 0.8;
-    }
-    &:active .hover-overlay {
-    background: $deepCyan;
-    }
-}
-
 // Colors
 
 $brown: rgb(178, 113, 85);
@@ -56,6 +45,7 @@ $deepRed: rgb(230, 107, 107);
 
 $frameBackground: rgb(167, 224, 194, 80);
 $reportButtonBackground: rgba(255, 0, 0, 0.2);
+$overlayBackground: rgba(0, 0, 0, 0.5);
 
 $shadowColor: rgb(0,0,0, 0.5);
 

@@ -13,6 +13,7 @@ defineProps<Props>();
   <div class="content-info">
     <div class="institution-container">
       <img :src="content.guild.university.imageUrl" class="institution-image" />
+      <Text type="XS" :label="content.guild.university.name" />
     </div>
     <div class="content-card">
       <img
@@ -40,6 +41,7 @@ defineProps<Props>();
     </div>
     <div class="institution-container">
       <img :src="content.guild.imageUrl" class="institution-image" />
+      <Text type="XS" :label="content.guild.name" />
     </div>
   </div>
 </template>
@@ -66,7 +68,8 @@ defineProps<Props>();
 }
 .institution-container {
   margin: auto;
-  padding: 0.5rem;
+  padding: 0.25rem 0.5rem;
+  text-align: center;
 }
 .institution-image {
   max-height: 4.5rem;

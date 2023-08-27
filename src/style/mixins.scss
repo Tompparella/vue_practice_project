@@ -20,3 +20,14 @@
     transform: scale(1.3);
   }
 }
+
+// Overlay
+// - Use when using the 'HoverOverlay' component on the component wrapping HoverOverlay
+@mixin hover-overlay {
+    &:hover .hover-overlay {
+        opacity: 0.8;
+    }
+    &:active .hover-overlay {
+    background: $deepCyan;
+    }
+}

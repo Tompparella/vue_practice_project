@@ -43,6 +43,7 @@ const onUpload = (e: Event) => {
 
 <style scoped lang="scss">
 @import "../../../style/constants.scss";
+@import "../../../style/mixins.scss";
 .content-picker {
   flex: 1;
   display: flex;

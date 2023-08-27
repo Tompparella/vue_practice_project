@@ -10,18 +10,22 @@ defineEmits<Emits>();
 </script>
 
 <template>
-  <Transition name="slide-fade">
-    <div v-if="visible" class="modal">
-      <div class="background" />
-      <div class="modal-content">
-        <i
-          class="las la-times-circle close-button"
-          @click="(e) => $emit('onClose', e)"
-        />
-        <slot />
+  <Teleport to="body">
+    <Transition name="slide-fade">
+      <div v-if="visible" class="modal">
+        <div class="container">
+          <div class="background" />
+          <div class="modal-content">
+            <i
+              class="las la-times-circle close-button"
+              @click="(e) => $emit('onClose', e)"
+            />
+            <slot />
+          </div>
+        </div>
       </div>
-    </div>
-  </Transition>
+    </Transition>
+  </Teleport>
 </template>
 
 <style scoped lang="scss">
@@ -40,14 +44,14 @@ defineEmits<Emits>();
 .modal {
   z-index: 1;
   position: fixed;
-  top: 10%;
-  bottom: 10%;
+  top: 0;
+  bottom: 0;
   right: 0;
   left: 0;
-  transition: 0.2s;
-  max-width: 45rem;
+  transition: 0.2s ease;
   margin: auto;
   user-select: none;
+  background-color: $overlayBackground;
 }
 .modal-content {
   position: absolute;
@@ -55,6 +59,16 @@ defineEmits<Emits>();
   bottom: 0;
   left: 0;
   right: 0;
+}
+.container {
+  position: fixed;
+  top: 10%;
+  bottom: 10%;
+  right: 20%;
+  left: 20%;
+  transition: 0.2s ease;
+  margin: auto;
+  user-select: none;
 }
 .background {
   width: 100%;

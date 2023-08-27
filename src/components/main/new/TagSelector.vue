@@ -33,6 +33,7 @@ const getWeight = () =>
 
 <style scoped lang="scss">
 @import "../../../style/constants.scss";
+@import "../../../style/mixins.scss";
 .tag-container {
   display: flex;
   justify-content: center;

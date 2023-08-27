@@ -38,6 +38,7 @@ const handleOnPick = (id: number) => {
 
 <style scoped lang="scss">
 @import "../../style/constants.scss";
+@import "../../style/mixins.scss";
 .logo-container {
   height: 7rem;
   width: 7rem;

@@ -1,11 +1,15 @@
 <script setup lang="ts">
 import { default as Text } from "./TextComponent.vue";
+type Props = {
+  label?: string;
+};
+defineProps<Props>();
 // HOX! Using the overlay needs you to implement style hovers for elements affected (example: LogoPicker)
 </script>
 
 <template>
   <div class="hover-overlay">
-    <Text class="overlay-text" :label="$t('common.choose')" type="S" />
+    <Text class="overlay-text" :label="label ?? $t('common.choose')" type="S" />
   </div>
 </template>
 
