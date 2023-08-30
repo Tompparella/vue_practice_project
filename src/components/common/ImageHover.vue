@@ -18,6 +18,7 @@ defineProps<Props>();
 @import "../../style/constants.scss";
 @import "../../style/mixins.scss";
 .hover-container {
+  margin: auto;
   height: $headerHeight;
   width: $headerHeight;
   border-radius: $border;

@@ -9,10 +9,13 @@ export const useUserStore = defineStore("user", () => {
   const setUserData = (value?: UserData) => {
     userData.value = value;
   };
-  const setUserDataFromResponse = (value?: AxiosResponse) => {
+  const setUserDataFromResponse = (
+    value?: AxiosResponse
+  ): UserData | undefined => {
     if (!value) return;
     if (isUserData(value)) {
       setUserData(value);
+      return value;
     }
   };
 

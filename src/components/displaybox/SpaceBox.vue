@@ -38,6 +38,7 @@ const onIconPress = () => {
   @include display-icon;
 }
 .space-box {
+  height: 100%;
   display: flex;
   flex-direction: column;
 }

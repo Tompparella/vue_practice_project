@@ -21,9 +21,11 @@ export const useLoginMutation = () => {
         displayStore.setLoading(false);
       },
       onSuccess: (data) => {
-        userStore.setUserDataFromResponse(data);
-        contentStore.enable();
-        router.push(Path.Main);
+        const userData = userStore.setUserDataFromResponse(data);
+        if (userData) {
+          contentStore.enable(userData.guildId);
+          router.push(Path.Main);
+        }
       },
       onError: (e: any) => {
         console.warn(e);

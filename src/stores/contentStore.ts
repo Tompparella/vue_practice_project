@@ -8,6 +8,7 @@ export const useContentStore = defineStore("content", () => {
   const guildId = ref<number | undefined>(undefined);
   const universityId = ref<number | undefined>(undefined);
   const selectedIndex = ref<number>(0);
+  const currentSpaceId = ref<number | undefined>(undefined);
   const contentData = useGetContentQuery({
     enabled,
     guildId,
@@ -20,11 +21,15 @@ export const useContentStore = defineStore("content", () => {
     return Math.floor(Math.random() * (max - min + 1) + min);
   };
 
-  const enable = () => {
+  const setCurrentSpace = (value: number) => (currentSpaceId.value = value);
+
+  const enable = (value?: number) => {
+    value && (currentSpaceId.value = value);
     enabled.value = true;
   };
 
   const disable = () => {
+    currentSpaceId.value = undefined;
     enabled.value = false;
     contentData.remove.value();
   };
@@ -79,6 +84,8 @@ export const useContentStore = defineStore("content", () => {
 
   return {
     selectedContent,
+    currentSpaceId,
+    setCurrentSpace,
     like,
     dislike,
     next,
