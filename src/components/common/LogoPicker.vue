@@ -19,6 +19,7 @@ const handleOnPick = (id: number) => {
   const selected: InstitutionData | null = props.institutionData
     ? props.institutionData.find((item) => item.id === id) ?? null
     : null;
+  onPress();
   emit("onPick", selected);
 };
 </script>

@@ -13,7 +13,7 @@ const acceptedMimeTypes = [
 ];
 const store = useCreationStore();
 const { title } = storeToRefs(store);
-// HOX! Name saattaa olla eripitkä. Tarkista
+// TODO: Name saattaa olla eripitkä. Tarkista
 const previewUrl = computed(
   () => store.image && URL.createObjectURL(store.image)
 );

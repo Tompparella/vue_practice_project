@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { SpaceMenu } from "../main";
-import { HoverOverlay } from "../common";
+import { ImageHover } from "../common";
 type Props = {
   hidden: boolean;
 };
@@ -26,9 +26,7 @@ const onIconPress = () => {
 <template>
   <div class="space-box">
     <i v-if="!hidden" class="icon las la-box" @click="onIconPress" />
-    <div v-if="!hidden" class="space-container" @click="openMenu">
-      <HoverOverlay class="hover" :label="'Select space'" />
-    </div>
+    <ImageHover v-if="!hidden" @click="openMenu" :label="'Select space'" />
     <SpaceMenu :visible="menuVisible" @onClose="closeMenu" />
   </div>
 </template>
@@ -42,16 +40,5 @@ const onIconPress = () => {
 .space-box {
   display: flex;
   flex-direction: column;
-}
-.space-container {
-  height: $headerHeight;
-  width: $headerHeight;
-  border-radius: $border;
-  background: white;
-  box-shadow: 1px 2px 4px 1px $shadowColor inset;
-  @include hover-overlay;
-}
-.hover {
-  transform: translateY(0);
 }
 </style>
