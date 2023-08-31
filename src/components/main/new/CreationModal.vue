@@ -2,7 +2,12 @@
 import { Modal, Button } from "@/components/common";
 import { default as InstitutionBox } from "./InstitutionBox.vue";
 import { default as ContentPicker } from "./ContentPicker.vue";
-import { default as TagBox } from "./TagBox.vue";
+import {
+  default as TagBox,
+  type TagAdded,
+  type TagInserted,
+  type TagRemoved,
+} from "./TagBox.vue";
 import { useCreationStore, useUserStore } from "../../../stores";
 import {
   useGetGuildQuery,
@@ -10,6 +15,7 @@ import {
   usePostContentMutation,
 } from "../../../hooks/queries";
 import { toRef, computed } from "vue";
+import { storeToRefs } from "pinia";
 type Props = {
   visible: boolean;
 };
@@ -20,6 +26,7 @@ const props = defineProps<Props>();
 const emit = defineEmits<Emits>();
 const userStore = useUserStore();
 const creationStore = useCreationStore();
+const creation = storeToRefs(useCreationStore());
 const visible = toRef(props, "visible");
 const guildId = computed(() => userStore.userData?.guildId);
 const { data: guildData } = useGetGuildQuery(visible, guildId);
@@ -46,6 +53,15 @@ const onCreate = () => {
     );
   }
 };
+const insertTag = ({ tag, index }: TagInserted) => {
+  creationStore.insertTag(tag, index);
+};
+const addTag = ({ tag }: TagAdded) => {
+  creationStore.addTag(tag);
+};
+const removeTag = ({ index }: TagRemoved) => {
+  creationStore.removeTag(index);
+};
 </script>
 
 <template>
@@ -64,7 +80,14 @@ const onCreate = () => {
         />
       </div>
       <ContentPicker />
-      <TagBox :tags="tagData ?? null" />
+      <TagBox
+        :title="$t('creationModal.tag')"
+        @onTagAdded="addTag"
+        @onTagInserted="insertTag"
+        @onTagRemoved="removeTag"
+        :selectedTags="creation.tags.value"
+        :availableTags="tagData ?? []"
+      />
       <div class="button-container">
         <Button :label="$t('creationModal.create')" @onPress="onCreate" />
       </div>

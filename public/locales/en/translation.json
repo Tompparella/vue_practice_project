@@ -51,6 +51,12 @@
     "tag": "...and at least one tag :)",
     "create": "Create!"
   },
+  "spaceMenu": {
+    "home": "Your home",
+    "profile": "Your profile",
+    "space": "Current space",
+    "tags": "Highlighted tags"
+  },
   "display": {
     "welcome_1": "Hey again!",
     "welcome_2": "Woah you're back!",

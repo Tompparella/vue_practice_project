@@ -1,22 +1,33 @@
 <script setup lang="ts">
-import { computed } from "vue";
-import { default as MenuEntry } from "./MenuEntry.vue";
-
-/* const enabled = ref(true);
-const content = storeToRefs(useContentStore());
-const space = useGetGuildQuery(enabled, content.currentSpaceId);
-*/
-const filterOptions = computed(() => ["123", "124", "125"]);
-
-const onFilterPress = () => {
-  console.log("Filter");
+import { useContentStore } from "@/stores";
+import {
+  TagBox,
+  type TagAdded,
+  type TagInserted,
+  type TagRemoved,
+} from "../../new";
+import { useGetTagsQuery } from "@/hooks/queries";
+const contentStore = useContentStore();
+const { data: tagData } = useGetTagsQuery();
+const addTag = ({ tag }: TagAdded) => {
+  contentStore.addTag(tag);
+};
+const insertTag = ({ tag, index }: TagInserted) => {
+  contentStore.insertTag(tag, index);
+};
+const removeTag = ({ index }: TagRemoved) => {
+  contentStore.removeTag(index);
 };
 </script>
 
 <template>
-  <MenuEntry
-    label="Current space"
-    :options="filterOptions"
-    @onPress="onFilterPress"
+  <TagBox
+    :title="$t('spaceMenu.tags')"
+    :availableTags="tagData ?? []"
+    :selectedTags="contentStore.tags"
+    :disableWeight="true"
+    @onTagAdded="addTag"
+    @onTagInserted="insertTag"
+    @onTagRemoved="removeTag"
   />
 </template>

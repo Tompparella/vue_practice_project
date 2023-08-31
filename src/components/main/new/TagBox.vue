@@ -3,20 +3,31 @@ import { Label, PickerModal } from "@/components/common";
 import { default as TagSelector } from "./TagSelector.vue";
 import type { Tag } from "@/types";
 import { ref, computed } from "vue";
-import { useCreationStore } from "@/stores";
+export type TagInserted = { tag: Tag; index: number };
+export type TagAdded = { tag: Tag };
+export type TagRemoved = { index: number };
 type Props = {
-  tags: Tag[] | null;
+  title: string;
+  availableTags: Tag[];
+  selectedTags: Tag[];
+  disableWeight?: boolean;
 };
+type Emits = {
+  (e: "onTagInserted", data: TagInserted): void;
+  (e: "onTagAdded", data: TagAdded): void;
+  (e: "onTagRemoved", data: TagRemoved): void;
+};
+const emit = defineEmits<Emits>();
 const props = defineProps<Props>();
 const pickerVisible = ref(false);
-const store = useCreationStore();
 const selectedIndex = ref<number>();
 
 const pickerData = computed(() =>
-  props.tags?.filter((tag) => !store.tags.includes(tag))
+  props.availableTags?.filter((tag) => !props.selectedTags.includes(tag))
 );
-
-const weight = computed(() => 1 / store.tags.length);
+const weight = computed(() =>
+  props.disableWeight ? null : 1 / props.selectedTags.length
+); // TODO: Let user define weight themselves
 
 const toggleTagPicker = (index?: number) => {
   selectedIndex.value = index;
@@ -24,13 +35,13 @@ const toggleTagPicker = (index?: number) => {
 };
 
 const handleOnPick = (id: number) => {
-  if (props.tags) {
-    const tag = props.tags.find((tag) => tag.id === id);
-    if (tag && !store.tags.includes(tag)) {
+  if (props.selectedTags) {
+    const tag = props.availableTags.find((tag) => tag.id === id);
+    if (tag && !props.selectedTags.includes(tag)) {
       if (selectedIndex.value !== undefined) {
-        store.insertTag(tag, selectedIndex.value);
+        emit("onTagInserted", { tag, index: selectedIndex.value });
       } else {
-        store.addTag(tag);
+        emit("onTagAdded", { tag });
       }
     }
   }
@@ -38,16 +49,16 @@ const handleOnPick = (id: number) => {
 };
 
 const unselectTag = (index: number) => {
-  store.removeTag(index);
+  emit("onTagRemoved", { index });
 };
 </script>
 
 <template>
   <div class="tag-box">
-    <Label type="M" :label="$t('creationModal.tag')" />
+    <Label type="M" :label="title" />
     <div class="tag-row">
       <TransitionGroup name="group">
-        <li v-for="(tag, index) in store.tags" :key="tag.id">
+        <li v-for="(tag, index) in selectedTags" :key="tag.id">
           <TagSelector
             :tag="tag"
             :weight="weight"
@@ -56,7 +67,11 @@ const unselectTag = (index: number) => {
           />
         </li>
       </TransitionGroup>
-      <TagSelector v-if="store.tags.length < 3" @onTagPress="toggleTagPicker" />
+      <TagSelector
+        v-if="selectedTags.length < 3"
+        @onTagPress="toggleTagPicker"
+        :weight="null"
+      />
     </div>
   </div>
   <PickerModal

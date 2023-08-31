@@ -18,7 +18,7 @@ const onSpacePress = () => {
 
 <template>
   <MenuEntry
-    label="Current space"
+    :label="$t('spaceMenu.space')"
     :options="spaceOptions"
     @onPress="onSpacePress"
   />

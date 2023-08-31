@@ -1,7 +1,7 @@
 import { computed, ref } from "vue";
 import { defineStore } from "pinia";
 import { useGetContentQuery, useRateContentMutation } from "@/hooks/queries";
-import type { Content } from "@/types";
+import type { Content, Tag } from "@/types";
 
 export const useContentStore = defineStore("content", () => {
   const enabled = ref<boolean>(false);
@@ -9,6 +9,7 @@ export const useContentStore = defineStore("content", () => {
   const universityId = ref<number | undefined>(undefined);
   const selectedIndex = ref<number>(0);
   const currentSpaceId = ref<number | undefined>(undefined);
+  const tags = ref<Tag[]>([]);
   const contentData = useGetContentQuery({
     enabled,
     guildId,
@@ -55,6 +56,20 @@ export const useContentStore = defineStore("content", () => {
     }
   };
 
+  const addTag = (value: Tag) => {
+    if (tags.value.length < 3) {
+      tags.value.push(value);
+    }
+  };
+
+  const insertTag = (value: Tag, index: number) => {
+    tags.value[index] = value;
+  };
+
+  const removeTag = (index: number) => {
+    tags.value.splice(index, 1);
+  };
+
   const { mutate: rateContent } = useRateContentMutation(next);
 
   const selectedContent = computed<Content | undefined>(() => {
@@ -85,7 +100,11 @@ export const useContentStore = defineStore("content", () => {
   return {
     selectedContent,
     currentSpaceId,
+    tags,
     setCurrentSpace,
+    addTag,
+    insertTag,
+    removeTag,
     like,
     dislike,
     next,

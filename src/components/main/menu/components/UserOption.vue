@@ -25,12 +25,12 @@ const onProfilePress = () => {
 <template>
   <div class="row">
     <MenuEntry
-      label="Your home"
+      :label="$t('spaceMenu.home')"
       :options="homeOptions"
       @onPress="onHomePress"
     />
     <MenuEntry
-      label="Your profile"
+      :label="$t('spaceMenu.profile')"
       :options="profileOptions"
       @onPress="onProfilePress"
     />

@@ -3,7 +3,7 @@ import { Text, HoverOverlay, CornerButton } from "@/components/common";
 import type { Tag } from "@/types";
 type Props = {
   tag?: Tag;
-  weight?: number;
+  weight: number | null;
 };
 type Emits = {
   (e: "onTagPress"): void;
@@ -16,14 +16,14 @@ const getWeight = () =>
 </script>
 
 <template>
-  <div class="tag-container">
+  <div class="tag-container" :class="weight !== null ? 'row' : 'column'">
     <div class="image-container">
       <CornerButton v-if="Boolean(tag)" @onPress="$emit('onRemove')" />
       <img class="image" :src="tag?.imageUrl" />
       <HoverOverlay @click="$emit('onTagPress')" />
     </div>
     <div class="info-container">
-      <div class="weighing">
+      <div v-if="weight" class="weighing">
         <Text type="M" :label="getWeight()" />
       </div>
       <Text type="S" :label="tag?.name ?? ''" />
@@ -38,6 +38,12 @@ const getWeight = () =>
   display: flex;
   justify-content: center;
   padding-inline: 0.5rem;
+}
+.row {
+  flex-direction: row;
+}
+.column {
+  flex-direction: column;
 }
 .info-container {
   display: flex;
