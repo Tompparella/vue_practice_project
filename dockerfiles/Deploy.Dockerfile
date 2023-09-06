@@ -1,6 +1,6 @@
-FROM node:14
+FROM node:14-alpine AS build-stage
 
-WORKDIR /src
+WORKDIR /frontend
 
 # Copy package.json and package-lock.json to the container
 COPY package*.json ./
@@ -14,10 +14,14 @@ COPY . .
 # Build your Vue application
 RUN npm run build
 
+FROM nginx AS production-stage
+
+COPY --from=build-stage /frontend/dist /usr/share/nginx/html
+
 # Expose the port your Vue app will run on (typically 80 for production)
-EXPOSE 80
+EXPOSE 8000
 
 # Command to start your application
-CMD [ "npm", "start" ]
+CMD [ "nginx", "-g", "daemon off;" ]
 
 # TODO: Under construction!!

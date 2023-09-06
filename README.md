@@ -75,3 +75,59 @@ The project is divided into the following file structure under "src":
 - /stores       - Commonly used stores
 - /style        - Styling files, constants, and mixins
 - /utils        - Utility functions for all-round use
+
+
+## Deployment
+
+The frontend is deployed within a docker container and consists of three parts.
+1. Setup
+2. Development
+3. Deployment
+
+- The setup stage initializes a docker image for us to use with the application environment set up
+- Development creates a container suitable for development work
+- Deployment builds an optimized version of the application that is then deployed in an nginx container
+
+- Setup:
+```
+docker build \
+  --build-arg USER_ID=$(id -u) \
+  --build-arg GROUP_ID=$(id -g) \
+  -t vue_helper - < ./dockerfiles/Setup.Dockerfile
+```
+And
+```
+docker run -v /path/to/project/:/vue-setup -it vue_helper
+```
+
+- Development:
+```
+docker build  \
+    -f ./dockerfiles/Dev.Dockerfile \
+    -t vue_app:dev 
+    vue_app
+
+```
+And 
+```
+docker run \
+    -v /path/to/project/vue_app:/vue_app \
+    -p 8080:8080
+    -it vue_app:dev
+```
+
+This will run the development container and bind it with our local files, making dynamic development possible
+
+- Deployment:
+```
+docker build \
+    -f ./dockerfiles/Deploy.Dockerfile \
+    -t vue_app:production \
+    vue_app
+
+```
+And
+```
+docker run -p 80:80 vue_app:production
+
+```
