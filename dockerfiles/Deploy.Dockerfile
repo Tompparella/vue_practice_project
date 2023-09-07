@@ -3,10 +3,12 @@ FROM node:18-alpine3.17 AS build-stage
 WORKDIR /frontend
 
 # Copy package.json and package-lock.json to the container
-COPY package*.json ./
+COPY ./package*.json ./
 
 # Install application dependencies
-RUN npm install
+# Loglevel can be set for debugging purposes
+# We omit dev to disregard devDependencies. TODO: Add devDependencies when an actual staging environment with testing is done
+RUN npm install -loglevel verbose --omit=dev --no-optional
 
 # Copy the rest of your application code
 COPY . .
@@ -19,7 +21,7 @@ FROM nginx AS production-stage
 COPY --from=build-stage /frontend/dist /usr/share/nginx/html
 
 # Expose the port your Vue app will run on. No need when running compose file with networks
-# EXPOSE 8000
+EXPOSE 8000
 
 # Command to start your application
 CMD [ "nginx", "-g", "daemon off;" ]
