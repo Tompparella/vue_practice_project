@@ -13,15 +13,14 @@ RUN npm install -loglevel verbose --omit=dev --no-optional
 # Copy the rest of your application code
 COPY . .
 
-# Build your Vue application
-RUN npm run build
+# Build your Vue application. HOX! Build-only, due to no type checking being required in production anymore.
+RUN npm run build-only
 
 FROM nginx AS production-stage
 
 COPY --from=build-stage /frontend/dist /usr/share/nginx/html
 
 # Expose the port your Vue app will run on. No need when running compose file with networks
-EXPOSE 8000
 
 # Command to start your application
 CMD [ "nginx", "-g", "daemon off;" ]
