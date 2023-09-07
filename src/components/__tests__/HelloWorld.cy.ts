@@ -11,3 +11,5 @@ describe("HelloWorld", () => {
   });
 });
  */
+
+export default () => {};

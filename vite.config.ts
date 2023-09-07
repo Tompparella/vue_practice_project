@@ -5,7 +5,7 @@ import vue from "@vitejs/plugin-vue";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ _command, mode }) => {
-  const env = loadEnv(mode, process.cwd(), "VITE_PORT");
+  const env = loadEnv(mode, process.cwd(), ["VITE_PORT"]);
   const port = env.VITE_PORT;
   if (port === undefined) {
     console.warn(
@@ -21,6 +21,9 @@ export default defineConfig(({ _command, mode }) => {
     },
     plugins: [vue()],
     server: {
+      port: port ?? 8000,
+    },
+    preview: {
       port: port ?? 8000,
     },
   };
