@@ -76,6 +76,11 @@ The project is divided into the following file structure under "src":
 - /style        - Styling files, constants, and mixins
 - /utils        - Utility functions for all-round use
 
+## Environment variables
+
+The frontend requires an array of environment variables to function properly. They are as follows:
+- VITE_API_URL=<Url of the backend instance>
+- VITE_PORT=<Port where we want to run our application>
 
 ## Deployment
 
